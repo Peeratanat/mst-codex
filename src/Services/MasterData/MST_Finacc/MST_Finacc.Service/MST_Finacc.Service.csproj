@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Development</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'!='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\lib\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\..\..\lib\DateTimeExtensions\DateTimeExtensions.csproj" /> 
+    <ProjectReference Include="..\..\..\..\..\lib\ExcelExtension\ExcelExtension.csproj" /> 
+    <ProjectReference Include="..\..\..\..\Reports\Report.Integration\Report.Integration.csproj" />
+    <ProjectReference Include="..\MST_Finacc.Params\MST_Finacc.Params.csproj" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="EPPlus" Version="7.2.1" />
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup> 
+
+ <ItemGroup>
+    <None Update="ExcelTemplates\TemplateGPPrice.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\TemplateReallocate.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+        <None Update="ExcelTemplates\TemplatesBankACCExport.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+        <None Update="ExcelTemplates\TemplatesEDCExport.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+        <None Update="ExcelTemplates\TemplateSpecMaterial.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

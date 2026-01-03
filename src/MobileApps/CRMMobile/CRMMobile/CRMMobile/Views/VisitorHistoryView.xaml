@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             x:Class="CRMMobile.Views.VisitorHistoryView">
+    <ContentView.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0" HasShadow="True"
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="10"
+                       BackgroundColor="White"
+                       Margin="15,15,15,15">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="15" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="ประวัติการเยี่ยมชมโครงการ"
+                                   TextColor="#2B2B2B"
+                                   FontSize="16"
+                                   Style="{StaticResource FontBold}"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalTextAlignment="Center" />
+                            <Label Grid.Column="2"
+
+                                   Style="{StaticResource FontBold}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="("></Span>
+                                        <Span Text="{Binding VisitorHistoriesCount}"></Span>
+                                        <Span Text=")"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="3"
+                                   Text="&#xE935;"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+                        <al:RepeatableStack ItemsSource="{Binding VisitorHistories}">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame CornerRadius="0"
+                                           HorizontalOptions="FillAndExpand"
+                                           BackgroundColor="#F5F5F5"
+                                           BorderColor="#e0dedc"
+                                           HasShadow="False">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100*" />
+                                                <ColumnDefinition Width="100*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="วัน/เวลาเข้าชมโครงการ"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Text="{Binding VisitDateIn,StringFormat='{0:dd/MM/yyy (hh:mm)}'}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Text="วัน/เวลาออกจากโครงการ"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Text="{Binding VisitDateOut, StringFormat='{0:dd/MM/yyyy (hh:mm)}'}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="ชื่อโครงการ"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   Grid.ColumnSpan="2"
+
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Project.ProjectNo}"></Span>
+                                                        <Span Text="-"></Span>
+                                                        <Span Text="{Binding Project.ProjectNameTH}"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="4"
+                                                   Grid.Column="0"
+                                                   Text="สถานะ Opportunity"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="5"
+                                                   Grid.Column="0"
+                                                   Text="{Binding SalesOpportunity.Name}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="1" HasShadow="True"
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="10"
+                       BackgroundColor="White"
+                       Margin="15,0,15,15">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="15" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="ประวัติการการซื้อโครงการ AP"
+                                   TextColor="#2B2B2B"
+                                   FontSize="16"
+                                   Style="{StaticResource FontBold}"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalTextAlignment="Center" />
+                            <Label Grid.Column="2"
+
+                                   Style="{StaticResource FontBold}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="("></Span>
+                                        <Span Text="{Binding VisitorPurchaseHistoriesCount}"></Span>
+                                        <Span Text=")"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="3"
+                                   Text="&#xE935;"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+
+                        <al:RepeatableStack ItemsSource="{Binding VisitorPurchaseHistories}">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame CornerRadius="0"
+                                           HorizontalOptions="FillAndExpand"
+                                           BackgroundColor="#F5F5F5"
+                                           BorderColor="#e0dedc"
+                                           HasShadow="False">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100*" />
+                                                <ColumnDefinition Width="100*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="วันที่"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Text="20/01/2019"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="ชื่อโครงการ"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="0"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Project.ProjectNo}"></Span>
+                                                        <Span Text="-"></Span>
+                                                        <Span Text="{Binding Project.ProjectNameTH}"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="4"
+                                                   Grid.Column="0"
+                                                   Text="Unit"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="5"
+                                                   Grid.Column="0"
+                                                   Text="-"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="4"
+                                                   Grid.Column="1"
+                                                   Text="มูลค่า"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="5"
+                                                   Grid.Column="1"
+                                                   Text="-"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="6"
+                                                   Grid.Column="0"
+                                                   Text="สถานะปัจจุบัน"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="7"
+                                                   Grid.Column="0"
+                                                   Text="-"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="2" HasShadow="True"
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="10"
+                       BackgroundColor="White"
+                       Margin="15,0,15,15">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="15" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="ประวัติการ Call/Web/Facebook"
+                                   TextColor="#2B2B2B"
+                                   FontSize="16"
+                                   Style="{StaticResource FontBold}"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalTextAlignment="Center" />
+                            <Label Grid.Column="2"
+
+                                   Style="{StaticResource FontBold}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="("></Span>
+                                        <Span Text="{Binding LeadListCount}"></Span>
+                                        <Span Text=")"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="3"
+                                   Text="&#xE935;"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+                        <al:RepeatableStack ItemsSource="{Binding LeadList}">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame CornerRadius="0"
+                                           HorizontalOptions="FillAndExpand"
+                                           BackgroundColor="#F5F5F5"
+                                           BorderColor="#e0dedc"
+                                           HasShadow="False">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100*" />
+                                                <!--<ColumnDefinition Width="100*" />-->
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="วันที่/เวลาที่ทำรายการ"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Text="{Binding CreatedDate, StringFormat='{0:dd/MM/yyyy (hh:mm)}'}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="ชื่อโครงการ"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="3"
+                                                   Grid.Column="0"
+
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Project.ProjectNo}"></Span>
+                                                        <Span Text="-"></Span>
+                                                        <Span Text="{Binding Project.ProjectNameTH}"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Grid.Row="4"
+                                                   Grid.Column="0"
+                                                   Text="ช่องทาง"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="5"
+                                                   Grid.Column="0"
+                                                   Text="{Binding Advertisement.Name}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label Grid.Row="6"
+                                                   Grid.Column="0"
+                                                   Text="หมายเหตุ"
+                                                   TextColor="#7A7A7A"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="End" />
+                                            <Label Grid.Row="7"
+                                                   Grid.Column="0"
+                                                   Text="{Binding Remark}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"
+                                                   VerticalTextAlignment="Start" />
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="3" HasShadow="True"
+                       HorizontalOptions="FillAndExpand"
+                       CornerRadius="10"
+                       BackgroundColor="White"
+                       Margin="15,0,15,15">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="15" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="ประวัติการตอบแบบสอบถาม"
+                                   TextColor="#2B2B2B"
+                                   FontSize="16"
+                                   Style="{StaticResource FontBold}"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalTextAlignment="Center" />
+                            <Label Grid.Column="2"
+
+                                   Style="{StaticResource FontBold}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="("></Span>
+                                        <Span Text="{Binding VisitorQuestionnaireHistoriesCount}"></Span>
+                                        <Span Text=")"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="3"
+                                   Text="&#xE935;"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="13"
+                                   TextColor="#8992A7"
+                                   HorizontalOptions="End"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+
+                        <al:RepeatableStack ItemsSource="{Binding VisitorQuestionnaireHistories}">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame CornerRadius="0"
+                                           HorizontalOptions="FillAndExpand"
+                                           BackgroundColor="#F5F5F5"
+                                           BorderColor="#e0dedc"
+                                           HasShadow="False">
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30" />
+                                                    <RowDefinition Height="30" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150*" />
+                                                    <ColumnDefinition Width="80*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="0"
+                                                       Text="ชื่อโครงการ"
+                                                       TextColor="#7A7A7A"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontRegular}"
+                                                       VerticalTextAlignment="End" />
+                                                <Label Grid.Row="1"
+                                                       Grid.Column="0"
+                                                       Text="10077-Centro วัชรพล"
+                                                       TextColor="#2B2B2B"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontRegular}"
+                                                       VerticalTextAlignment="Start" />
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Text="วันที่ทำรายการ"
+                                                       TextColor="#7A7A7A"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontRegular}"
+                                                       VerticalTextAlignment="End" />
+                                                <Label Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       Text="20/01/2019"
+                                                       TextColor="#2B2B2B"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontRegular}"
+                                                       VerticalTextAlignment="Start" />
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

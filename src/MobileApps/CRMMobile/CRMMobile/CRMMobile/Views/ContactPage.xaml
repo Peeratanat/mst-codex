@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<basepage:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:basepage="clr-namespace:CRMMobile.Layout" xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms" xmlns:control="clr-namespace:CRMMobile.Control" x:Class="CRMMobile.Views.ContactPage" Title="Contact">
+    <ContentPage.Content>
+        <AbsoluteLayout >
+            <Grid RowSpacing="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+               
+                <AbsoluteLayout Grid.Row="0" Grid.Column="0" BackgroundColor="#F5F7FA">
+                    <control:SFButton AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="10,20,.35,35" Text="Contact" TextColor="White" BackgroundColor="#35ADED" BorderColor="#139FEA" BorderWidth="1" Padding="8,0,8,0" Command="{prism:NavigateTo 'ContactForm'}" CornerRadius="7" FontSize="14" Icon="plussquare" IconColor="White" IconAlignment="Left" IsVisible="{Binding IsNotDisplaySearch}" />
+                    <Label AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="10,20,.60,35" Text="เลือกข้อมูลที่ต้องการค้นหา" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" FontSize="14" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" IsVisible="{Binding IsDisplaySearch}" />
+                    <Button IsVisible="{Binding IsDisplaySearch}" BorderColor="#C92028" BackgroundColor="#C92028" CornerRadius="6" Margin="5" AbsoluteLayout.LayoutBounds=".97,15,50,50" AbsoluteLayout.LayoutFlags="XProportional" />
+                    <Label IsVisible="{Binding IsNotDisplaySearch}" Margin="5" Text="&#xE804;" FontFamily="{StaticResource IcomoonFont}" FontSize="24" TextColor="#454F63" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutBounds=".97,15,50,50" AbsoluteLayout.LayoutFlags="XProportional">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DisplaySearchcommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label IsVisible="{Binding IsDisplaySearch}" Margin="5" Text="&#xE804;" FontFamily="{StaticResource IcomoonFont}" FontSize="24" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutBounds=".97,15,50,50" AbsoluteLayout.LayoutFlags="XProportional">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DisplaySearchcommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </AbsoluteLayout>
+                <BoxView Grid.Row="1" BackgroundColor="#ebebeb" />
+                <basepage:SFInfiniteScolling x:Name="ContactList" Grid.Row="2" BackgroundColor="White" LoadMoreCommand="{Binding LoadMoreCommand}" ItemsSource="{Binding Contacts}" >
+                    <basepage:SFInfiniteScolling.ItemTemplate>
+                        <DataTemplate>
+                            
+                                <basepage:CollapsePageLayout CreateOpportunityCommand="{Binding Source={x:Reference ContactList}, Path=BindingContext.CreateOpportunityCommand}"
+                                    NavigateToOpportunityTapCommand="{Binding Source={x:Reference ContactList},Path=BindingContext.NavigateToOpportunityTapCommand}"
+                                                             BindingContext="{Binding .}" />
+                         
+                        </DataTemplate>
+                    </basepage:SFInfiniteScolling.ItemTemplate>
+                    <basepage:SFInfiniteScolling.EmtyTemplate>
+                        <DataTemplate>
+                            <basepage:EmtyView IsVisible="{Binding DisplayEmptyView}" />
+                        </DataTemplate>
+                    </basepage:SFInfiniteScolling.EmtyTemplate>
+                </basepage:SFInfiniteScolling>
+
+
+            </Grid>
+            <!-- Search criteria  -->
+            <AbsoluteLayout x:Name="SearchArea" Grid.Row="2" IsVisible="{Binding IsDisplaySearch}" AbsoluteLayout.LayoutBounds="0,76,1,390" AbsoluteLayout.LayoutFlags="WidthProportional" BackgroundColor="#F5F7FA">
+                <Label Text="รหัสลูกค้า" Margin="15,0" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" AbsoluteLayout.LayoutBounds="0,10,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <control:BorderEntry Text="{Binding ContactNo}" FontSize="13" Style="{StaticResource EntryFontRegular}" Margin="15,0" BackgroundColor="#FFFFFF" Radius="5" AbsoluteLayout.LayoutBounds="0,32,1,45" AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                <Label Text="ชื่อ" Margin="15,0" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" AbsoluteLayout.LayoutBounds="0,90,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <control:BorderEntry Text="{Binding FirstNameTH}" FontSize="13" Style="{StaticResource EntryFontRegular}" Margin="15,0" BackgroundColor="#FFFFFF" Radius="5" AbsoluteLayout.LayoutBounds="0,110,1,45" AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                <Label Text="นามสกุล" Margin="15,0" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" AbsoluteLayout.LayoutBounds="0,165,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <control:BorderEntry Text="{Binding LastNameTH}" FontSize="13" Style="{StaticResource EntryFontRegular}" Margin="15,0" BackgroundColor="#FFFFFF" Radius="5" AbsoluteLayout.LayoutBounds="0,185,1,45" AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                <Label Text="เบอร์โทร" Margin="15,0" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" AbsoluteLayout.LayoutBounds="0,240,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <control:BorderEntry Text="{Binding PhoneNumber}" FontSize="13" Style="{StaticResource EntryFontRegular}" Margin="15,0" BackgroundColor="#FFFFFF" Radius="5" AbsoluteLayout.LayoutBounds="0,262,1,45" AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                <Grid Padding="0" Margin="15,0" AbsoluteLayout.LayoutBounds="0,330,1,50" AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="75" />
+                    </Grid.ColumnDefinitions>
+                    <control:SFButton Grid.Column="0" Command="{Binding SearchCommand}" BackgroundColor="#C92028" BorderColor="#C92028" CornerRadius="7" Text="ค้นหา" TextColor="White" FontSize="16" Icon="search" IconColor="White" IconAlignment="Left" />
+                    <control:SFButton Grid.Column="2" BackgroundColor="#F5F5F5" Command="{Binding ClearCommand}" BorderColor="#8992A7" CornerRadius="7" BorderWidth="0.5" Text="เคลียร์" TextColor="#454F63" FontSize="16" />
+                </Grid>
+            </AbsoluteLayout>
+            <!-- Search criteria  -->
+            <ActivityIndicator AbsoluteLayout.LayoutBounds=".5,.5,.25,.25" AbsoluteLayout.LayoutFlags="All" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#C92028" VerticalOptions="Center" HorizontalOptions="Center" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</basepage:ContentPageBase>

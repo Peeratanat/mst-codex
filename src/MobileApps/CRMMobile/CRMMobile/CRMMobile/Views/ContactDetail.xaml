@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="CRMMobile.Views.ContactDetail"
+             xmlns:conveter="clr-namespace:CRMMobile.Converters" Title="รายละเอียด Contact">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conveter:DisplayContactID  x:Key="DisplayContactIDConveter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="#F5F7FA" Spacing="0">
+            <Frame Padding="15" HasShadow="False" BackgroundColor="White" HeightRequest="40">
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Start"  Style="{StaticResource FontRegular}" TextColor="#2B2B2B">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Contact.FirstNameTH}"></Span>
+                            <Span Text=" "></Span>
+                            <Span Text="{Binding Contact.LastNameTH}"></Span>
+                            <Span Text="{Binding Contact.ContactNo, Converter={StaticResource DisplayContactIDConveter} }"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Frame>
+            <Frame IsVisible="{Binding IsDisplayContentHeader}"   BackgroundColor="White" CornerRadius="0" Margin="0" Padding="0">
+                <ScrollView Orientation="Horizontal">
+                    <Grid x:Name="HeaderTab" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="3" />
+                        </Grid.RowDefinitions>
+
+                        <Label x:Name="Tab1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Text="Timeline" Style="{StaticResource FontRegular}" FontSize="13">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped" Command="{Binding MyCommand}" CommandParameter="0" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView x:Name="UnderlineTab" Color="#C92028" Grid.Row="1" Grid.Column="0"></BoxView>
+                        <Label x:Name="Tab2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" Text="ข้อมูลทั่วไป" Style="{StaticResource FontRegular}" FontSize="13">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"  Command="{Binding MyCommand}" CommandParameter="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="Tab3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="2" Text="ที่อยู่" Style="{StaticResource FontRegular}" FontSize="13">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding MyCommand}" CommandParameter="2" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="Tab4" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="3" Text="Opportunity" Style="{StaticResource FontRegular}" FontSize="13">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding MyCommand}" CommandParameter="3" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="Tab5" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="4" Text="ข้อมูลแปลง" Style="{StaticResource FontRegular}" FontSize="13">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" Command="{Binding MyCommand}" CommandParameter="4" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </ScrollView>
+            </Frame>
+
+            <cv:CarouselViewControl IsVisible="{Binding IsDisplayContent}"
+                                    ItemsSource="{Binding Template}"
+                                    Position="{Binding Position}"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
+            </cv:CarouselViewControl>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"
+                                           Color="#C92028"
+                                            HeightRequest="50"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

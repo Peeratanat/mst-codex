@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:basepage="clr-namespace:CRMMobile.Layout"
+             x:Class="CRMMobile.Views.BookingPage"
+             Title="การจอง">
+    <ContentPage.Content>
+        <AbsoluteLayout  BackgroundColor="White">
+            <Frame AbsoluteLayout.LayoutBounds="0,0,1,90"
+                   AbsoluteLayout.LayoutFlags="WidthProportional"
+                   HasShadow="False"
+                   HorizontalOptions="FillAndExpand"
+                   CornerRadius="0"
+                   BackgroundColor="#F5F7FA"
+                   Padding="0">
+                <AbsoluteLayout>
+                    <control:PickerEntry AbsoluteLayout.LayoutBounds="10,15,.80,50"
+                                         AbsoluteLayout.LayoutFlags="WidthProportional"
+                                         Title="โครงการ" Radius="16" FocusColor="#C92028" FontSize="14" Style="{StaticResource PickerFontRegular}" TextColor="#8992A7">
+                        <control:PickerEntry.Items>
+                            <x:String>ทั้งหมด</x:String>
+                            <x:String>60019-Life Ladprao Valley</x:String>
+                            <x:String>60019-Life Ladprao Valley</x:String>
+                            <x:String>60019-Life Ladprao Valley</x:String>
+                        </control:PickerEntry.Items>
+                    </control:PickerEntry>
+
+                    <Button IsVisible="{Binding IsDisplaySearch}"
+                            BorderColor="#AD0008" BackgroundColor="#C92028" CornerRadius="6" Margin="5"
+                            AbsoluteLayout.LayoutBounds=".97,15,50,50"
+                            AbsoluteLayout.LayoutFlags="XProportional">
+                    </Button>
+                    <Label IsVisible="{Binding IsNotDisplaySearch}" Margin="5" Text="&#xF1DE;" FontFamily="{StaticResource CustomFont}" FontSize="24"
+                           TextColor="#454F63" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                           AbsoluteLayout.LayoutBounds=".97,15,50,50"
+                           AbsoluteLayout.LayoutFlags="XProportional">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DisplaySearchcommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label IsVisible="{Binding IsDisplaySearch}" Margin="5" Text="&#xF1DE;" FontFamily="{StaticResource CustomFont}" FontSize="24"
+                           TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                           AbsoluteLayout.LayoutBounds=".97,15,50,50"
+                           AbsoluteLayout.LayoutFlags="XProportional">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DisplaySearchcommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </AbsoluteLayout>
+            </Frame>
+            <Frame IsVisible="{Binding IsNotDisplaySearch}"
+                   AbsoluteLayout.LayoutBounds="0,90,1,90"
+                   AbsoluteLayout.LayoutFlags="WidthProportional"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   CornerRadius="0"
+                   BackgroundColor="White"
+                   Padding="15"
+                   Margin="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="100*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="20" Style="{StaticResource FontBold}" FontSize="22" TextColor="#C92028" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="10" Style="{StaticResource FontBold}" FontSize="22" TextColor="#C92028" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                    <Label Grid.Row="1" Grid.Column="0" Text="ผู้ผ่านเข้า-ออก" Style="{StaticResource FontRegular}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                    <Label Grid.Row="1" Grid.Column="2" Text="Visitor ที่ต้อนรับแล้ว" Style="{StaticResource FontRegular}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                    <BoxView Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BackgroundColor="#BDC3D1" VerticalOptions="Center" HorizontalOptions="Center" />
+                </Grid>
+            </Frame>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,180,1,1"
+                        AbsoluteLayout.LayoutFlags="WidthProportional,HeightProportional">
+                <StackLayout>
+                    <basepage:CollapseBookingLayout></basepage:CollapseBookingLayout>
+                    <basepage:CollapseBookingLayout></basepage:CollapseBookingLayout>
+                </StackLayout>
+            </ScrollView>
+
+            <AbsoluteLayout  x:Name="SearchArea" IsVisible="{Binding IsDisplaySearch}"
+                             AbsoluteLayout.LayoutBounds="0,70,1,1"
+                             AbsoluteLayout.LayoutFlags="WidthProportional,HeightProportional"
+                             BackgroundColor="#F5F7FA">
+                <Label Text="ลักษณะการเดินทาง" Margin="15,0" TextColor="#2B2B2B"
+                       FontSize="13" Style="{StaticResource FontRegular}"
+                       AbsoluteLayout.LayoutBounds="0,10,1,20"
+                       AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <Grid Margin="15,0" Padding="0" BackgroundColor="#F0F0F0" RowSpacing="0"
+                        AbsoluteLayout.LayoutBounds="0,32,1,54"
+                        AbsoluteLayout.LayoutFlags="WidthProportional"
+                        VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="54" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <control:RadioEntry Grid.Row="0" Grid.Column="0"  Text="เดิน" />
+                    <control:RadioEntry Grid.Row="0" Grid.Column="2"  Text="ยานพาหนะ" />
+                </Grid>
+
+                <Label Text="ประเภทรถยนต์" Margin="15,0" TextColor="#2B2B2B" FontSize="13"
+                       Style="{StaticResource FontRegular}"
+                       AbsoluteLayout.LayoutBounds="0,105,1,20"
+                       AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <control:PickerEntry Margin="15,0"
+                                     Radius="4"
+                                     AbsoluteLayout.LayoutBounds="0,130,1,50"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <control:PickerEntry.Items>
+                        <x:String>ทั้งหมด</x:String>
+                        <x:String>รถเก๋ง</x:String>
+                        <x:String>รถกระบะ</x:String>
+                    </control:PickerEntry.Items>
+                </control:PickerEntry>
+
+                <Label Text="สถานะ" Margin="15,0" TextColor="#2B2B2B" FontSize="13"
+                       Style="{StaticResource FontRegular}"
+                       AbsoluteLayout.LayoutBounds="0,200,1,20"
+                       AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <Grid Margin="15,0"
+                      VerticalOptions="EndAndExpand"
+                      BackgroundColor="#F0F0F0"
+                      AbsoluteLayout.LayoutBounds="0,222,1,50"
+                      AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="54" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <control:RadioEntry  Grid.Row="0" Grid.Column="0"  Text="ลูกค้า" />
+                    <control:RadioEntry Grid.Row="0" Grid.Column="2" Text="ไม่ใช่ลูกค้า" />
+                </Grid>
+
+                <Grid Margin="15,0" RowSpacing="3"
+                      AbsoluteLayout.LayoutBounds="0,295,1,70"
+                      AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="ตั้งแต่วันที่" TextColor="#2B2B2B" FontSize="13"  Style="{StaticResource FontRegular}" ></Label>
+                    <Label Grid.Row="0" Grid.Column="2" Text="ถึงวันที่" TextColor="#2B2B2B" FontSize="13"  Style="{StaticResource FontRegular}" ></Label>
+                    <DatePicker Grid.Row="1" Grid.Column="0" Style="{StaticResource DatePickerFontRegular}" FontSize="14" TextColor="#2B2B2B" />
+                    <DatePicker Grid.Row="1" Grid.Column="2" Style="{StaticResource DatePickerFontRegular}" FontSize="14" TextColor="#2B2B2B" />
+                </Grid>
+
+                <Label Text="เรียงตาม" Margin="15,0"
+                       TextColor="#2B2B2B" FontSize="13"
+                       Style="{StaticResource FontRegular}"
+                       AbsoluteLayout.LayoutBounds="0,390,1,20"
+                       AbsoluteLayout.LayoutFlags="WidthProportional" />
+                <control:PickerEntry Margin="15,0"
+                                     Radius="4"
+                                     AbsoluteLayout.LayoutBounds="0,412,1,50"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <control:PickerEntry.Items>
+                        <x:String>รหัสลูกค้า</x:String>
+                        <x:String>วันที่สร้าง</x:String>
+                    </control:PickerEntry.Items>
+                </control:PickerEntry>
+
+                <AbsoluteLayout Padding="0" Margin="0"
+                                AbsoluteLayout.LayoutBounds="0,480,1,50"
+                                AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <control:SFButton BackgroundColor="#C92028" BorderColor="#C92028" CornerRadius="7"
+                                      Text="ค้นหา" TextColor="White" FontSize="16"
+                                      Icon="search" IconColor="White" IconAlignment="Left"
+                                      AbsoluteLayout.LayoutFlags="All"
+                                      AbsoluteLayout.LayoutBounds=".5,0,.22,1">
+                    </control:SFButton>
+                </AbsoluteLayout>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit" xmlns:controls="clr-namespace:System.Globalization;assembly=netstandard" x:Class="CRMMobile.Views.LoginPage"
+            BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout
+            IsEnabled="{Binding IsBusy,Converter={StaticResource IsBusyConverter}}"
+            VerticalOptions="CenterAndExpand"
+            Spacing="20"
+            Padding="30,10,30,10">
+            <Image Source="Logo.png" HeightRequest="100" />
+            <Label
+                Style="{StaticResource FontMedium}"
+                Text="SIGN IN TO YOUR ACCOUNT"
+                FontSize="20"
+                HorizontalTextAlignment="Center" />
+            <control:BorderEntry TextColor="Black" Placeholder="Username"
+                                 Text="{Binding Username.Value}" IsValid="{Binding Username.IsValid}"
+                                 ErrorColor="#C92028"   Radius="{OnPlatform iOS=8}"
+                                 ImageAlignment="Right"
+                                 HeightRequest="60" Icon="contacts" IconColor="#8992A7"
+                                 FocusColor="#C92028" UnFocusColor="#8992A7"
+                                 Style="{StaticResource EntryFontRegular}">
+                <control:BorderEntry.Triggers>
+                    <DataTrigger
+                        TargetType="control:BorderEntry"
+                        Binding="{Binding Username.IsValid}"
+                        Value="False">
+                        <Setter Property="PlaceholderColor"
+                                Value="Red" />
+
+                        <Setter Property="Placeholder"
+                                Value="{Binding Username.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                    </DataTrigger>
+                </control:BorderEntry.Triggers>
+            </control:BorderEntry>
+            <control:BorderEntry Placeholder="Password" Text="{Binding Password.Value}"
+                                 IsValid="{Binding Password.IsValid}" ErrorColor="#C92028"
+                                 HorizontalOptions="FillAndExpand" HeightRequest="60"
+                                 IsPassword="True" Radius="{OnPlatform iOS=8}"
+                                 Icon="locks" IconColor="#8992A7" ImageAlignment="Right"
+                                 FocusColor="#C92028" UnFocusColor="#8992A7"
+                                 Style="{StaticResource EntryFontRegular}">
+                <control:BorderEntry.Triggers>
+                    <DataTrigger
+                        TargetType="control:BorderEntry"
+                        Binding="{Binding Password.IsValid}"
+                        Value="False">
+                        <Setter Property="PlaceholderColor"
+                                Value="Red" />
+
+                        <Setter Property="Placeholder"
+                                Value="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                    </DataTrigger>
+                </control:BorderEntry.Triggers>
+            </control:BorderEntry>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <input:CheckBox Text="Remember Me" IsChecked="{Binding IsRemember}"  Type="Material" HorizontalOptions="Start" Color="#C92028">
+                    <input:CheckBox.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String" Android="AP-Regular.ttf#AP" />
+                    </input:CheckBox.FontFamily>
+                </input:CheckBox>
+                <Label Text="Forgot Password" TextColor="#C92028" VerticalTextAlignment="Center" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" Style="{StaticResource FontRegular}" />
+            </StackLayout>
+
+            <control:SFButton Command="{Binding LoginCommand}" IsVisible="{Binding IsBusy,Converter={StaticResource IsBusyConverter}}"
+                    Text="SIGN IN" TextColor="White" CornerRadius="7"
+                    BackgroundColor="#C92028" HorizontalOptions="FillAndExpand" />
+            <ActivityIndicator Color="#C92028" HorizontalOptions="FillAndExpand" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

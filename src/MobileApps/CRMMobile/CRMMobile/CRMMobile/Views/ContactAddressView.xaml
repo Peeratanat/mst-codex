@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             xmlns:converter="clr-namespace:CRMMobile.Converters"
+             xmlns:local1="clr-namespace:CRMMobile.Effects" x:Name="Addressies"
+             x:Class="CRMMobile.Views.ContactAddressView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:ContactAddressThaiConverter x:Key="ThaiAddress" />
+            <converter:ContactAddressEngConverter x:Key="EngAddress" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0"
+                       BackgroundColor="White"
+                       Margin="15,15,15,0"
+                       CornerRadius="15"
+                       Padding="15,25">
+                    <StackLayout>
+                        <StackLayout HeightRequest="35"
+                                     Orientation="Horizontal">
+                            <Label FontSize="16"
+                                   VerticalTextAlignment="Center"
+                                   Text="ที่อยู่ที่ติดต่อได้"
+                                   Style="{StaticResource FontBold}" />
+                            <Label Text="&#xE916;"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="18"
+                                   TextColor="#35ADED"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="EndAndExpand" />
+                            <Label Text="เพิ่มที่อยู่"
+                                   FontSize="14"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="End"
+                                   Style="{StaticResource FontRegular}"
+                                   TextColor="#35ADED">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding AddContactAddressCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                                <Label.Effects>
+                                    <local1:UnderlineEffect />
+                                </Label.Effects>
+                            </Label>
+                        </StackLayout>
+                        <al:RepeatableStack ItemsSource="{Binding Address.ContactAddress}">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Padding="0,0,0,13"
+                                           BackgroundColor="#F5F5F5"
+                                           BorderColor="#e0dedc"
+                                           CornerRadius="0"
+                                           HasShadow="False">
+                                        <Grid Padding="15,15,4,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="2" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="2" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="2" />
+                                                <RowDefinition Height="35" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="15" />
+                                                <ColumnDefinition Width="15*" />
+                                                <ColumnDefinition Width="35" />
+                                                <ColumnDefinition Width="3" />
+                                                <ColumnDefinition Width="35" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Margin="0,3,0,0"
+                                                   Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="&#xE903;"
+                                                   FontFamily="{StaticResource IcomoonFont}"
+                                                   FontSize="14"
+                                                   TextColor="#C92028"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label VerticalTextAlignment="Start"
+                                                   TextColor="#C92028"
+                                                   Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+
+                                                   FontSize="14"
+                                                   Style="{StaticResource FontRegular}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="โครงการ : " />
+                                                        <Span Text="{Binding Project.ProjectNo}"></Span>
+                                                        <Span Text="-"></Span>
+                                                        <Span Text="{Binding Project.ProjectNameTH}"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Margin="0,3,0,0"
+                                                   Grid.Row="2"
+                                                   Grid.Column="0"
+                                                   Text="&#xF111;"
+                                                   FontFamily="{StaticResource CustomFont}"
+                                                   FontSize="14"
+                                                   TextColor="#8992A7"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label VerticalTextAlignment="Start"
+                                                   Grid.Row="2"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   Text="{Binding .,Converter={StaticResource ThaiAddress}}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"></Label>
+                                            <Label Margin="0,3,0,0"
+                                                   Grid.Row="4"
+                                                   Grid.Column="0"
+                                                   Text="&#xF111;"
+                                                   FontFamily="{StaticResource CustomFont}"
+                                                   FontSize="14"
+                                                   TextColor="#8992A7"
+                                                   VerticalTextAlignment="Start" />
+                                            <Label VerticalTextAlignment="Start"
+                                                   Grid.Row="4"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   Text="{Binding .,Converter={StaticResource EngAddress}}"
+                                                   TextColor="#2B2B2B"
+                                                   FontSize="13"
+                                                   Style="{StaticResource FontRegular}"></Label>
+                                            <Label
+                                                Grid.Row="6"
+                                                Grid.Column="4"
+                                                Text="&#xE908;"
+                                                FontSize="16"
+                                                FontFamily="{StaticResource IcomoonFont}"
+                                                VerticalTextAlignment="Center"
+                                                HorizontalTextAlignment="Center"
+                                                TextColor="#7A7A7A">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.EditContactAddressCommand, Source={x:Reference Addressies}}"
+                                                                          CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="1"
+                       BackgroundColor="White"
+                       Margin="15,15,15,0"
+                       CornerRadius="15"
+                       Padding="15,25">
+                    <StackLayout>
+                        <StackLayout HeightRequest="35"
+                                     Orientation="Horizontal">
+                            <Label FontSize="16"
+                               VerticalTextAlignment="Center"
+                               Text="ที่อยู่ตามสัญญา (บัตรประชาชน)"
+                               HeightRequest="35"
+                               Style="{StaticResource FontBold}" />
+                        </StackLayout>
+
+                        <Frame BackgroundColor="#F5F5F5"
+                               BorderColor="#e0dedc"
+                               CornerRadius="0"
+                               Padding="15,15,0,0"
+                               HasShadow="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="2" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="15" />
+                                    <RowDefinition Height="35" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15" />
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="35" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Margin="0,3,0,0"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="&#xF111;"
+                                       FontFamily="{StaticResource CustomFont}"
+                                       FontSize="14"
+                                       TextColor="#8992A7"
+                                       VerticalTextAlignment="Start" />
+                                <Label VerticalTextAlignment="Start"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Address.CitizenAddress, Converter={StaticResource ThaiAddress}}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"></Label>
+                                <Label Margin="0,3,0,0"
+                                       Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="&#xF111;"
+                                       FontFamily="{StaticResource CustomFont}"
+                                       FontSize="14"
+                                       TextColor="#8992A7"
+                                       VerticalTextAlignment="Start" />
+                                <Label VerticalTextAlignment="Start"
+                                       Grid.Row="2"
+                                       Grid.Column="1"
+                                       Text="{Binding Address.CitizenAddress, Converter={StaticResource EngAddress}}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"></Label>
+                                <Label Grid.Row="4"
+                                       Grid.Column="2"
+                                       Text="&#xE908;"
+                                       FontFamily="{StaticResource IcomoonFont}"
+                                       FontSize="16"
+                                       TextColor="#7A7A7A">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding EditContactAddressCommand }"
+                                                              CommandParameter="{Binding Address.CitizenAddress}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="2"
+                       BackgroundColor="White"
+                       Margin="15,15,15,0"
+                       CornerRadius="15"
+                       Padding="15,25">
+                    <StackLayout>
+                        <StackLayout HeightRequest="35"
+                                     Orientation="Horizontal">
+
+                            <Label FontSize="16"
+                               VerticalTextAlignment="Center"
+                               Text="ที่อยู่ที่ทำงาน"
+                               HeightRequest="35"
+                               Style="{StaticResource FontBold}" />
+                        </StackLayout>
+                        <Frame BackgroundColor="#F5F5F5"
+                               BorderColor="#e0dedc"
+                               CornerRadius="0"
+                               Padding="15,15,0,0"
+                               HasShadow="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="2" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="15" />
+                                    <RowDefinition Height="35" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15" />
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="35" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Margin="0,3,0,0"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="&#xF111;"
+                                       FontFamily="{StaticResource CustomFont}"
+                                       FontSize="14"
+                                       TextColor="#8992A7"
+                                       VerticalTextAlignment="Start" />
+                                <Label VerticalTextAlignment="Start"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Address.WorkAddress, Converter={StaticResource ThaiAddress}}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"></Label>
+                                <Label Margin="0,3,0,0"
+                                       Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="&#xF111;"
+                                       FontFamily="{StaticResource CustomFont}"
+                                       FontSize="14"
+                                       TextColor="#8992A7"
+                                       VerticalTextAlignment="Start" />
+                                <Label VerticalTextAlignment="Start"
+                                       Grid.Row="2"
+                                       Grid.Column="1"
+                                       Text="{Binding Address.WorkAddress, Converter={StaticResource EngAddress}}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"></Label>
+                                <Label Grid.Row="4"
+                                       Grid.Column="2"
+                                       Text="&#xE908;"
+                                       FontFamily="{StaticResource IcomoonFont}"
+                                       FontSize="16"
+                                       TextColor="#7A7A7A">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding EditContactAddressCommand }"
+                                                              CommandParameter="{Binding Address.WorkAddress}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="3"
+                       BackgroundColor="White"
+                       Margin="15,15,15,30"
+                       CornerRadius="15"
+                       Padding="15,25">
+                    <StackLayout>
+                        <StackLayout HeightRequest="35"
+                                     Orientation="Horizontal">
+
+                            <Label FontSize="16"
+                               VerticalTextAlignment="Center"
+                               Text="ที่อยู่ตามฝ่ายโอน (ทะเบียนบ้าน)"
+                               HeightRequest="35"
+                               Style="{StaticResource FontBold}" />
+                        </StackLayout>
+                        <Frame BackgroundColor="#F5F5F5"
+                               BorderColor="#e0dedc"
+                               CornerRadius="0"
+                               Padding="15,15,0,0"
+                               HasShadow="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+
+                                    <RowDefinition Height="15" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="35" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15" />
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="35" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Margin="0,3,0,0"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="&#xF111;"
+                                       FontFamily="{StaticResource CustomFont}"
+                                       FontSize="14"
+                                       TextColor="#8992A7"
+                                       VerticalTextAlignment="Start" />
+                                <Label VerticalTextAlignment="Start"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Address.HomeAddress, Converter={StaticResource ThaiAddress}}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"></Label>
+
+                                <Label Margin="0,3,0,0"
+                                       Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="&#xF111;"
+                                       FontFamily="{StaticResource CustomFont}"
+                                       FontSize="14"
+                                       TextColor="#8992A7"
+                                       VerticalTextAlignment="Start">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Address.HomeAddress,Converter={StaticResource EngAddress}}" Value="">
+                                            <Setter Property="IsVisible" Value="False"></Setter>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label VerticalTextAlignment="Start"
+                                       Grid.Row="2"
+                                       Grid.Column="1"
+                                       x:Name="HomeAddressNameENG"
+                                       Text="{Binding Address.HomeAddress, Converter={StaticResource EngAddress}}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"></Label>
+
+                                <Label Grid.Row="3"
+                                       Grid.Column="2"
+                                       Text="&#xE908;"
+                                       FontFamily="{StaticResource IcomoonFont}"
+                                       FontSize="16"
+                                       TextColor="#7A7A7A">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding EditContactAddressCommand }"
+                                                              CommandParameter="{Binding Address.HomeAddress}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

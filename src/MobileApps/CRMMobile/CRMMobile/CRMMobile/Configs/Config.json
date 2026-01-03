@@ -1,0 +1,6 @@
+﻿{
+  "CustomerUrl": "http://crmrevo-customer-api-crmrevo-dev.devops-app.apthai.com",
+  "MasterCenterUrl": "http://crmrevo-masterdata-api-crmrevo-dev.devops-app.apthai.com",
+  "ProjectUrl": "http://crmrevo-project-api-crmrevo-dev.devops-app.apthai.com",
+  "IndentifyUrl": "http://crmrevo-identity-api-crmrevo-dev.devops-app.apthai.com"
+}

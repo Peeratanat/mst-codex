@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CRMMobile.Effects" xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms" x:Class="CRMMobile.Layout.CollapsePageLayout">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" Spacing="0" Padding="15">
+            <Grid ColumnSpacing="0" HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="200*" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="7" BackgroundColor="#364155" />
+                <Label  x:Name="MyButton" Text="&#xE935;" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" FontFamily="{StaticResource IcomoonFont}" TextColor="White" VerticalOptions="Fill" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Rotate_Clicked"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label x:Name="Header" Grid.Column="2" Text="ชื่อ :" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" Style="{StaticResource FontRegular}" />
+                <Label Grid.Column="3" LineBreakMode="TailTruncation" Text="{Binding FirstNameTH}" FontSize="13" TextColor="White" VerticalTextAlignment="Center" Style="{StaticResource FontBold}" />
+                <Label Grid.Column="4" Text="Contact ID :" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Style="{StaticResource FontRegular}">
+                </Label>
+                <Label  Grid.Column="5" Grid.ColumnSpan="2" Text="{Binding ContactNo}" FontSize="13" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Style="{StaticResource FontBold}">
+                </Label>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Rotate_Clicked" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <ContentView x:Name="MyContent" BackgroundColor="#FAFBFC">
+                <Frame   BackgroundColor="#FAFBFC" HasShadow="True" Padding="10">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="0.7" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="0.7" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="0.7" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="ชื่อ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="นามสกุล" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="1" Grid.Column="0"  Text="{Binding FirstNameTH}"  FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontBold}" />
+                            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LastNameTH, Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontBold}" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="เบอร์โทร" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="3" Grid.Column="0" Text="{Binding PhoneNumber, Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <BoxView Color="#8992A7" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                            <Label Grid.Row="5" Grid.Column="0" Text="จำนวน Opportunity" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="Last Opportunity" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="6" Grid.Column="0" Text="{Binding OpportunityCount, Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#35ADED" Style="{StaticResource FontRegular}">
+                                <Label.Effects>
+                                    <local:UnderlineEffect />
+                                </Label.Effects>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="NavigateToOpportunityTap" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LastOpportunityDate, StringFormat='{0:dd/MM/yyyy}', Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <BoxView Color="#8992A7" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                            <Label Grid.Row="8" Grid.Column="0" Text="วันที่สร้าง" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Text="แก้ไขล่าสุด" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="9" Grid.Column="0" Text="{Binding CreatedDate, StringFormat='{0:dd/MM/yyyy}', Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding UpdatedDate, StringFormat='{0:dd/MM/yyyy}', Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <BoxView Color="#8992A7" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="27" />
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Label />
+                            <Label Text="&#xE916;" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource IcomoonFont}" FontSize="18" TextColor="#35ADED" VerticalTextAlignment="Center" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="Add Opp" FontSize="14" TextColor="#35ADED" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center">
+                                <Label.Effects>
+                                    <local:UnderlineEffect />
+                                </Label.Effects>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CreateOpportunityTap" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="&#xE91A;" Grid.Row="0" Grid.Column="2" FontFamily="{StaticResource IcomoonFont}" FontSize="18" TextColor="#733B8F" VerticalTextAlignment="Center" />
+                            <Label Grid.Row="0" Grid.Column="3" Text="Questionnaire" FontSize="14" TextColor="#733B8F" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center">
+                                <Label.Effects>
+                                    <local:UnderlineEffect />
+                                </Label.Effects>
+                            </Label>
+                            <Label Text="&#xE908;" Grid.Row="0" Grid.Column="4" FontFamily="{StaticResource IcomoonFont}" FontSize="18" TextColor="#8992A7" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{prism:NavigateTo 'ContactDetail'}" CommandParameter="{Binding Id}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

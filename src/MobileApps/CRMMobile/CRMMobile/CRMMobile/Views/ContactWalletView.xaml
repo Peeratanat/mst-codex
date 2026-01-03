@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:basepage="clr-namespace:CRMMobile.Layout" xmlns:local1="clr-namespace:CRMMobile.Effects" x:Class="CRMMobile.Views.ContactWalletView">
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   CornerRadius="10"
+                   BackgroundColor="White"
+                   Margin="15">
+                    <StackLayout>
+                        <StackLayout HeightRequest="35" Orientation="Horizontal">
+                            <Label FontSize="16" VerticalTextAlignment="Center" Text="Wallet" Style="{StaticResource FontBold}" />
+                            <Label Text="&#xE916;" FontFamily="{StaticResource IcomoonFont}" FontSize="18" TextColor="#35ADED" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                            <Label Text="รับเงิน" FontSize="14" VerticalTextAlignment="Center" HorizontalOptions="End" Style="{StaticResource FontRegular}" TextColor="#35ADED">
+                                <Label.Effects>
+                                    <local1:UnderlineEffect />
+                                </Label.Effects>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout>
+                            <control:PickerEntry HeightRequest="50" HorizontalOptions="FillAndExpand" Image="expanddown" Title="โครงการ" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource PickerFontRegular}">
+                                <control:PickerEntry.Items>
+                                    <x:String>60019-Life Ladprao Valley</x:String>
+                                    <x:String>60019-Life Ladprao Valley 2</x:String>
+                                </control:PickerEntry.Items>
+                            </control:PickerEntry>
+                        </StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="150*" />
+                                <ColumnDefinition Width="150*" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="1" Text="&#xE917;" FontFamily="{StaticResource IcomoonFont}" FontSize="18" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                            <Label Grid.Row="0" Grid.Column="2" FontSize="16" Text="ยอดเงินคงเหลือ" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center" TextColor="#7A7A7A" />
+                            <Label Grid.Row="0" Grid.Column="3" FontSize="16" Text="10,000.00" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center" TextColor="#C92028" />
+                            <Label Grid.Row="0" Grid.Column="4" FontSize="16" Text="บาท" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" TextColor="#7A7A7A" />
+                        </Grid>
+
+                        <basepage:CollapseContactWalletLayout></basepage:CollapseContactWalletLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

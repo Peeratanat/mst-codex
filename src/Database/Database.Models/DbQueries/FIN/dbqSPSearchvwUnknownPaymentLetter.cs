@@ -1,0 +1,89 @@
+﻿using Base.DbQueries;
+using System;
+namespace Database.Models.DbQueries.FIN
+{
+    public class dbqSPSearchvwUnknownPaymentLetter : BaseDbQueries
+    {
+        public Guid ID { get; set; }
+        public decimal Amount { get; set; }
+        public Guid? BookingID { get; set; }
+        public DateTime ReceiveDate { get; set; }
+        public Guid? BankAccountID { get; set; }
+        public DateTime? Created { get; set; }
+        public DateTime? Updated { get; set; }
+        public bool IsDeleted { get; set; }
+        public Guid? CreatedByUserID { get; set; }
+        public Guid? UpdatedByUserID { get; set; }
+        public string CancelRemark { get; set; }
+        public string Remark { get; set; }
+        public Guid? UnknownPaymentStatusID { get; set; }
+        public string SAPRemark { get; set; }
+        public string UnknownPaymentCode { get; set; }
+        public DateTime? LastMigrateDate { get; set; }
+        public string RefMigrateID1 { get; set; }
+        public string RefMigrateID2 { get; set; }
+        public string RefMigrateID3 { get; set; }
+        public Guid? BankID { get; set; }
+        public Guid? CreditCardPaymentTypeMasterCenterID { get; set; }
+        public Guid? CreditCardTypeMasterCenterID { get; set; }
+        public Guid? EDCBankID { get; set; }
+        public decimal? Fee { get; set; }
+        public Guid? FeeConfirmByUserID { get; set; }
+        public DateTime? FeeConfirmDate { get; set; }
+        public decimal? FeeIncludingVat { get; set; }
+        public decimal? FeePercent { get; set; }
+        public Guid? ForeignTransferTypeMasterCenterID { get; set; }
+        public string IR { get; set; }
+        public bool? IsFeeConfirm { get; set; }
+        public bool? IsForeignCreditCard { get; set; }
+        public bool? IsNotifyFET { get; set; }
+        public bool? IsRequestFET { get; set; }
+        public bool? IsWrongAccount { get; set; }
+        public string NotifyFETMemo { get; set; }
+        public string Number { get; set; }
+        public Guid? PaymentMethodTypeMasterCenterID { get; set; }
+        public string TransferorName { get; set; }
+        public decimal? Vat { get; set; }
+        public Guid? CompanyID { get; set; }
+        public DateTime? PostGLDate { get; set; }
+        public string PostGLDocumentNo { get; set; }
+        public Guid? BillPaymentDetailID { get; set; }
+        public Guid? ProjectID { get; set; }
+        public bool? IsRefund { get; set; }
+        public DateTime? RefundDate { get; set; }
+        public Guid? RefundUserID { get; set; }
+        public int IsDownPaymentLetter { get; set; }
+        public Guid? DownPaymentLetterID { get; set; }
+        public string DownPaymentLetterNo { get; set; }
+        public DateTime? DownPaymentLetterDate { get; set; }
+        public string DownPaymentLetterTypDesc { get; set; }
+        public decimal? RemainDownTotalAmount { get; set; }
+        public int IsTransferLetter { get; set; }
+        public Guid? TransferLetterID { get; set; }
+        public string TransferLetterNo { get; set; }
+        public DateTime? TransferLetterDate { get; set; }
+        public string TransferLetterTypDesc { get; set; }
+        public string CompanyName { get; set; }
+        public string BankAccountNo { get; set; }
+        public string BankAccountTypeDesc { get; set; }
+        public string BankCode { get; set; }
+        public string UnknownPaymentStatusDesc { get; set; }
+        public string PaymentMethodTypeDesc { get; set; }
+        public decimal? TotalUnknownPayment { get; set; }
+        public decimal? TotalRemainUnknownPayment { get; set; }
+        public bool? IsPostGL { get; set; }
+        public Guid? UnitID { get; set; }
+        public string UnitNo { get; set; }
+        public Guid? AgreementID { get; set; }
+        public string ProjectNo { get; set; }
+        public string ProjectName { get; set; }
+        public string CreatedByUserDisplayName { get; set; }
+        public int? TotalPeriodOverDue { get; set; }
+        public decimal? TotalAmountOverDue { get; set; }
+        public string PostCANo { get; set; }
+        public Guid? DownPaymentLetterTypeMasterCenterID { get; set; }
+        public Guid? TransferLetterTypeMasterCenterID { get; set; }
+        public string UpdateddByUser { get; set; }
+        public string BankAccountDisplayName { get; set; }
+    }
+}

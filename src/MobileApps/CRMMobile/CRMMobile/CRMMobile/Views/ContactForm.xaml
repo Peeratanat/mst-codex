@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             x:Class="CRMMobile.Views.ContactForm"
+             x:Name="page"
+             Title="สร้างข้อมูลทั่วไป">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="*"/>
+                    <RowDefinition  Height="65"/>
+                </Grid.RowDefinitions>
+                <ScrollView Grid.Row="0" >
+                <AbsoluteLayout>
+                    <Grid Padding="15,15,0,15"
+                          AbsoluteLayout.LayoutFlags="WidthProportional"
+                          AbsoluteLayout.LayoutBounds="0,0,1,140"
+                          BackgroundColor="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="60" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="สร้างข้อมูลทั่วไป"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Style="{StaticResource FontBold}"
+                               FontSize="18" />
+                        <Label Text="ประเภทลูกค้า:"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Style="{StaticResource FontBold}"
+                               FontSize="13" />
+                        <control:RadioEntry Grid.Row="1"
+                                            Grid.Column="1"
+                                            TabIndex="0"
+                                            IsEnabled="{Binding CanChangeContactType}"
+                                            Text="{Binding Person.Name}"
+                                            Color="#C92028"
+                                            Checked="{Binding IsPerson}"
+                                            Command="{Binding CommandPerson}" />
+
+                        <control:RadioEntry Grid.Row="1"
+                                            Grid.Column="2"
+                                            TabIndex="1"
+                                            Text="{Binding Coperation.Name}"
+                                            IsEnabled="{Binding CanChangeContactType}"
+                                            Color="#C92028"
+                                            Checked="{Binding IsCoperation}"
+                                            Command="{Binding CommandPerson}" />
+                        <AbsoluteLayout Grid.Row="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2">
+                            <CheckBox IsChecked="{Binding IsVip}"
+                                      IsEnabled="False"
+                                      Color="Gray"
+                                      
+                                      AbsoluteLayout.LayoutFlags="XProportional,WidthProportional,HeightProportional"
+                                      AbsoluteLayout.LayoutBounds="0,0,.35,1" />
+                            <Label AbsoluteLayout.LayoutFlags="XProportional,WidthProportional,HeightProportional"
+                                   AbsoluteLayout.LayoutBounds=".45,0,.75,1"
+                                   VerticalTextAlignment="Center"
+                                   Text="ลูกค้า VIP"
+                                   Style="{StaticResource FontBold}"
+                                   FontSize="16"
+                                   TextColor="#8992A7" />
+                        </AbsoluteLayout>
+                    </Grid>
+                    <BoxView Color="Black"
+                             Opacity=".3"
+                             AbsoluteLayout.LayoutFlags="WidthProportional"
+                             AbsoluteLayout.LayoutBounds="0,140,1,.1"></BoxView>
+                    <ContentView
+                        x:Name="MyContent"
+                        Padding="15,0,15,15"
+                        AbsoluteLayout.LayoutFlags="WidthProportional,HeightProportional"
+                        AbsoluteLayout.LayoutBounds="0,150,1,1">
+                    </ContentView>
+                </AbsoluteLayout>
+            </ScrollView>
+            <Grid Grid.Row="1" Padding="15" BackgroundColor="#798293">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="1" Command="{Binding CreateCommand}" Text="บันทึก" TextColor="White" BackgroundColor="#C92028" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+                <Button Grid.Row="0" Grid.Column="2" Command="{prism:GoBack}" Text="ยกเลิก" TextColor="White" BackgroundColor="#454F63" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+            </Grid>
+        </Grid>
+           
+            <!--<Grid Padding="15" BackgroundColor="#798293">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="1" Command="{Binding EditCommand}" Text="บันทึก" TextColor="White" BackgroundColor="#C92028" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+                <Button Grid.Row="0" Grid.Column="2" Command="{Binding NavigateBackCommand}" Text="ยกเลิก" TextColor="White" BackgroundColor="#454F63" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+            </Grid>-->
+            <!--<AbsoluteLayout BackgroundColor="#798293"
+                            AbsoluteLayout.LayoutFlags="All"
+                            AbsoluteLayout.LayoutBounds="0,1,1,.10">
+                <Button AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds=".30,.5,100,40"
+                        Text="บันทึก"
+                        Command="{Binding CreateCommand}"
+                        TextColor="White"
+                        BackgroundColor="#C92028"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        CornerRadius="5" />
+                <Button AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds=".70,.5,100,40"
+                        Text="ยกเลิก"
+                        Command="{prism:GoBack}"
+                        TextColor="White"
+                        BackgroundColor="#454F63"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        CornerRadius="5" />
+            </AbsoluteLayout>-->
+            <ActivityIndicator Color="Red"
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds=".5,.5,50,50" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

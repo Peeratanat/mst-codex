@@ -1,0 +1,220 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Auth_Rolepermission",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build auth_rolepermission",
+      "program": "${workspaceFolder}/src/Services/Auth/Auth_Rolepermission/Auth_Rolepermission.API/bin/Debug/net8.0/Auth_Rolepermission.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Auth/Auth_Rolepermission/Auth_Rolepermission.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug Auth_User",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build auth_user",
+      "program": "${workspaceFolder}/src/Services/Auth/Auth_User/Auth_User.API/bin/Debug/net8.0/Auth_User.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Auth/Auth_User/Auth_User.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug COM_File",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build com_file",
+      "program": "${workspaceFolder}/src/Services/Common/File/COM_File.API/bin/Debug/net8.0/COM_File.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Common/File/COM_File.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug CTM_CustomerConsent",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build ctm_customerconsent",
+      "program": "${workspaceFolder}/src/Services/Customer/CTM_CustomerConsent/CTM_CustomerConsent.API/bin/Debug/net8.0/CTM_CustomerConsent.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Customer/CTM_CustomerConsent/CTM_CustomerConsent.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Finacc",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build mst_finacc",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Finacc/MST_Finacc.API/bin/Debug/net8.0/MST_Finacc.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Finacc/MST_Finacc.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_General",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build general",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_General/MST_General.API/bin/Debug/net8.0/MST_General.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_General/MST_General.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Unitmeter",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build unitmeter",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Unitmeter/MST_Unitmeter.API/bin/Debug/net8.0/MST_Unitmeter.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Unitmeter/MST_Unitmeter.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Titledeeds",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build mst_titledeeds",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Titledeeds/MST_Titledeeds.API/bin/Debug/net8.0/MST_Titledeeds.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Titledeeds/MST_Titledeeds.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Lg",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build mst_lg",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Lg/MST_Lg.API/bin/Debug/net8.0/MST_Lg.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Lg/MST_Lg.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Gpsim",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build mst_gpsim",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Gpsim/MST_Gpsim.API/bin/Debug/net8.0/MST_Gpsim.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Gpsim/MST_Gpsim.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Event",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build mst_event",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Event/MST_Event.API/bin/Debug/net8.0/MST_Event.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Event/MST_Event.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Kattyfaq",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build mst_kattyfaq",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Kattyfaq/MST_Kattyfaq.API/bin/Debug/net8.0/MST_Kattyfaq.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Kattyfaq/MST_Kattyfaq.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    
+    {
+      "name": "Debug MST_Auditlog",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build mst_auditlog",
+      "program": "${workspaceFolder}/src/Services/MasterData/MST_Auditlog/MST_Auditlog.API/bin/Debug/net8.0/MST_Auditlog.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/MasterData/MST_Auditlog/MST_Auditlog.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    
+    {
+      "name": "Debug PRJ_ProjectInfo",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build prj_projectinfo",
+      "program": "${workspaceFolder}/src/Services/Project/PRJ_ProjectInfo/PRJ_ProjectInfo.API/bin/Debug/net8.0/PRJ_ProjectInfo.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Project/PRJ_ProjectInfo/PRJ_ProjectInfo.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug PRJ_Project",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build project",
+      "program": "${workspaceFolder}/src/Services/Project/PRJ_Project/PRJ_Project.API/bin/Debug/net8.0/PRJ_Project.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Project/PRJ_Project/PRJ_Project.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug PRJ_CombineUnit",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build prj_combineunit",
+      "program": "${workspaceFolder}/src/Services/Project/PRJ_CombineUnit/PRJ_CombineUnit.API/bin/Debug/net8.0/PRJ_CombineUnit.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Project/PRJ_CombineUnit/PRJ_CombineUnit.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug PRJ_Unit",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build unit",
+      "program": "${workspaceFolder}/src/Services/Project/PRJ_Unit/PRJ_Unit.API/bin/Debug/net8.0/PRJ_Unit.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Project/PRJ_Unit/PRJ_Unit.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug PRJ_Budget",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build budget",
+      "program": "${workspaceFolder}/src/Services/Project/PRJ_Budget/PRJ_Budget.API/bin/Debug/net8.0/PRJ_Budget.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Services/Project/PRJ_Budget/PRJ_Budget.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env"
+    },
+    {
+      "name": "Debug MST_Promotion",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build MST_Promotion",
+      "program": "${workspaceFolder}/src/Services/Promotion/MST_Promotion.API/bin/Debug/net8.0/MST_Promotion.API.dll",
+      "args": [
+        "https://localhost:7145/api/v1/apcrm-prj-unitinfos-service/swagger"
+      ],
+      "cwd": "${workspaceFolder}/src/Services/Promotion/MST_Promotion.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env",
+      "postDebugTask": "openSwaggerUI"
+    },
+    {
+      "name": "Debug PRJ_UnitInfos",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build PRJ_UnitInfos",
+      "program": "${workspaceFolder}/src/Services/Project/PRJ_UnitInfos/PRJ_UnitInfos.API/bin/Debug/net8.0/PRJ_UnitInfos.API.dll",
+      "args": [
+        "https://localhost:7145/api/v1/apcrm-prj-unitinfos-service/swagger"
+      ],
+      "cwd": "${workspaceFolder}/src/Services/Project/PRJ_UnitInfos/PRJ_UnitInfos.API",
+      "envFile": "${workspaceFolder}/.vscode/shared.env",
+      "postDebugTask": "openSwaggerUI"
+    },
+    // {
+    //   "name": "Test MST_General",
+    //   "cwd": "${workspaceFolder}/src/Services/MasterData/MST_General/MST_General.UnitTest",
+    //   "command": "dotnet test",
+    //   "request": "launch",
+    //   "type": "node-terminal",
+    // },
+  ]
+}

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp8.0</TargetFramework>
+    <Configurations>Debug;Release;Development</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'!='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  
+
+ 
+
+  <ItemGroup>
+    <!-- <ProjectReference Include="..\..\..\..\lib\ExcelExtension\ExcelExtension.csproj" />
+    <ProjectReference Include="..\..\..\Database\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\DateTimeExtensions\DateTimeExtensions.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\PagingExtensions\PagingExtensions.csproj" />
+    <ProjectReference Include="..\..\..\Reports\Report.Integration\Report.Integration.csproj" />
+    <ProjectReference Include="..\..\Accounting\Accounting.Services\Accounting.Services.csproj" /> -->
+    <ProjectReference Include="..\..\Base.DTOs\Base.DTOs.csproj" />
+    <!-- <ProjectReference Include="..\..\Sale\Sale.Params\Sale.Params.csproj" />
+    <ProjectReference Include="..\Finance.Params\Finance.Params.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\FileStorage\FileStorage.csproj" /> -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.4.0" />
+    <PackageReference Include="Confluent.SchemaRegistry" Version="2.4.0" />
+    <PackageReference Include="Confluent.SchemaRegistry.Serdes.Json" Version="2.4.0" />
+    <PackageReference Include="EPPlus" Version="7.2.2" />
+  </ItemGroup>
+ 
+</Project>

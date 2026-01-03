@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CRMMobile.Views.Popup.PopupAutoComplete"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:control="clr-namespace:CRMMobile.Control"
+                 HasSystemPadding="true"
+                 BackgroundInputTransparent="false"
+
+                 BackgroundClicked="Handle_BackgroundClicked">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="100"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <Frame  BackgroundColor="White" VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="8"
+                Padding="20, 20, 20, 20"
+                Margin="15">
+            <StackLayout>
+                <AbsoluteLayout HeightRequest="90">
+                    <Label Text="เลือกสัญชาติ" FontSize="20" FontAttributes="Bold" Style="{StaticResource FontBold}" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"  AbsoluteLayout.LayoutBounds="0,0,1,40" />
+                    <control:BorderEntry x:Name="SearchEntry" FontSize="18" Icon="search" ImageAlignment="Right" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,40,1,50" TextChanged="Handle_TextChanged"></control:BorderEntry>
+                </AbsoluteLayout>
+                <ListView x:Name="listview"   Margin="15" RowHeight="50"
+                                  VerticalOptions="Fill"
+                                  ItemTapped="Handle_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Name}" FontSize="14" VerticalTextAlignment="Center" Style="{StaticResource FontRegular}">
+                                </Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <AbsoluteLayout HeightRequest="40">
+                            <ActivityIndicator x:Name="IsBusy" AbsoluteLayout.LayoutBounds="1,0,1,40"
+                                               AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                                               Color="Fuchsia" IsVisible="true" />
+                        </AbsoluteLayout>
+                    </ListView.Footer>
+                </ListView>
+                <ListView x:Name="project"   Margin="15" RowHeight="50"
+                                  VerticalOptions="Fill"
+                                  ItemTapped="Handle_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label FontSize="14" VerticalTextAlignment="Center" Style="{StaticResource FontRegular}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding ProjectNo}"></Span>
+                                            <Span Text="-"></Span>
+                                            <Span Text="{Binding ProjectNameTH}"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <AbsoluteLayout HeightRequest="40">
+                            <ActivityIndicator x:Name="IsBusy2" AbsoluteLayout.LayoutBounds="1,0,1,40"
+                                               AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                                               Color="Fuchsia" IsVisible="true" />
+                        </AbsoluteLayout>
+                    </ListView.Footer>
+                </ListView>
+                <AbsoluteLayout HeightRequest="40">
+                    <Button AbsoluteLayout.LayoutBounds="1,0,.30,40" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" BackgroundColor="White" TextColor="Red" Text="Cancel" Clicked="ClosedClicked" />
+                </AbsoluteLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

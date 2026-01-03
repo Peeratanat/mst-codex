@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="CRMMobile.Views.Popup.ConfirmPopup">
+    <ContentPage.Content>
+        <Frame
+            CornerRadius="8"
+            HasShadow="true"
+            VerticalOptions="Center" HorizontalOptions="Center"
+            WidthRequest="300">
+            <Grid Padding="5" BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <AbsoluteLayout Grid.Row="0">
+                    <Label AbsoluteLayout.LayoutBounds="0,0,.95,55"
+                           AbsoluteLayout.LayoutFlags="WidthProportional"
+                           Style="{StaticResource FontBold}"
+                           TextColor="#2B2B2B"
+                           FontSize="16"
+                           VerticalTextAlignment="Start"
+                            x:Name="LabelTitle" />
+                </AbsoluteLayout>
+
+                <Label x:Name="LabelText" Grid.Row="1" Grid.Column="0" FontSize="15" Style="{StaticResource FontRegular}" ></Label>
+                <Grid  Grid.Row="3" Grid.Column="0" HorizontalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="90" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" x:Name="AcceptButton" Clicked="OnAcceptClicked" Text="ยืนยัน" TextColor="White" BackgroundColor="#C92028" BorderColor="#C92028" CornerRadius="6" />
+                    <Button Grid.Row="0" Grid.Column="2" x:Name="CancelButton" Text="ยกเลิก" Clicked="OnCancelClicked" TextColor="White" BackgroundColor="#454F63" BorderColor="#364155" CornerRadius="6" />
+                </Grid>
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

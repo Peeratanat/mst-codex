@@ -1,0 +1,234 @@
+version: '3.4'
+
+services:
+  apcrm-mst-general-service:
+    image: apcrm-mst-general-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_General/MST_General.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-prj-project-service:
+    image: apcrm-prj-project-service
+    build: 
+      context: .
+      dockerfile: src/Services/Project/PRJ_Project/PRJ_Project.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-prj-projectinfo-service:
+    image: apcrm-prj-projectinfo-service
+    build: 
+      context: .
+      dockerfile: src/Services/Project/PRJ_ProjectInfo/PRJ_ProjectInfo.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-titledeeds-service:
+    image: apcrm-mst-titledeeds-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Titledeeds/MST_Titledeeds.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-lg-service:
+    image: apcrm-mst-lg-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Lg/MST_Lg.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-roleauth-service:
+    image: apcrm-mst-roleauth-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Roleauth/MST_Roleauth.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-gpsim-service:
+    image: apcrm-mst-gpsim-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Gpsim/MST_Gpsim.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-auditlog-service:
+    image: apcrm-mst-auditlog-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Auditlog/MST_Auditlog.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-kattyfaq-service:
+    image: apcrm-mst-kattyfaq-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Kattyfaq/MST_Kattyfaq.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-unitmeter-service:
+    image: apcrm-mst-unitmeter-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Unitmeter/MST_Unitmeter.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-event-service:
+    image: apcrm-mst-event-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Event/MST_Event.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-prj-unit-service:
+    image: apcrm-prj-unit-service
+    build: 
+      context: .
+      dockerfile: src/Services/Project/PRJ_Unit/PRJ_Unit.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-prj-budget-service:
+    image: apcrm-prj-budget-service
+    build: 
+      context: .
+      dockerfile: src/Services/Project/PRJ_Budget/PRJ_Budget.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-prj-combineunit-service:
+    image: apcrm-prj-combineunit-service
+    build: 
+      context: .
+      dockerfile: src/Services/Project/PRJ_CombineUnit/PRJ_CombineUnit.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-common-file-service:
+    image: apcrm-common-file-service
+    build: 
+      context: .
+      dockerfile: src/Services/Common/COM_File/COM_File.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-auth-rolepermission-service:
+    image: apcrm-auth-rolepermission-service
+    build: 
+      context: .
+      dockerfile: src/Services/Auth/Auth_RolePermission/Auth_RolePermission.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-auth-user-service:
+    image: apcrm-auth-user-service
+    build: 
+      context: .
+      dockerfile: src/Services/Auth/Auth_User/Auth_User.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-finacc-service:
+    image: apcrm-mst-finacc-service
+    build: 
+      context: .
+      dockerfile: src/Services/MasterData/MST_Finacc/MST_Finacc.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-ctm-customerconsent-service:
+    image: apcrm-ctm-customerconsent-service
+    build: 
+      context: .
+      dockerfile: src/Services/Customer/CTM_CustomerConsent/CTM_CustomerConsent.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-prj-unitinfos-service:
+    image: apcrm-prj-unitinfos-service
+    build: 
+      context: .
+      dockerfile: src/Services/Project/PRJ_UnitInfos/PRJ_UnitInfos.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok
+  apcrm-mst-promotion-service:
+    image: apcrm-mst-promotion-service
+    build: 
+      context: .
+      dockerfile: src/Services/Promotion/MST_Promotion.API/Dockerfile
+    ports:
+      - "80:80"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Bangkok

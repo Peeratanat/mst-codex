@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:basepage="clr-namespace:CRMMobile.Layout"
+             x:Class="CRMMobile.Views.VisitorPage"
+             Title="Visitor">
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="absLayout"
+                        VerticalOptions="FillAndExpand">
+            <Frame
+                AbsoluteLayout.LayoutBounds="0,0,1,75"
+                AbsoluteLayout.LayoutFlags="WidthProportional"
+                HasShadow="False"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="0"
+                BackgroundColor="#F5F7FA"
+                Padding="0">
+                <AbsoluteLayout>
+                    <control:PickerFilter x:Name="ProjectList"
+                                          AbsoluteLayout.LayoutBounds="10,15,.79,50"
+                                          AbsoluteLayout.LayoutFlags="WidthProportional"
+                                          Radius="{OnPlatform Android=14,iOS=10}"
+                                          Title="โครงการ"
+                                          Placeholder="เลือกโครงการ"
+                                          ItemsSource="{Binding Projects}"
+                                          SelectedItem="{Binding Project}"
+                                          ItemBindingDisplay="ProjectNo" ItemBindingDisplay2="ProjectNameTH">
+                    </control:PickerFilter>
+
+                    <Button x:Name="FilterButton"
+                            BorderColor="Transparent"
+                            BackgroundColor="Transparent"
+                            CornerRadius="6"
+                            Margin="5"
+                            Text="&#xE804;"
+                            FontSize="18"
+                            FontFamily="{StaticResource IcomoonFont}"
+                            TextColor="#454F63"
+                            Clicked="Filter"
+                            AbsoluteLayout.LayoutBounds=".97,15,50,50"
+                            AbsoluteLayout.LayoutFlags="XProportional">
+                    </Button>
+                </AbsoluteLayout>
+            </Frame>
+            <Frame
+                AbsoluteLayout.LayoutBounds="0,75,1,75"
+                AbsoluteLayout.LayoutFlags="WidthProportional"
+                HasShadow="True"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="0"
+                BackgroundColor="White"
+                Padding="0"
+                Margin="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{StaticResource FontBold}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding VisitorProjectDTO.VisitInOutCount}"
+                                      FontSize="22"
+                                      TextColor="#C92028" />
+                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                <Span Text="ผู้ผ่านเข้า-ออก"
+                                      FontSize="14"
+                                      TextColor="#8992A7" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Style="{StaticResource FontBold}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding VisitorProjectDTO.VisitorWelcomeCount}"
+                                      FontSize="22"
+                                      TextColor="#C92028" />
+                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                <Span Text="Visitor ที่ต้อนรับแล้ว"
+                                      FontSize="14"
+                                      TextColor="#8992A7" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <BoxView Grid.Row="0"
+                             Grid.Column="1"
+                             Grid.RowSpan="2"
+                             BackgroundColor="#BDC3D1"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center" />
+                </Grid>
+            </Frame>
+            <basepage:SFInfiniteScolling
+                                    x:Name="VisitorList"
+                                     BackgroundColor="#F5F7FA"
+                                    Orientation="Vertical"
+                                    ItemsSource="{Binding VisitorLists}"
+                                    LoadMoreCommand="{Binding LoadMoreCommand}"
+                                       AbsoluteLayout.LayoutBounds="0,150,1,.78"
+                                       AbsoluteLayout.LayoutFlags="SizeProportional">
+                <basepage:SFInfiniteScolling.ItemTemplate>
+                    <DataTemplate>
+                        <basepage:CollapseVisitorLayout BindingContext="{Binding .}"
+                                                            CommandParameter="{Binding .}"
+                                                            EditCommand="{Binding Path=BindingContext.DetailCommand,Source={x:Reference VisitorList }}"></basepage:CollapseVisitorLayout>
+                    </DataTemplate>
+                </basepage:SFInfiniteScolling.ItemTemplate>
+                <basepage:SFInfiniteScolling.EmtyTemplate>
+                    <DataTemplate>
+                        <basepage:EmtyView IsVisible="{Binding DisplayEmptyView}" />
+                    </DataTemplate>
+                </basepage:SFInfiniteScolling.EmtyTemplate>
+            </basepage:SFInfiniteScolling>
+            <!--<basepage:InfiniteScolling x:Name="VisitorList"
+                                       HasUnevenRows="true"
+                                       BackgroundColor="#F5F7FA"
+                                       AbsoluteLayout.LayoutBounds="0,150,1,.78"
+                                       AbsoluteLayout.LayoutFlags="SizeProportional"
+                                       SeparatorVisibility="None"
+                                       SeparatorColor="Transparent"
+                                       LoadMoreCommand="{Binding LoadMoreCommand}"
+                                       ItemsSource="{Binding VisitorLists}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <basepage:CollapseVisitorLayout BindingContext="{Binding .}"
+                                                            CommandParameter="{Binding .}"
+                                                            EditCommand="{Binding Path=BindingContext.DetailCommand,Source={x:Reference VisitorList }}"></basepage:CollapseVisitorLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Grid Padding="6"
+                          IsVisible="{Binding IsBusy}">
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid"
+                                     Property="IsVisible"
+                                     Value="False">
+                                <Setter Property="HeightRequest"
+                                        Value="0" />
+                            </Trigger>
+                        </Grid.Triggers>
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"
+                                           Color="#C92028"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                    </Grid>
+                </ListView.Footer>
+            </basepage:InfiniteScolling>-->
+
+            <Frame x:Name="SearchArea"
+                   Padding="0"
+                   AbsoluteLayout.LayoutBounds="0,75,1,0"
+                   AbsoluteLayout.LayoutFlags="WidthProportional"
+                   BackgroundColor="#F5F7FA">
+                <ScrollView x:Name="SearchDetail"
+                            Orientation="Vertical">
+                    <AbsoluteLayout x:Name="SearhDetailContent">
+                        <Label Text="ลักษณะการเดินทาง"
+                               Margin="15,0"
+                               TextColor="#2B2B2B"
+                               FontSize="13"
+                               Style="{StaticResource FontRegular}"
+                               AbsoluteLayout.LayoutBounds="0,10,1,20"
+                               AbsoluteLayout.LayoutFlags="WidthProportional" />
+                        <Grid Margin="15,0"
+                              Padding="0"
+                              BackgroundColor="#F0F0F0"
+                              RowSpacing="0"
+                              AbsoluteLayout.LayoutBounds="0,32,1,54"
+                              AbsoluteLayout.LayoutFlags="WidthProportional"
+                              VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="54" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <basepage:RepeaterView Grid.Row="0"
+                                            Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            ItemsSource="{Binding VisitByCheckBox.Checkboxs}">
+                                <basepage:RepeaterView.ItemTemplate>
+                                    <DataTemplate>
+                                        <control:RadioEntry Margin="10"
+                                                            Text="{Binding Value.Name}"
+                                                            Color="#C92028"
+                                                            Checked="{Binding IsCheck}"
+                                                            Command="{Binding CheckCommand}"
+                                                            CommandParameter="{Binding Id}" />
+                                    </DataTemplate>
+                                </basepage:RepeaterView.ItemTemplate>
+                            </basepage:RepeaterView>
+                        </Grid>
+
+                        <Label Text="ประเภทรถยนต์"
+                               Margin="15,0"
+                               TextColor="#2B2B2B"
+                               FontSize="13"
+                               Style="{StaticResource FontRegular}"
+                               AbsoluteLayout.LayoutBounds="0,105,1,20"
+                               AbsoluteLayout.LayoutFlags="WidthProportional" />
+                        <control:PickerFilter Margin="15,0"
+                                              Radius="4"
+                                              ItemsSource="{Binding Vehicles}"
+                                              SelectedItem="{Binding Vehicle}"
+                                              ItemBindingDisplay="Name"
+                                              IsSpellCheckEnabled="True"
+                                              Title="ประเภทรถยนต์"
+                                              VisibleSearch="False"
+                                              AbsoluteLayout.LayoutBounds="0,130,1,50"
+                                              AbsoluteLayout.LayoutFlags="WidthProportional">
+                        </control:PickerFilter>
+
+                        <Label Text="สถานะ"
+                               Margin="15,0"
+                               TextColor="#2B2B2B"
+                               FontSize="13"
+                               Style="{StaticResource FontRegular}"
+                               AbsoluteLayout.LayoutBounds="0,200,1,20"
+                               AbsoluteLayout.LayoutFlags="WidthProportional" />
+                        <Grid Margin="15,0"
+                              VerticalOptions="EndAndExpand"
+                              BackgroundColor="#F0F0F0"
+                              AbsoluteLayout.LayoutBounds="0,222,1,50"
+                              AbsoluteLayout.LayoutFlags="WidthProportional">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="54" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <basepage:RepeaterView Grid.Row="0"
+                                            Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            ItemsSource="{Binding VisitStatusByCheckBox.Checkboxs}">
+                                <basepage:RepeaterView.ItemTemplate>
+                                    <DataTemplate>
+                                        <control:RadioEntry Margin="10"
+                                                            Text="{Binding Value}"
+                                                            Color="#C92028"
+                                                            Checked="{Binding IsCheck}"
+                                                            Command="{Binding CheckCommand}"
+                                                            CommandParameter="{Binding Id}" />
+                                    </DataTemplate>
+                                </basepage:RepeaterView.ItemTemplate>
+                            </basepage:RepeaterView>
+                        </Grid>
+
+                        <Grid Margin="15,0"
+                              RowSpacing="3"
+                              AbsoluteLayout.LayoutBounds="0,295,1,70"
+                              AbsoluteLayout.LayoutFlags="WidthProportional">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="ตั้งแต่วันที่"
+                                   TextColor="#2B2B2B"
+                                   FontSize="13"
+                                   Style="{StaticResource FontRegular}"></Label>
+                            <Label Grid.Row="0"
+                                   Grid.Column="2"
+                                   Text="ถึงวันที่"
+                                   TextColor="#2B2B2B"
+                                   FontSize="13"
+                                   Style="{StaticResource FontRegular}"></Label>
+                            <control:SFDatePicker Grid.Row="1"
+                                                  Grid.Column="0"
+                                                  NullableDate="{Binding VisitDateInFrom}"
+                                                  Format="dd/MM/yyyy" PlaceHolder="ตั้งแต่วันที่"
+                                                  Style="{StaticResource DatePickerFontRegular}"
+                                                  FontSize="14"
+                                                  TextColor="#2B2B2B" />
+                            <control:SFDatePicker Grid.Row="1"
+                                                  Grid.Column="2"
+                                                  Format="dd/MM/yyyy" PlaceHolder="ถึงวันที่"
+                                                  NullableDate="{Binding VisitDateInTo}"
+                                                  Style="{StaticResource DatePickerFontRegular}"
+                                                  FontSize="14"
+                                                  TextColor="#2B2B2B" />
+                        </Grid>
+
+                        <Label Text="เรียงตาม"
+                               Margin="15,0"
+                               TextColor="#2B2B2B"
+                               FontSize="13"
+                               Style="{StaticResource FontRegular}"
+                               AbsoluteLayout.LayoutBounds="0,390,1,20"
+                               AbsoluteLayout.LayoutFlags="WidthProportional" />
+                        <control:PickerFilter Margin="15,0"
+                                              Radius="4"
+                                              ItemsSource="{Binding Sorts}"
+                                              SelectedItem="{Binding Sort}"
+                                              ItemBindingDisplay="Name"
+                                              Title="เรียงตาม"
+                                              VisibleSearch="False"
+                                              AbsoluteLayout.LayoutBounds="0,412,1,50"
+                                              AbsoluteLayout.LayoutFlags="WidthProportional">
+                        </control:PickerFilter>
+
+                        <AbsoluteLayout Padding="0"
+                                        Margin="15,0"
+                                        AbsoluteLayout.LayoutBounds="0,480,1,50"
+                                        AbsoluteLayout.LayoutFlags="WidthProportional">
+                            <control:SFButton     AbsoluteLayout.LayoutBounds="0,0,.70,50"
+                                                  AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+
+                                                  BackgroundColor="#C92028"
+                                                  BorderColor="#C92028"
+                                                  CornerRadius="7"
+                                                  Text="ค้นหา"
+                                                  TextColor="White"
+                                                  FontSize="16"
+                                                  Icon="search"
+                                                  IconColor="White"
+                                                  IconAlignment="Left"
+                                                  Command="{Binding FilterCommand}" />
+
+                            <control:SFButton     AbsoluteLayout.LayoutBounds="1,0,.25,50"
+                                                  AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                                                  BackgroundColor="#F5F5F5"
+                                                  BorderColor="#8992A7"
+                                                  CornerRadius="7"
+                                                  BorderWidth="0.5"
+                                                  Text="เคลียร์"
+                                                  Command="{Binding ClearCommand}"
+                                                  TextColor="#454F63"
+                                                  FontSize="16" />
+                        </AbsoluteLayout>
+                    </AbsoluteLayout>
+                </ScrollView>
+            </Frame>
+            <ActivityIndicator  IsRunning="{Binding IsBusy}"
+                                IsVisible="{Binding IsBusy}"
+                                Color="#C92028"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                AbsoluteLayout.LayoutBounds=".5,.5,50,50" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

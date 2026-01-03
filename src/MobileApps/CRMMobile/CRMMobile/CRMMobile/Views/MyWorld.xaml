@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:CRMMobile.Control" xmlns:helper="clr-namespace:CRMMobile.Helper" xmlns:basepage="clr-namespace:CRMMobile.Layout" x:Class="CRMMobile.Views.MyWorld" Title="My World">
+    <ContentPage.Content>       
+             <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                     <RowDefinition Height="1" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                 <AbsoluteLayout Grid.Row="0" x:Name="FilterHeader"  Padding="15"  BackgroundColor="#F5F7FA">
+                    <control:PickerFilter x:Name="ProjectList" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0,0,1,45" Placeholder="โครงการที่สนใจ" Title="โครงการที่สนใจ" ItemsSource="{Binding Projects}" SelectedItem="{Binding Project}" ItemBindingDisplay="ProjectNo" ItemBindingDisplay2="ProjectNameTH" OnSelectItemChanged="ProjectList_OnSelectItemChanged" OnTextFilterChanged="Projects_OnTextFilterChanged" Radius="{OnPlatform Android=15,iOS=8}" />
+                    <StackLayout Spacing="3" Orientation="Horizontal" Padding="0" Margin="0" HorizontalOptions="End" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0,60,1,45">
+                        <Label  BackgroundColor="Transparent" FontSize="12.5" Margin="0,0,3,0" Text="วันที่ต้องทำ" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"></Label>
+                        <control:SFDatePicker WidthRequest="{OnIdiom Phone=115, Tablet=150}" NullableDate="{Binding DateFrom}" HorizontalOptions="End" />
+                        <Label Text="-" Margin="3,0" VerticalTextAlignment="Center"></Label>
+                        <control:SFDatePicker WidthRequest="{OnIdiom Phone=115, Tablet=150}" NullableDate="{Binding DateTo}" HorizontalOptions="End" />
+                        <Button x:Name="FilterButton"
+                                BorderColor="Transparent"
+                                BackgroundColor="Transparent"
+                                CornerRadius="6" Margin="0"
+                                Text="&#xE804;" FontSize="15"
+                                HeightRequest="35" WidthRequest="35"
+                                VerticalOptions="Center" HorizontalOptions="End"
+                                Clicked="Filter" FontFamily="{StaticResource IcomoonFont}"
+                                TextColor="#454F63">
+                        </Button>
+                    </StackLayout>
+                </AbsoluteLayout>
+               <BoxView Grid.Row="1" Color="Gray" Opacity=".5" />
+               <AbsoluteLayout Grid.Row="2">
+                     <basepage:SFInfiniteScolling x:Name="MyWorldList"
+                                                  AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                                  AbsoluteLayout.LayoutFlags="All"
+                                       LoadMoreCommand="{Binding LoadMoreCommand}"
+                                       ItemsSource="{Binding MyWorlds}" >
+                     <basepage:SFInfiniteScolling.ItemTemplate>
+                        <DataTemplate>
+                               <basepage:MyWorldLayout
+                                    EditCommand="{Binding Source={x:Reference MyWorldList}, Path=BindingContext.DetailCommand}">
+                                </basepage:MyWorldLayout>  
+                        </DataTemplate>
+                    </basepage:SFInfiniteScolling.ItemTemplate>
+                    <basepage:SFInfiniteScolling.EmtyTemplate>
+                        <DataTemplate>
+                            <basepage:EmtyView IsVisible="{Binding DisplayEmptyView}"  />
+                        </DataTemplate>
+                    </basepage:SFInfiniteScolling.EmtyTemplate>
+                </basepage:SFInfiniteScolling>
+                
+                <ScrollView  BackgroundColor="#F5F7FA" x:Name="FilterDetail"
+                             AbsoluteLayout.LayoutBounds="0,0,1,0"
+                             AbsoluteLayout.LayoutFlags="WidthProportional">
+                    <StackLayout  Padding="15" x:Name="FilterDetailContainer" Spacing="0">
+                        <Label Text="Topic" Margin="0,0" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center"></Label>
+                        <CollectionView BackgroundColor="#F0F0F0" ItemsLayout="HorizontalList" ItemsSource="{Binding LeadTopic.Checkboxs, Mode=TwoWay}" Margin="0,0" x:Name="LeadTopicList" HeightRequest="50">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal" Spacing="3" Padding="3,0">
+                                        <CheckBox Color="#E4883C" IsChecked="{Binding IsCheck}">
+                                            <CheckBox.Triggers>
+                                                <DataTrigger TargetType="CheckBox" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskTopic.Lead}">
+                                                    <Setter Property="Color" Value="#733B8F" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="CheckBox" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskTopic.Walk}">
+                                                    <Setter Property="Color" Value="#77C34C" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="CheckBox" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskTopic.Revisit}">
+                                                    <Setter Property="Color" Value="#E4883C" />
+                                                </DataTrigger>
+                                            </CheckBox.Triggers>
+                                        </CheckBox>
+                                        <Label Text="{Binding Value.Name}" FontSize="13" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center"></Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CheckCommand}" CommandParameter="{Binding Id}"></TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label Text="Activity Type" Margin="0,0" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" HeightRequest="35"></Label>
+                        <basepage:RepeaterView ItemsSource="{Binding ActivityTaskList.Checkboxs}" x:Name="ActivitiesList">
+                            <basepage:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal" Spacing="0" Padding="5,0">
+                                        <CheckBox WidthRequest="30" Color="#454F63" IsChecked="{Binding IsCheck}" />
+                                        <Label WidthRequest="25" x:Name="Header" FontFamily="{StaticResource IcomoonFont}" FontSize="13" TextColor="#7A7A7A" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskType.Plan}">
+                                                    <Setter Property="Text" Value="&#xe90a;" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskType.Question}">
+                                                    <Setter Property="Text" Value="&#xe96e;" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskType.Appointment}">
+                                                    <Setter Property="Text" Value="&#xe901;" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskType.Follow}">
+                                                    <Setter Property="Text" Value="&#xe915;" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Value.Key}" Value="{x:Static helper:ActivityTaskType.Revisit}">
+                                                    <Setter Property="Text" Value="&#xe97d;" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <Label Text="{Binding Value.Name}" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center"></Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CheckCommand}" CommandParameter="{Binding Id}"></TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </basepage:RepeaterView.ItemTemplate>
+                        </basepage:RepeaterView>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="สถานะ" Margin="0,0" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" Grid.Row="0" Grid.Column="0"></Label>
+                            <control:PickerFilter Grid.Row="1" Grid.Column="0" Radius="5" Title="สถานะ" VisibleSearch="False" ItemsSource="{Binding ActivityTaskStatusList}" ItemBindingDisplay="Name" SelectedItem="{Binding ActivityTaskStatusSelected}" />
+
+                            <Label Text="เรียงตาม" Margin="0,0" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" Grid.Row="0" Grid.Column="2"></Label>
+                            <control:PickerFilter Title="เรียงตาม" VisibleSearch="False"
+                                                  ItemsSource="{Binding Sorts}"
+                                                  ItemBindingDisplay="Name"
+                                                  SelectedItem="{Binding SortBy}"
+                                                  Grid.Row="1" Grid.Column="2" Radius="5" />
+                        </Grid>
+                        <StackLayout Orientation="Horizontal" Padding="10,5">
+                            <CheckBox IsChecked="{Binding OnlyOverdue}"></CheckBox>
+                            <Label Text="Only Overdue" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnlyOverDueCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView Color="#BDC3D1" HeightRequest="1" Margin="0,5"></BoxView>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="ชื่อ-นามสกุล ลูกค้า" Margin="0,0" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" Grid.Row="0" Grid.Column="0"></Label>
+                            <control:BorderEntry Grid.Row="1" Grid.Column="0" Radius="5" Text="{Binding CustomerName}" />
+
+                            <Label Text="เบอร์โทรศัพท์" Margin="0,0" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" Grid.Row="0" Grid.Column="2"></Label>
+                            <control:BorderEntry Grid.Row="1" Grid.Column="2" Radius="5" Text="{Binding Telephone}" />
+                        </Grid>
+                        <AbsoluteLayout Padding="0" Margin="0,15">
+                            <control:SFButton     AbsoluteLayout.LayoutBounds="0,0,.70,50" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" BackgroundColor="#C92028" BorderColor="#C92028" CornerRadius="7" Text="ค้นหา" TextColor="White" FontSize="16" Icon="search" IconColor="White" IconAlignment="Left" Command="{Binding FilterCommand}" />
+                            <control:SFButton     AbsoluteLayout.LayoutBounds="1,0,.25,50" AbsoluteLayout.LayoutFlags="XProportional,WidthProportional" BackgroundColor="#F5F5F5" BorderColor="#8992A7" CornerRadius="7" BorderWidth="0.5" Text="เคลียร์" TextColor="#454F63" FontSize="16" Command="{Binding ClearCommand}" />
+                        </AbsoluteLayout>
+                    </StackLayout>
+                </ScrollView>
+                   <ActivityIndicator 
+                                AbsoluteLayout.LayoutBounds=".5,.5,50,50"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                 IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#C92028" />
+               </AbsoluteLayout>
+
+
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             BackgroundColor="#F5F7FA"
+             x:Class="CRMMobile.Views.LeadActivityView">
+    <ContentView.Content>
+        <ScrollView>
+            <al:RepeatableStack Spacing="0"
+                                Padding="15,0"
+                                Margin="15,0">
+                <Grid Margin="0,15,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="110" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0"
+                           Grid.Row="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="16"
+                           Style="{StaticResource FontBold}"
+                           Text="Activities" />
+                    <control:SFButton  Text="Activity"
+                                       TextColor="White"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       BackgroundColor="#35ADED"
+                                       BorderColor="#139FEA"
+                                       BorderWidth="1"
+                                       Padding="8,0,8,0"
+                                       VerticalOptions="Center"
+                                       CornerRadius="7"
+                                       FontSize="14"
+                                       Icon="plussquare"
+                                       IconColor="White"
+                                       IconAlignment="Left"
+                                       Command="{prism:NavigateTo 'LeadActivityForm'}">
+                        <control:SFButton.CommandParameter>
+                            <prism:NavigationParameter Key="LeadId"
+                                                       Value="{Binding LeadDTO.Id}" />
+                        </control:SFButton.CommandParameter>
+                    </control:SFButton>
+                </Grid>
+                <Frame     IsVisible="{Binding DisplayUpcomming}"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           BackgroundColor="#9977D3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                               Text="Upcoming"
+                               Style="{StaticResource FontRegular}"
+                               TextColor="White"
+                               FontSize="16"></Label>
+                        <al:RepeatableStack x:Name="CompleteList"
+                                            Grid.Row="1"
+                                            ItemsSource="{Binding LeadActivityListDTOs}"
+                                            Margin="0">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="35" />
+                                            <ColumnDefinition Width="2" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="17" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="17" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+
+                                            <RowDefinition Height="35" />
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+
+                                        <Frame Grid.Row="0"
+                                               Grid.Column="0"
+                                               BackgroundColor="White"
+                                               Padding="5"
+                                               CornerRadius="5"
+                                               HasShadow="False">
+                                            <Label Text="&#xE915;"
+                                                   FontFamily="{StaticResource IcomoonFont}"
+                                                   FontSize="20"
+                                                   TextColor="#9977D3"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                                        </Frame>
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="3"
+                                               TextColor="White"
+                                               FontSize="16"
+                                               LineBreakMode="TailTruncation">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="&#xE928;"
+                                                          FontFamily="{StaticResource IcomoonFont}"></Span>
+                                                    <Span Text="  "></Span>
+                                                    <Span Text="{Binding ActivityType.Name,Mode=TwoWay}"
+                                                          FontSize="15"
+                                                          Style="{StaticResource FontBold}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Row="1"
+                                               Grid.Column="3"
+                                               Grid.ColumnSpan="4"
+                                               TextColor="White"
+                                               FontSize="16">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="&#xE901;"
+                                                          FontFamily="{StaticResource IcomoonFont}"></Span>
+                                                    <Span Text="  "></Span>
+                                                    <Span Text="{Binding DueDate,Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                                          FontSize="13"
+                                                          Style="{StaticResource FontRegular}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Row="0"
+                                               Grid.Column="4"
+                                               Text="&#xE908;"
+                                               FontFamily="{StaticResource IcomoonFont}"
+                                               FontSize="16"
+                                               TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference CompleteList}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Grid.Row="0"
+                                               Grid.Column="6"
+                                               Text="&#xE905;"
+                                               FontFamily="{StaticResource IcomoonFont}"
+                                               FontSize="16"
+                                               TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.RemoveCommand, Source={x:Reference CompleteList}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </Grid>
+                </Frame>
+                <AbsoluteLayout IsVisible="{Binding Displayline}">
+                    <AbsoluteLayout WidthRequest="71">
+                        <BoxView AbsoluteLayout.LayoutBounds=".5,0,.02,1"
+                                 AbsoluteLayout.LayoutFlags="All"
+                                 Color="#BDC3D1" />
+                    </AbsoluteLayout>
+                </AbsoluteLayout>
+                <Frame IsVisible="{Binding DisplayCompleted}"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       Margin="0,0,0,15"
+                       AbsoluteLayout.LayoutFlags="SizeProportional"
+                       AbsoluteLayout.LayoutBounds="0,104,1,.85"
+                       CornerRadius="8">
+                    <StackLayout>
+                        <Label FontSize="16"
+                               Text="Past Activities"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}"></Label>
+                        <BoxView HeightRequest="5" />
+
+                        <al:RepeatableStack x:Name="CV"
+                                            ItemsSource="{Binding LeadActivityListDTOsComplete}"
+                                            Margin="0">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HeightRequest="140">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="35" />
+                                            <ColumnDefinition Width="2" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="17" />
+                                            <ColumnDefinition Width="17" />
+                                        </Grid.ColumnDefinitions>
+                                        <Frame Grid.Row="0"
+                                               Grid.Column="0"
+                                               BackgroundColor="#8992A7"
+                                               Padding="5"
+                                               CornerRadius="5"
+                                               HasShadow="False">
+                                            <Label Text="&#xE915;"
+                                                   FontFamily="{StaticResource IcomoonFont}"
+                                                   FontSize="20"
+                                                   TextColor="White"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                                        </Frame>
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="3"
+                                               TextColor="#8992A7"
+                                               >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="&#xE928;"
+                                                          FontFamily="{StaticResource IcomoonFont}"></Span>
+                                                    <Span Text="  "></Span>
+                                                    <Span Text="{Binding ActivityType.Name,Mode=TwoWay}"
+                                                          FontSize="13"
+                                                          Style="{StaticResource FontBold}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Row="1"
+                                               Grid.Column="3"
+                                               TextColor="#8992A7"
+                                               FontSize="16"
+                                               >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="&#xE901;"
+                                                          FontFamily="{StaticResource IcomoonFont}"></Span>
+                                                    <Span Text="  วันที่ต้องทำ : "
+                                                          Style="{StaticResource FontRegular}"></Span>
+                                                    <Span Text="{Binding DueDate,Mode=TwoWay ,StringFormat='{}{0:dd/MM/yyyy}'}"
+                                                          FontSize="13"
+                                                          Style="{StaticResource FontRegular}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Row="2"
+                                               Grid.Column="3"
+                                               TextColor="#8992A7"
+                                               FontSize="16"
+                                               >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="&#xE901;"
+                                                          FontFamily="{StaticResource IcomoonFont}"></Span>
+                                                    <Span Text="  วันที่ทำจริง : "
+                                                          Style="{StaticResource FontRegular}"></Span>
+                                                    <Span Text="{Binding ActualDate,Mode=TwoWay, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                                          FontSize="13"
+                                                          Style="{StaticResource FontRegular}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Row="0"
+                                               Grid.Column="4"
+                                               Text="&#xE908;"
+                                               FontFamily="{StaticResource IcomoonFont}"
+                                               FontSize="16"
+                                               TextColor="#8992A7">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference CV}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Grid.Row="0"
+                                               Grid.Column="5"
+                                               Text="&#xE905;"
+                                               FontFamily="{StaticResource IcomoonFont}"
+                                               FontSize="16"
+                                               TextColor="#8992A7">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.RemoveCommand, Source={x:Reference CV}}"
+                                                                      CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <AbsoluteLayout Margin="0,5,0,0"
+                                                        HorizontalOptions="Center"
+                                                        Grid.Row="1"
+                                                        Grid.RowSpan="5"
+                                                        Grid.Column="0">
+                                            <BoxView Color="#8992A7"
+                                                     AbsoluteLayout.LayoutBounds=".5,0,.04,1"
+                                                     AbsoluteLayout.LayoutFlags="All"></BoxView>
+                                        </AbsoluteLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </StackLayout>
+                </Frame>
+            </al:RepeatableStack>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

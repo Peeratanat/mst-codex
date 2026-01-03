@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             x:Class="CRMMobile.Views.OpportunityFormPage"
+             Title="สร้าง Opportunity">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <ScrollView Padding="0,0,0,10" BackgroundColor="#F5F7FA"  VerticalOptions="FillAndExpand">
+                <StackLayout IsEnabled="{Binding IsEnabled}">
+                    <Label Text="สร้าง Opportunity"
+                           FontSize="18"
+                           TextColor="#2B2B2B"
+                           Margin="15,15,15,0"
+                           Style="{StaticResource FontBold}" />
+                    <Frame HasShadow="False" Margin="15,15,15,0" BorderColor="#BDC3D1" BackgroundColor="#F5F5F5" HeightRequest="90">
+                        <StackLayout>
+                            <Label  Style="{StaticResource FontRegular}" HeightRequest="35">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="ชื่อ-นามสกุล :"  TextColor="#7A7A7A" />
+                                        <Span Text="{Binding FullName}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="#F5F5F5" Style="{StaticResource FontRegular}" HeightRequest="35">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="เบอร์มือถือ :" TextColor="#7A7A7A" />
+                                        <Span Text="{Binding PhoneNumber.PhoneNumber}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="#F5F5F5" Style="{StaticResource FontRegular}" HeightRequest="35">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="เบอร์บ้าน :" TextColor="#7A7A7A" />
+                                        <Span Text="{Binding HomeNumber.PhoneNumber}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                    <Grid Padding="15,10,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*" />
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="โครงการที่สนใจ*"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End"
+                               TextColor="#7A7A7A" />
+                        <control:PickerFilter Grid.Row="1"
+                                              Grid.Column="0"
+                                              Grid.ColumnSpan="2"
+                                              Radius="5"
+                                             IsValid="{Binding Project.IsValid}"
+                                              Title="โครงการที่สนใจ*"
+                                              OnTextFilterChanged="Projects_OnTextFilterChanged"
+                                              ItemsSource="{Binding Projects}"
+                                              SelectedItem="{Binding Project.Value}"
+                                              ItemBindingDisplay="ProjectNo" ItemBindingDisplay2="ProjectNameTH">
+                        </control:PickerFilter>
+                        <Label Text="วันเยี่ยมชม*"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End"
+                               TextColor="#7A7A7A" />
+                        <control:SFDatePicker BackgroundColor="White"
+                                              Grid.Row="3"
+                                              Grid.Column="0"
+                                              Style="{StaticResource DatePickerFontRegular}"
+                                              IsValid="{Binding ArriveDate.IsValid}"
+                                              FontSize="14"
+                                              Format="dd/MM/yyy"
+                                              PlaceHolder="วันเยี่ยมชม"
+                                              NullableDate="{Binding ArriveDate.Value}"
+                                              TextColor="#7A7A7A" />
+                        <Label Text="ประเมินโอกาสการขาย*"
+                               Grid.Row="2"
+                               Grid.Column="1"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End"
+                               TextColor="#7A7A7A" />
+                        <control:PickerFilter Grid.Row="3"
+                                              Grid.Column="1"
+                                              Radius="5"
+                                              VisibleSearch="False"
+                                              Title="ประเมินโอกาสการขาย"
+                                              IsValid="{Binding EstimateSalesOpportunity.IsValid}"
+                                              ItemsSource="{Binding EstimateSalesOpportunitys}"
+                                              ItemBindingDisplay="Name"
+                                              SelectedItem="{Binding EstimateSalesOpportunity.Value}">
+                        </control:PickerFilter>
+                        <Label Text="โอกาสการขาย*"
+                               Grid.Row="4"
+                               Grid.Column="0"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End"
+                               TextColor="#7A7A7A" />
+                        <control:PickerFilter Grid.Row="5"
+                                              Grid.Column="0"
+                                              Radius="5"
+                                              VisibleSearch="False"
+                                              Title="โอกาสการขาย"
+
+                                              ItemsSource="{Binding SalesOpportunitys}"
+                                              ItemBindingDisplay="Name"
+                                              SelectedItem="{Binding SalesOpportunity.Value}">
+                        </control:PickerFilter>
+                        <Label Text="แปลง/ห้องที่สนใจ"
+                               Grid.Row="6"
+                               Grid.Column="0"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End"
+                               TextColor="#7A7A7A" />
+                        <control:BorderEntry Placeholder="แปลง/ห้องที่สนใจ (1)"
+                                             Grid.Row="7"
+                                             Grid.Column="0"
+                                             Grid.ColumnSpan="2"
+                                             Text="{Binding InterestedProduct}"
+                                             FocusColor="#C92028"
+                                             UnFocusColor="#8992A7"
+                                             Style="{StaticResource EntryFontRegular}"
+                                             Radius="5"
+                                             FontSize="14" />
+                        <control:BorderEntry Placeholder="แปลง/ห้องที่สนใจ (2)"
+                                             Grid.Row="8"
+                                             Grid.Column="0"
+                                             Grid.ColumnSpan="2"
+                                             Text="{Binding InterestedProduct2}"
+                                             FocusColor="#C92028"
+                                             UnFocusColor="#8992A7"
+                                             Style="{StaticResource EntryFontRegular}"
+                                             Radius="5"
+                                             FontSize="14" />
+                        <control:BorderEntry Placeholder="แปลง/ห้องที่สนใจ (3)"
+                                             Grid.Row="9"
+                                             Grid.Column="0"
+                                             Grid.ColumnSpan="2"
+                                             Text="{Binding InterestedProduct3}"
+                                             FocusColor="#C92028"
+                                             UnFocusColor="#8992A7"
+                                             Style="{StaticResource EntryFontRegular}"
+                                             Radius="5"
+                                             FontSize="14" />
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <Grid Padding="15"
+                  BackgroundColor="#798293"
+                  VerticalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Text="บันทึก"
+                        Command="{Binding SubmitCommand}"
+                        TextColor="White"
+                        BackgroundColor="#C92028"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        CornerRadius="5" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

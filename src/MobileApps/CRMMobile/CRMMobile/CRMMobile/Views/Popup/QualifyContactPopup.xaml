@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="CRMMobile.Views.Popup.QualifyContactPopup"
+                  xmlns:converter="clr-namespace:CRMMobile.Converters"
+                  xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+                  xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                  xmlns:control="clr-namespace:CRMMobile.Control">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <converter:ContactAddressThaiConverter x:Key="ThaiAddress"></converter:ContactAddressThaiConverter>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="100"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <Frame
+            CornerRadius="8"
+            Margin="15"
+            Padding="15"
+            HasShadow="true"
+            VerticalOptions="StartAndExpand"
+            HorizontalOptions="Center"
+            WidthRequest="345">
+            <ScrollView BackgroundColor="White"
+                        Margin="0">
+                <AbsoluteLayout>
+                    <Label AbsoluteLayout.LayoutBounds="0,0,.95,55"
+                           AbsoluteLayout.LayoutFlags="WidthProportional"
+                           Style="{StaticResource FontBold}"
+                           TextColor="#2B2B2B"
+                           FontSize="16"
+                           VerticalTextAlignment="Start"
+                           Text="พบรายการ Contact ที่ข้อมูลใกล้เคียงกับ Lead ที่คุณต้องการ Qualify !" />
+                    <Label AbsoluteLayout.LayoutBounds="1,0,1,50"
+                           AbsoluteLayout.LayoutFlags="WidthProportional"
+                           Text="&#xE926;"
+                           FontFamily="{StaticResource IcomoonFont}"
+                           FontSize="15"
+                           TextColor="#8992A7"
+                           Margin="0,5,0,0"
+                           VerticalTextAlignment="Start"
+                           HorizontalTextAlignment="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prism:GoBack}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label AbsoluteLayout.LayoutBounds="0,60,.95,55"
+                           AbsoluteLayout.LayoutFlags="WidthProportional"
+                           Style="{StaticResource FontRegular}"
+                           TextColor="#2B2B2B"
+                           FontSize="14"
+                           VerticalTextAlignment="Start"
+                           Text="เลือกจาก Contact ที่พบ หรือสร้าง Contact ใหม่" />
+                    <ActivityIndicator  IsRunning="{Binding IsBusy}"
+                                        IsVisible="{Binding IsBusy}"
+                                        Color="#C92028"
+                                        AbsoluteLayout.LayoutBounds="0,115,25,25"
+                                        AbsoluteLayout.LayoutFlags="XProportional" />
+                    <control:SFButton AbsoluteLayout.LayoutBounds="1,110,200,40"
+                                      AbsoluteLayout.LayoutFlags="XProportional"
+                                      BorderColor="#139FEA"
+                                      BackgroundColor="#35ADED"
+                                      CornerRadius="7"
+                                      Icon="plussquare"
+                                      IconColor="White"
+                                      Style="{StaticResource FontBold}"
+                                      Text="สร้าง Contact ใหม่"
+                                      TextColor="White"
+                                      FontSize="14"
+                                      Command="{Binding QualifyWithoutContactCommand}"></control:SFButton>
+                    <al:RepeatableStack  Spacing="15"
+                                         x:Name="LeadQualifys"
+                                         AbsoluteLayout.LayoutBounds="0,160,1,AutoSize"
+                                         AbsoluteLayout.LayoutFlags="WidthProportional"
+                                         ItemsSource="{Binding LeadQualify}">
+                        <al:RepeatableStack.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="#BDC3D1" BackgroundColor="#F5F5F5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="50" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60*" />
+                                            <ColumnDefinition Width="40*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0"
+                                           Style="{StaticResource FontBold}"
+                                           TextColor="#35ADED"
+                                           FontSize="12"
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding  Contact.ContactNo,StringFormat='รหัสลูกค้า : {0}'} " />
+                                        <control:SFButton
+                                                      Grid.Row="0" Grid.Column="1"
+                                                      BorderColor="#139FEA"
+                                                      BorderWidth="1"
+                                                      BackgroundColor="White"
+                                                      CornerRadius="7"
+                                                      Icon="plussquare"
+                                                      IconColor="#35ADED"
+                                                      Style="{StaticResource FontRegular}"
+                                                      Text="เลือก "
+                                                      TextColor="#35ADED"
+                                                      FontSize="14"
+                                                      CommandParameter="{Binding .}"
+                                                      Command="{Binding Path=BindingContext.QualifyLeadCommand,Source={x:Reference LeadQualifys}}"
+                                                      ></control:SFButton>
+                                        <Label  Grid.Row="1" Grid.Column="0"
+                                            VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="ชื่อ-สกุล"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                    <Span Text="{x:Static x:Environment.NewLine}" />
+                                                    <Span Text="{Binding Contact.FirstNameTH}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                                    <Span Text=" "
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13" />
+                                                    <Span Text="{Binding Contact.LastNameTH}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label  Grid.Row="1" Grid.Column="1">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="จำนวน Opportinity"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                    <Span Text="{x:Static x:Environment.NewLine}" />
+                                                    <Span Text="{Binding Contact.OpportunityCount}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label Grid.Row="2" Grid.Column="0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="เบอร์โทร"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                    <Span Text="{x:Static x:Environment.NewLine}" />
+                                                    <Span Text="{Binding Contact.PhoneNumber}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label  Grid.Row="2" Grid.Column="1">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="เลขที่บัตรประชาชน"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                    <Span Text="{x:Static x:Environment.NewLine}" />
+                                                    <Span Text="{Binding Contact.CitizenIdentityNo}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="ที่อยู่"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                    <Span Text="{x:Static x:Environment.NewLine}" />
+                                                    <Span Text="{Binding Address,Converter={StaticResource ThaiAddress}}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </Frame>
+                                <!--<AbsoluteLayout  HeightRequest="220"
+                                                 WidthRequest="315">
+                                    <BoxView AbsoluteLayout.LayoutBounds="1,1,1,1"
+                                             AbsoluteLayout.LayoutFlags="All"
+                                             Color="#BDC3D1" />
+                                    <BoxView AbsoluteLayout.LayoutBounds="1,1,1,1"
+                                             AbsoluteLayout.LayoutFlags="All"
+                                             Color="#F5F5F5"
+                                             Margin="1" />
+
+                                    <Label AbsoluteLayout.LayoutBounds="14,14,.95,40"
+                                           AbsoluteLayout.LayoutFlags="WidthProportional"
+                                           Style="{StaticResource FontBold}"
+                                           TextColor="#35ADED"
+                                           FontSize="12"
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding  Contact.ContactNo,StringFormat='รหัสลูกค้า : {0}'} " />
+
+                                    <control:SFButton AbsoluteLayout.LayoutBounds=".95,14,115,40"
+                                                      AbsoluteLayout.LayoutFlags="XProportional"
+                                                      BorderColor="#139FEA"
+                                                      BorderWidth="1"
+                                                      BackgroundColor="White"
+                                                      CornerRadius="7"
+                                                      Icon="plussquare"
+                                                      IconColor="#35ADED"
+                                                      Style="{StaticResource FontRegular}"
+                                                      Text="เลือก "
+                                                      TextColor="#35ADED"
+                                                      FontSize="14"
+                                                      CommandParameter="{Binding .}"
+                                                      Command="{Binding Path=BindingContext.QualifyLeadCommand,Source={x:Reference LeadQualifys}}"
+                                                      ></control:SFButton>
+
+                                    <Label  AbsoluteLayout.LayoutBounds="14,60,.50,50"
+                                            AbsoluteLayout.LayoutFlags="WidthProportional"
+                                            VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="ชื่อ-สกุล"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                <Span Text="{Binding Contact.FirstNameTH}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                                <Span Text="-"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13" />
+                                                <Span Text="{Binding Contact.LastNameTH}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label  AbsoluteLayout.LayoutBounds=".95,60,115,50"
+                                            AbsoluteLayout.LayoutFlags="XProportional"
+                                            VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="จำนวน Opportinity"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                <Span Text="{Binding Contact.OpportunityCount}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label  AbsoluteLayout.LayoutBounds="14,113,.50,50"
+                                            AbsoluteLayout.LayoutFlags="WidthProportional"
+                                            VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="เบอร์โทร"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                <Span Text="{Binding Contact.PhoneNumber}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label  AbsoluteLayout.LayoutBounds=".95,113,115,50"
+                                            AbsoluteLayout.LayoutFlags="XProportional"
+                                            VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="เลขที่บัตรประชาชน"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                <Span Text="{Binding Contact.CitizenIdentityNo}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label AbsoluteLayout.LayoutBounds="14,165,1,AutoSize"
+                                           AbsoluteLayout.LayoutFlags="WidthProportional"
+                                           VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="เลขที่บัตรประชาชน"
+                                                      TextColor="#7A7A7A"
+                                                      FontSize="12"
+                                                      Style="{StaticResource FontRegular}" />
+                                                <Span Text="{x:Static x:Environment.NewLine}" />
+                                                <Span Text="{Binding Address,Converter={StaticResource ThaiAddress}}"
+                                                      TextColor="#2B2B2B"
+                                                      FontSize="13"
+                                                      Style="{StaticResource FontRegular}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </AbsoluteLayout>-->
+                            </DataTemplate>
+                        </al:RepeatableStack.ItemTemplate>
+                    </al:RepeatableStack>
+                    <!--<ActivityIndicator  IsRunning="{Binding IsBusy}"
+                                        IsVisible="{Binding IsBusy}"
+                                        Color="#C92028"
+                                        AbsoluteLayout.LayoutFlags="XProportional"
+                                        AbsoluteLayout.LayoutBounds=".25,100,40,40" />-->
+                </AbsoluteLayout>
+            </ScrollView>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage >

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms" xmlns:control="clr-namespace:CRMMobile.Control" x:Class="CRMMobile.Layout.CollapseContactOpportunityLayout">
+    <ContentView.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Spacing="0" Padding="0" Margin="2,2,2,10">
+            <Grid HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="#364155" />
+                <Button x:Name="MyButton" Text="&#xE935;" Grid.Column="0" Grid.ColumnSpan="2" FontFamily="{StaticResource IcomoonFont}" TextColor="White" BackgroundColor="Transparent" Clicked="Rotate_Clicked" VerticalOptions="Center" />
+                <Label x:Name="Header" Grid.Column="2" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" Style="{StaticResource FontRegular}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Project.ProjectNo}"></Span>
+                            <Span Text="-"></Span>
+                            <Span Text="{Binding Project.ProjectNameTH}"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Rotate_Clicked" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <ContentView x:Name="MyContent">
+                <Frame BackgroundColor="#FAFBFC" HasShadow="True" Padding="10">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="100*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="โครงการที่สนใจ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <control:DashLabel Grid.Row="1" Grid.Column="0" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}">
+                                <Label.Triggers>
+                                    <Trigger  TargetType="Label" Property="Text" Value=" ">
+                                        <Setter Property="Text" Value="-" />
+                                    </Trigger>
+                                </Label.Triggers>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Project.ProjectNo}"></Span>
+                                        <Span Text="-"></Span>
+                                        <Span Text="{Binding Project.ProjectNameTH, Converter={StaticResource DashesCoverter}}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </control:DashLabel>
+                            <Label Grid.Row="2" Grid.Column="0" Text="วันที่เข้าโครงการ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="วันที่แก้ไข" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="3" Grid.Column="0" Text="{Binding ArriveDate, Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}">
+                            </Label>
+                            <Label Grid.Row="3" Grid.Column="1" Text="{Binding UpdatedDate, Converter={StaticResource DashesCoverter}}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="4" Grid.Column="0" Text="สถานะ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="4" Grid.Column="1" Text="LC Owner" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="5" Grid.Column="0" Text="{Binding SalesOpportunity.Name}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}">
+                                <Label.Triggers>
+                                    <Trigger TargetType="Label" Property="Text" Value="{x:Null}">
+                                        <Setter Property="Text" Value="-"></Setter>
+                                    </Trigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label Grid.Row="5" Grid.Column="1" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Owner.FirstName, Converter={StaticResource DashesCoverter}}"></Span>
+                                        <Span Text=" "></Span>
+                                        <Span Text="{Binding Owner.LastName}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Row="6" Grid.Column="0" Text="Last Activity" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="6" Grid.Column="1" Text="จำนวน Revisit" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="7" Grid.Column="0" Text="{Binding LastActivity.Name}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="7" Grid.Column="1" Text="{Binding RevisitCount}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="8" Grid.Column="0" Text="วันที่ทำแบบสอบถาม" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="8" Grid.Column="1" Text="สถานะแบบสอบถาม" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="9" Grid.Column="0" Text="{Binding StatusQuestionaire.Name}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}">
+                                <Label.Triggers>
+                                    <Trigger TargetType="Label" Property="Text" Value="{x:Null}">
+                                        <Setter Property="Text" Value="-"></Setter>
+                                    </Trigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label Grid.Row="9" Grid.Column="1" Text="{Binding StatusQuestionaire.Name}" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}">
+                                <Label.Triggers>
+                                    <Trigger TargetType="Label" Property="Text" Value="{x:Null}">
+                                        <Setter Property="Text" Value="-"></Setter>
+                                    </Trigger>
+                                </Label.Triggers>
+                            </Label>
+                        </Grid>
+                        <Label Text="&#xE908;" FontFamily="{StaticResource IcomoonFont}" FontSize="16" TextColor="#8992A7" HorizontalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Edit" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

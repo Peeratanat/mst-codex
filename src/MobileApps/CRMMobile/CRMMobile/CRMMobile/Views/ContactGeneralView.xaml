@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converter="clr-namespace:CRMMobile.Converters" xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts" x:Class="CRMMobile.Views.ContactGeneralView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:IsMainEmailConverter x:Key="IsMainEmailConverter"></converter:IsMainEmailConverter>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <ScrollView>
+            <Frame HasShadow="True" HorizontalOptions="FillAndExpand" CornerRadius="10" BackgroundColor="White" Margin="15">
+                <StackLayout>
+                    <StackLayout Margin="0,0,0,10" Orientation="Horizontal">
+                        <Label Text="ข้อมูลทั่วไป" TextColor="#2D323D" FontSize="18" Style="{StaticResource FontBold}" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" />
+                        <Label Text="&#xE908;" Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource IcomoonFont}" FontSize="18" TextColor="#7A7A7A" HorizontalOptions="End" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnEditInfoCommand}" CommandParameter="{Binding Contact.Id}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <Frame CornerRadius="0" HorizontalOptions="FillAndExpand" BackgroundColor="#F5F5F5" BorderColor="#e0dedc" HasShadow="False">
+                        <StackLayout>
+                            <Label HeightRequest="30" IsVisible="{Binding Contact.IsVIP,Mode=TwoWay}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="&#xE91E;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" />
+                                        <Span Text="  " />
+                                        <Span Text="ลูกค้า VIP" FontFamily="{OnPlatform Android='AP-Bold.ttf#APP', iOS='AP-Bold'}" TextColor="#7A7A7A" FontSize="13" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Grid IsVisible="{Binding IsPerson}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="8" />
+                                    <ColumnDefinition Width="100*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="ประเภท :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Contact.ContactType.Name,Mode=TwoWay}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="1" Grid.Column="0" Text="ชื่อ(TH) :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="1" Grid.Column="2" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Contact.FirstNameTH}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Contact.MiddleNameTH}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Contact.LastNameTH}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="2" Grid.Column="0" Text="ชื่อ(EN) :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="2" Grid.Column="2" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Contact.FirstNameEN}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Contact.MiddleNameEN}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Contact.LastNameEN}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="3" Grid.Column="0" Text="ชื่อเล่น :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="3" Grid.Column="2" Text="{Binding Contact.Nickname}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="4" Grid.Column="0" Text="สัญชาติ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="4" Grid.Column="2" Text="{Binding Contact.National.Name}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="5" Grid.Column="0" Text="เลขบัตรประชาชน :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="5" Grid.Column="2" Text="{Binding Contact.CitizenIdentityNo}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="6" Grid.Column="0" Text="วันหมดอายุ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="6" Grid.Column="2" Text="{Binding Contact.CitizenExpireDate,StringFormat='{0:dd/MM/yyyy}' }" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="7" Grid.Column="0" Text="วันเกิด :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="7" Grid.Column="2" Text="{Binding Contact.BirthDate, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="8" Grid.Column="0" Text="เพศ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+
+                                <Label Grid.Row="8" Grid.Column="2" Text="{Binding Contact.Gender.Name}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+
+                                <Label Grid.Row="9" Grid.Column="0" Text="อีเมลล์ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="9" Grid.Column="2" x:Name="Email" Text="{Binding EmailDisplay}" TextColor="#2B2B2B" FontSize="13" LineBreakMode="WordWrap" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                            </Grid>
+
+                            <Grid IsVisible="{Binding IsCorperate}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="100*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="ประเภท :" TextColor="#7A7A7A" FontSize="12" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Contact.ContactType.Name,Mode=TwoWay}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="1" Grid.Column="0" Text="ชื่อบริษัท(TH) :" TextColor="#7A7A7A" FontSize="12" Style="{StaticResource FontRegular}" LineBreakMode="WordWrap" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Contact.FirstNameTH}"  TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start">
+                                </Label>
+                                <Label Grid.Row="2" Grid.Column="0" Text="ชื่อ(EN) :" TextColor="#7A7A7A" FontSize="12" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding Contact.FirstNameEN}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start">
+                                </Label>
+                                <Label Grid.Row="3" Grid.Column="0" Text="เลขที่ประจำตัว :&#x0a;ผู้เสียภาษี" TextColor="#7A7A7A" FontSize="12" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="3" Grid.Column="2" Text="{Binding Contact.TaxID}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="4" Grid.Column="0" Text="เบอร์โทรศัพท์ :" TextColor="#7A7A7A" FontSize="12" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="4" Grid.Column="2" Text="{Binding Contact.PhoneNumber}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <AbsoluteLayout Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
+                                    <BoxView Color="#BDC3D1" Opacity=".5" AbsoluteLayout.LayoutBounds="0,.5,1,.02" AbsoluteLayout.LayoutFlags="All" />
+                                </AbsoluteLayout>
+                                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Text="ข้อมูลผู้ติดต่อ" Margin="10,0,0,0" FontFamily="{OnPlatform Android='AP-Bold.ttf#APP', iOS='AP-Bold'}" TextColor="#2B2B2B" FontSize="13">
+                                </Label>
+                                <Label Grid.Row="7" Grid.Column="0" Text="ชื่อ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="7" Grid.Column="2"  TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Contact.ContactFirstName}" />
+                                            <Span Text="  " />
+                                            <Span Text="{Binding Contact.ContactLastname}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="8" Grid.Column="0" Text="อีเมลล์ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="8" Grid.Column="2"  Text="{Binding EmailDisplay}" TextColor="#2B2B2B" FontSize="13" LineBreakMode="WordWrap" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                            </Grid>
+                            <Label HeightRequest="30">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="&#xE915;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" />
+                                        <Span Text="  " />
+                                        <Span Text="เบอร์โทรศัพท์" FontFamily="{OnPlatform Android='AP-Bold.ttf#APP', iOS='AP-Bold'}" TextColor="#7A7A7A" FontSize="13" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="100*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="มือถือ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding MobileTelNo}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="บ้าน :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding HomeTelNo}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+
+                                <Label Grid.Row="2" Grid.Column="0" Text="ที่ทำงาน :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding OfficeTelNo}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+
+                                <Label Grid.Row="3" Grid.Column="0" Text="ต่างประเทศ :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding ForiegnTelNo}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                            </Grid>
+
+                            <Label HeightRequest="30">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="&#xF1E0;" FontFamily="{StaticResource CustomFont}" FontSize="14" TextColor="#8992A7" />
+                                        <Span Text="  " />
+                                        <Span Text="Social Media" FontFamily="{OnPlatform Android='AP-Bold.ttf#APP', iOS='AP-Bold'}" TextColor="#7A7A7A" FontSize="13" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="100*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="Wechat :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Contact.Wechat}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="1" Grid.Column="0" Text="WhatApp :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Contact.WhatsApp}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                                <Label Grid.Row="2" Grid.Column="0" Text="Line ID :" TextColor="#7A7A7A" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="End" />
+                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding Contact.LineID}" TextColor="#2B2B2B" FontSize="13" Style="{StaticResource FontRegular}" HorizontalTextAlignment="Start" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

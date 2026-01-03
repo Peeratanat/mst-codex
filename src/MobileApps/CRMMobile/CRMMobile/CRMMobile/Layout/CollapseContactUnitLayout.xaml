@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRMMobile.Layout.CollapseContactUnitLayout">
+    <ContentView.Content>
+        <StackLayout   VerticalOptions="Center" HorizontalOptions="FillAndExpand" Spacing="0" Padding="0" Margin="0,0,0,10">
+            <Grid HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="6" BackgroundColor="#364155" />
+                <Button x:Name="MyButton"
+                        Text="&#xE935;"
+                        TextColor="White"
+                        FontFamily="{StaticResource IcomoonFont}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Clicked="Rotate_Clicked"
+                        BackgroundColor="Transparent"
+                        VerticalOptions="Center" />
+                <Label x:Name="Header" Grid.Column="2" Text="แปลงที่ :" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" Style="{StaticResource FontRegular}" />
+                <Label Grid.Column="3" Text="A10D706" FontSize="13" TextColor="White" VerticalTextAlignment="Center" Style="{StaticResource FontBold}" />
+                <Label Grid.Column="4" Text="โอนกรรมสิทธิ์" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" Style="{StaticResource FontBold}" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Rotate_Clicked" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <ContentView x:Name="MyContent">
+                <Frame BackgroundColor="#FAFBFC" HasShadow="True" Padding="10">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="100*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="โครงการ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="60019 Life Ladprao Valley" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="เลขที่ใบจอง" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="3" Grid.Column="0" Text="01003BA00098" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="3" Grid.Column="1" Text="03/08/2018" FontSize="13" TextColor="#8992A7" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="4" Grid.Column="0" Text="เลขที่สัญญา" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="5" Grid.Column="0" Text="01003AA110101" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="5" Grid.Column="1" Text="03/08/2018" FontSize="13" TextColor="#8992A7" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="6" Grid.Column="0" Text="เลขที่โอน" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="7" Grid.Column="0" Text="01003AA110101" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="7" Grid.Column="1" Text="03/08/2018" FontSize="13" TextColor="#8992A7" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="8" Grid.Column="0" Text="สถานะ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="9" Grid.Column="0" Text="โอนกรรมสิทธิ์แล้ว" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                        </Grid>
+                        <Label Text="&#xE908;" FontFamily="{StaticResource IcomoonFont}" FontSize="16" TextColor="#8992A7" HorizontalOptions="End" />
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

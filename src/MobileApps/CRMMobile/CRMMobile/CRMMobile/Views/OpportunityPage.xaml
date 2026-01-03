@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:basepage="clr-namespace:CRMMobile.Layout"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             x:Class="CRMMobile.Views.OpportunityPage"
+             Title="Opportunity">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <AbsoluteLayout
+                            BackgroundColor="#F5F7FA"
+                            AbsoluteLayout.LayoutFlags="WidthProportional"
+                            AbsoluteLayout.LayoutBounds="0,0,1,65">
+                <Label AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="10,20,.60,35"
+                       Text="Opportunity"
+                       x:Name="Header"
+                       TextColor="#2B2B2B"
+                       Style="{StaticResource FontBold}"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+
+                <Frame x:Name="FilterFrame"
+                       BackgroundColor="Transparent"
+                       Padding="3"
+                       CornerRadius="8"
+                       HasShadow="False"
+                       AbsoluteLayout.LayoutBounds=".97,15,35,35"
+                       AbsoluteLayout.LayoutFlags="XProportional">
+                    <Label
+                        x:Name="FilterButton"
+                        Text="&#xE804;"
+                        FontFamily="{StaticResource IcomoonFont}"
+                        FontSize="20"
+                        TextColor="#454F63"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Filter" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+            </AbsoluteLayout>
+
+            <BoxView
+                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                     AbsoluteLayout.LayoutBounds="0,66,1,1"
+                     BackgroundColor="#ebebeb" />
+            <basepage:InfiniteScolling x:Name="Opports"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      AbsoluteLayout.LayoutBounds="0,77,1,.88"
+                      AbsoluteLayout.LayoutFlags="SizeProportional"
+                      LoadMoreCommand="{Binding LoadMoreCommand}"
+                      ItemsSource="{Binding OpportunitiesList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <basepage:CollapseOpportunityLayout BindingContext="{Binding .}"
+                                                                EditCommand="{Binding Path=BindingContext.EditCommand, Source={x:Reference Opports}}"
+                                                                RemoveCommand="{Binding Path=BindingContext.RemoveCommand, Source={x:Reference Opports}}"
+                                                                CreateActivityWalkCommand="{Binding Path=BindingContext.CreateActivityCommand, Source={x:Reference Opports}}"
+                                                                CreateRevisitCommand="{Binding Path=BindingContext.CreateRevisitCommand, Source={x:Reference Opports}}"
+                                                                CommandParameter="{Binding Id}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Grid Padding="6"
+                          IsVisible="{Binding IsBusy}">
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid"
+                                     Property="IsVisible"
+                                     Value="False">
+                                <Setter Property="HeightRequest"
+                                        Value="0" />
+                            </Trigger>
+                        </Grid.Triggers>
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"
+                                           Color="#C92028"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                    </Grid>
+                </ListView.Footer>
+            </basepage:InfiniteScolling>
+            <ScrollView x:Name="FilterDetail"
+                        AbsoluteLayout.LayoutBounds="0,60,1,0"
+                        AbsoluteLayout.LayoutFlags="WidthProportional">
+                <control:SFFrame Padding="0" HasShadow="True" x:Name="FilterDetailContainer">
+                    <AbsoluteLayout
+                                BackgroundColor="#F5F7FA">
+                        <Label Text="ชื่อ"
+                           Margin="15,0"
+                           TextColor="#2B2B2B"
+                           FontSize="13"
+                           Style="{StaticResource FontRegular}"
+                           AbsoluteLayout.LayoutBounds="0,10,1,20"
+                           AbsoluteLayout.LayoutFlags="WidthProportional" />
+                        <control:BorderEntry Margin="15,0"
+                                         BackgroundColor="#FFFFFF"
+                                         Radius="5"
+                                         x:Name="Firstname"
+                                         Text="{Binding FirstName}"
+                                         AbsoluteLayout.LayoutBounds="0,32,1,45"
+                                         AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                        <Label Text="นามสกุล"
+                           Margin="15,0"
+                           TextColor="#2B2B2B"
+                           FontSize="13"
+                           Style="{StaticResource FontRegular}"
+                           AbsoluteLayout.LayoutBounds="0,95,1,20"
+                           AbsoluteLayout.LayoutFlags="WidthProportional" />
+                        <control:BorderEntry Margin="15,0"
+                                         BackgroundColor="#FFFFFF"
+                                         Radius="5"
+                                         x:Name="Lastname"
+                                         Text="{Binding LastName}"
+                                         AbsoluteLayout.LayoutBounds="0,118,1,45"
+                                         AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                        <Label Text="เบอร์โทร"
+                           Margin="15,0"
+                           TextColor="#2B2B2B"
+                           FontSize="13"
+                           Style="{StaticResource FontRegular}"
+                           AbsoluteLayout.LayoutBounds="0,185,1,20"
+                           AbsoluteLayout.LayoutFlags="WidthProportional" />
+                        <control:BorderEntry Margin="15,0"
+                                         BackgroundColor="#FFFFFF"
+                                         Radius="5"
+                                         x:Name="Telephone"
+                                         Text="{Binding Telephone}"
+                                         AbsoluteLayout.LayoutBounds="0,208,1,45"
+                                         AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                        <Label Text="โครงการที่สนใจ"
+                           Margin="15,0"
+                           TextColor="#2B2B2B"
+                           FontSize="13"
+                           Style="{StaticResource FontRegular}"
+                           AbsoluteLayout.LayoutBounds="0,274,1,20"
+                           AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                        <control:PickerFilter x:Name="Projectname"
+                                          Margin="15,0"
+                                          Placeholder="โครงการที่สนใจ"
+                                          Title="โครงการที่สนใจ"
+                                          ItemsSource="{Binding Projects}"
+                                          SelectedItem="{Binding ProjectsSelected}"
+                                          OnTextFilterChanged="Projects_OnTextFilterChanged"
+                                          ItemBindingDisplay="ProjectNo"
+                                          ItemBindingDisplay2="ProjectNameTH"
+                                          AbsoluteLayout.LayoutBounds="0,298,1,45"
+                                          AbsoluteLayout.LayoutFlags="WidthProportional">
+                        </control:PickerFilter>
+
+                        <Grid Padding="0"
+                          Margin="15,1"
+                          AbsoluteLayout.LayoutBounds="0,370,1,50"
+                          AbsoluteLayout.LayoutFlags="WidthProportional">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="75" />
+                            </Grid.ColumnDefinitions>
+                            <control:SFButton Grid.Column="0"
+                                          BackgroundColor="#C92028"
+                                          BorderColor="#C92028"
+                                          CornerRadius="7"
+                                          Text="ค้นหา"
+                                          TextColor="White"
+                                          FontSize="16"
+                                          Icon="search"
+                                          IconColor="White"
+                                          IconAlignment="Left"
+                                          Command="{Binding Searchcommand}" />
+                            <control:SFButton Grid.Column="2"
+                                          BackgroundColor="#F5F5F5"
+                                          BorderColor="#8992A7"
+                                          CornerRadius="7"
+                                          BorderWidth="0.5"
+                                          Text="เคลียร์"
+                                          TextColor="#454F63"
+                                          FontSize="16"
+                                          Command="{Binding Clearcommand}" />
+                        </Grid>
+                    </AbsoluteLayout>
+                </control:SFFrame>
+            </ScrollView>
+
+            <!--<ActivityIndicator  IsRunning="{Binding IsBusy}"
+                                IsVisible="{Binding IsBusy}"
+                                Color="#C92028"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                AbsoluteLayout.LayoutBounds=".5,.5,50,50" />-->
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

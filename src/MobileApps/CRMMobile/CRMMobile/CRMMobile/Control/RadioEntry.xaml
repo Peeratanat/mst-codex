@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRMMobile.Control.RadioEntry">
+    <ContentView.Content>
+        <Grid VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Row="0" Grid.Column="0" x:Name="OuterCheck" HasShadow="False"
+                   BorderColor="#BABABA"
+                   BackgroundColor="White" CornerRadius="{OnPlatform Android=60, iOS=10}" Padding="4"
+                       AbsoluteLayout.LayoutBounds="1,1,20,20">
+                <BoxView x:Name="InnerCheck" CornerRadius="{OnPlatform Android=60, iOS=6}" IsVisible="False" />
+            </Frame>
+            <Label Grid.Row="0" Grid.Column="1"
+                   x:Name="radiodesc"
+
+                   VerticalTextAlignment="Center"
+                   FontSize="14"
+                   Style="{StaticResource FontRegular}"></Label>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

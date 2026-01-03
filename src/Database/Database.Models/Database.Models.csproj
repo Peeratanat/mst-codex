@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Configurations>Debug;Release;Development</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\ACC\PostGLAccount_not use.cs" />
+    <Compile Remove="Models\ACC\PostGLChartOfAccount_not use.cs" />
+    <Compile Remove="Models\ACC\PostGLDepositAccount_not use.cs" />
+    <Compile Remove="Models\FIN\PaymentBankTransfer.cs" />
+    <Compile Remove="Models\FIN\PaymentBillPayment.cs" />
+    <Compile Remove="Models\FIN\PaymentCashierCheque.cs" />
+    <Compile Remove="Models\FIN\PaymentChangeUnit.cs" />
+    <Compile Remove="Models\FIN\PaymentCreditCard.cs" />
+    <Compile Remove="Models\FIN\PaymentCustomerWallet.cs" />
+    <Compile Remove="Models\FIN\PaymentDebitCard.cs" />
+    <Compile Remove="Models\FIN\PaymentDirectCreditDebit.cs" />
+    <Compile Remove="Models\FIN\PaymentForeignBankTransfer.cs" />
+    <Compile Remove="Models\FIN\PaymentPersonalCheque.cs" />
+    <Compile Remove="Models\FIN\PaymentQRCode.cs" />
+    <Compile Remove="Models\FIN\PaymentUnknownPayment.cs" />
+    <Compile Remove="Models\MST\Menu.cs" />
+    <Compile Remove="Models\MST\MenuArea.cs" />
+    <Compile Remove="Models\RFN\crm_contact_refund.cs" />
+    <Compile Remove="Models\RFN\crm_refund_docref.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>
+        C:\Program
+        Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\lib\ErrorHandling\ErrorHandling.csproj" />
+    <ProjectReference Include="..\Database.AuditLogs\Database.AuditLogs.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\CustomQuery\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Models\RFN\" />
+  </ItemGroup>
+</Project>

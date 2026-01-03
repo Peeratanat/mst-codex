@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             x:Class="CRMMobile.Views.OpportunityRevisitView">
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout Spacing="10">
+                <Frame HasShadow="True"
+                       HorizontalOptions="Fill"
+                       CornerRadius="10"
+                       BackgroundColor="White"
+                       Margin="15">
+                    <StackLayout Spacing="15">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="ข้อมูล Revisit"
+                                   TextColor="#2B2B2B"
+                                   FontSize="18"
+                                   Style="{StaticResource FontBold}"
+                                   HorizontalOptions="Start"
+                                   VerticalTextAlignment="Center" />
+                            <control:SFButton Text="Revisit"
+                                              TextColor="White"
+                                              BackgroundColor="#35ADED"
+                                              BorderColor="#139FEA"
+                                              BorderWidth="1"
+                                              Padding="8,0,8,0"
+                                              VerticalOptions="Center"
+                                              CornerRadius="7"
+                                              FontSize="14"
+                                              Icon="plussquare"
+                                              IconColor="White"
+                                              IconAlignment="Left"
+                                              HeightRequest="30"
+                                              WidthRequest="110"
+                                              HorizontalOptions="EndAndExpand"
+                                              Command="{Binding CreateActivityRevisitCommand}" />
+                        </StackLayout>
+                        <Frame CornerRadius="0"
+                               HorizontalOptions="FillAndExpand"
+                               BackgroundColor="#F5F5F5"
+                               BorderColor="#e0dedc"
+                               HasShadow="False"
+                               Padding="0"
+                               Margin="0">
+                            <al:RepeatableStack x:Name="RevisitList"
+                                                ItemsSource="{Binding RevisitActivityList}">
+                                <al:RepeatableStack.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Grid Padding="0"
+                                                  Margin="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="35" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="10" />
+                                                    <ColumnDefinition Width="100*" />
+                                                    <ColumnDefinition Width="100*" />
+                                                    <ColumnDefinition Width="10" />
+                                                </Grid.ColumnDefinitions>
+                                                <BoxView Grid.Row="0"
+                                                         Grid.Column="0"
+                                                         Grid.ColumnSpan="4"
+                                                         BackgroundColor="#364155" />
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Text="{Binding ActivityType.Name}"
+                                                       TextColor="White"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontBold}"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center" />
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="2"
+                                                       Text="{Binding ActualDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                                       TextColor="White"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontBold}"
+                                                       HorizontalTextAlignment="End"
+                                                       VerticalTextAlignment="Center" />
+                                            </Grid>
+                                            <Grid Padding="0"
+                                                  Margin="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="35" />
+                                                    <RowDefinition Height="35*" />
+                                                    <RowDefinition Height="1" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="10" />
+                                                    <ColumnDefinition Width="80*" />
+                                                    <ColumnDefinition Width="5" />
+                                                    <ColumnDefinition Width="1" />
+                                                    <ColumnDefinition Width="5" />
+                                                    <ColumnDefinition Width="80*" />
+                                                    <ColumnDefinition Width="10" />
+                                                </Grid.ColumnDefinitions>
+                                                <BoxView Grid.Row="0"
+                                                         Grid.RowSpan="3"
+                                                         Grid.Column="3"
+                                                         BackgroundColor="#e0dedc"
+                                                         VerticalOptions="FillAndExpand" />
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Text="หมวดหมู่"
+                                                       TextColor="#7A7A7A"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontRegular}"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="End" />
+                                                <al:RepeatableStack Grid.Row="1"
+                                                       Grid.Column="1"
+                                                                    ItemsSource="{Binding ActivityStatuses}">
+                                                    <al:RepeatableStack.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Label Grid.Row="1"
+                                                           Grid.Column="1"
+
+                                                           TextColor="#2B2B2B"
+                                                           FontSize="13"
+                                                           Style="{StaticResource FontRegular}"
+                                                           HorizontalTextAlignment="Start"
+                                                           VerticalTextAlignment="Start">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="- "></Span>
+                                                                        <Span Text="{Binding StatusDescription}"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </al:RepeatableStack.ItemTemplate>
+                                                </al:RepeatableStack>
+
+                                                <BoxView Grid.Row="2"
+                                                         Grid.Column="0"
+                                                         Grid.ColumnSpan="7"
+                                                         BackgroundColor="#e0dedc" />
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="5"
+                                                       Text="รายละเอียดเพิ่มเติม"
+                                                       TextColor="#7A7A7A"
+                                                       FontSize="13"
+                                                       Style="{StaticResource FontRegular}"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="End" />
+                                                <Label Grid.Row="1"
+                                                       Grid.Column="5"
+                                                       Text="{Binding Description,Converter={StaticResource DashesCoverter}}"
+                                                       TextColor="#2B2B2B"
+                                                       FontSize="14"
+                                                       Style="{StaticResource FontRegular}"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Start" />
+                                            </Grid>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="60" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="130*" />
+                                                    <ColumnDefinition Width="20" />
+                                                    <ColumnDefinition Width="20" />
+                                                    <ColumnDefinition Width="20" />
+                                                    <ColumnDefinition Width="10" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label />
+                                                <Label Text="&#xE908;"
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       FontFamily="{StaticResource IcomoonFont}"
+                                                       FontSize="18"
+                                                       TextColor="#8992A7"
+                                                       VerticalTextAlignment="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.EditActivityRevisitCommand, Source={x:Reference  RevisitList}}"
+                                                                              CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <Label Text="&#xE905;"
+                                                       Grid.Row="0"
+                                                       Grid.Column="3"
+                                                       FontFamily="{StaticResource IcomoonFont}"
+                                                       FontSize="18"
+                                                       TextColor="#8992A7"
+                                                       VerticalTextAlignment="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.RemoveActivityRevisitCommand, Source={x:Reference  RevisitList}}"
+                                                                              CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Grid>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </al:RepeatableStack.ItemTemplate>
+                            </al:RepeatableStack>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

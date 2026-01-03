@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CRMMobile.Views.ContactTimelineView">
+    <ContentView.Content>
+        <ScrollView>
+            <Frame HasShadow="True" HorizontalOptions="FillAndExpand" CornerRadius="10" BackgroundColor="White" Margin="15">
+                <StackLayout>
+                    <Grid Padding="0,2.5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#8992A7" Padding="5" CornerRadius="5" IsClippedToBounds="true" HasShadow="false">
+                            <Label Text="&#xE91C;" FontFamily="{StaticResource IcomoonFont}" FontSize="20" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Frame>
+                        <Label Text="ทำสัญญา" Grid.Row="0" Style="{StaticResource FontMedium}" TextColor="#454F63" Grid.Column="2" Grid.ColumnSpan="2" VerticalTextAlignment="Center" FontSize="16"></Label>
+                        <AbsoluteLayout  Grid.Column="0" Grid.Row="2" Grid.RowSpan="4">
+                            <BoxView Color="#8992A7" AbsoluteLayout.LayoutBounds=".5,1,.04,1" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5">
+                            <BoxView Color="#8992A7" Opacity=".35" AbsoluteLayout.LayoutBounds="0,1,1,.15" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+
+                        <Label Grid.Row="2" Grid.Column="2" Text="&#xE901;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="วันที่นัดหมาย : 2018.10.28" Margin="5,0,0,0" Grid.Row="2" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="3" Grid.Column="2" Text="&#xE903;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="60019 Life Ladprao Valley" Margin="5,0,0,0" Grid.Row="3" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="4" Grid.Column="2" Text="&#xE923;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="แปลง : A107D06" Margin="5,0,0,0" Grid.Row="4" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+                    </Grid>
+                    <Grid Padding="0,2.5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#8992A7" Padding="5" CornerRadius="5" IsClippedToBounds="true" HasShadow="false">
+                            <Label Text="&#xE910;" FontFamily="{StaticResource IcomoonFont}" FontSize="20" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Frame>
+                        <Label Text="จอง" Style="{StaticResource FontMedium}" TextColor="#454F63" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalTextAlignment="Center" FontSize="16"></Label>
+                        <AbsoluteLayout  Grid.Column="0" Grid.Row="2" Grid.RowSpan="4">
+                            <BoxView Color="#8992A7" AbsoluteLayout.LayoutBounds=".5,1,.04,1" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5">
+                            <BoxView Color="#8992A7" Opacity=".35" AbsoluteLayout.LayoutBounds="0,1,1,.15" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+
+                        <Label Grid.Row="2" Grid.Column="2" Text="&#xE901;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="วันที่ : 2018.26.28" Margin="5,0,0,0" Grid.Row="2" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="3" Grid.Column="2" Text="&#xE903;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="60019 Life Ladprao Valley" Margin="5,0,0,0" Grid.Row="3" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="4" Grid.Column="2" Text="&#xE923;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="แปลง : A107D06" Margin="5,0,0,0" Grid.Row="4" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+                    </Grid>
+                    <Grid Padding="0,2.5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#8992A7" Padding="5" CornerRadius="5" IsClippedToBounds="true" HasShadow="false">
+                            <Label Text="&#xE913;" FontFamily="{StaticResource IcomoonFont}" FontSize="20" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+                        </Frame>
+                        <Label Text="พาชมแปลนบ้าน" Style="{StaticResource FontMedium}" TextColor="#454F63" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalTextAlignment="Center" FontSize="16"></Label>
+                        <AbsoluteLayout  Grid.Column="0" Grid.Row="2" Grid.RowSpan="4">
+                            <BoxView Color="#8992A7" AbsoluteLayout.LayoutBounds=".5,1,.04,1" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5">
+                            <BoxView Color="#8992A7" Opacity=".35" AbsoluteLayout.LayoutBounds="0,1,1,.15" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+
+                        <Label Grid.Row="2" Grid.Column="2" Text="&#xE901;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="วันที่ : 2018.26.28" Margin="5,0,0,0" Grid.Row="2" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="3" Grid.Column="2" Text="&#xE903;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="60019 Life Ladprao Valley" Margin="5,0,0,0" Grid.Row="3" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="4" Grid.Column="2" Text="&#xE923;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="แปลง : A107D06" Margin="5,0,0,0" Grid.Row="4" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+                    </Grid>
+                    <Grid Padding="0,2.5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#8992A7" Padding="5" CornerRadius="5" IsClippedToBounds="true" HasShadow="false">
+                            <Label Text="&#xE904;" FontFamily="{StaticResource IcomoonFont}" FontSize="20" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Frame>
+                        <Label Text="Qualify Lead" Style="{StaticResource FontMedium}" TextColor="#454F63" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" VerticalTextAlignment="Center" FontSize="16"></Label>
+
+                        <AbsoluteLayout  Grid.Column="0" Grid.Row="2" Grid.RowSpan="4">
+                            <BoxView Color="#8992A7" AbsoluteLayout.LayoutBounds=".5,1,.04,1" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5" IsVisible="False">
+                            <BoxView Color="#8992A7" Opacity=".35" AbsoluteLayout.LayoutBounds="0,1,1,.15" AbsoluteLayout.LayoutFlags="All"></BoxView>
+                        </AbsoluteLayout>
+
+                        <Label Grid.Row="2" Grid.Column="2" Text="&#xE901;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="วันที่ : 2018.26.28" Margin="5,0,0,0" Grid.Row="2" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="3" Grid.Column="2" Text="&#xE903;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="60019 Life Ladprao Valley" Margin="5,0,0,0" Grid.Row="3" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+
+                        <Label Grid.Row="4" Grid.Column="2" Text="&#xE923;" FontFamily="{StaticResource IcomoonFont}" FontSize="14" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Text="แปลง : A107D06" Margin="5,0,0,0" Grid.Row="4" Grid.Column="3" VerticalTextAlignment="Center" FontSize="14" Style="{StaticResource FontRegular}"></Label>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

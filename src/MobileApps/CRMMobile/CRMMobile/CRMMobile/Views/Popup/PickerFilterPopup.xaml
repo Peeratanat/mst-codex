@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:control="clr-namespace:CRMMobile.Control"
+    xmlns:template="clr-namespace:CRMMobile.Templates"
+    x:Class="CRMMobile.Views.Popup.PickerFilterPopup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="100"
+            DurationOut="100"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="False" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Resources>
+        <template:PickerFilterTemplateSelector x:Key="PickerFilterTemplateSelector" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Frame  BackgroundColor="White"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                CornerRadius="8"
+                Padding="20, 20, 20, 20"
+                Margin="15">
+            <StackLayout>
+                <Label
+                           x:Name="Title"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           Style="{StaticResource FontBold}"
+                           HeightRequest="40" />
+                <control:BorderEntry x:Name="SearchEntry"
+                                         Style="{StaticResource EntryFontRegular}"
+                                         FontSize="18"
+                                         Icon="search"
+                                         Radius="5"
+                                         FocusColor="#C92028"
+                                         UnFocusColor="#8992A7"
+                                         HeightRequest="50"
+                                         IconColor="#8992A7"
+                                         ImageAlignment="Right"
+                                         TextChanged="Handle_TextChanged"></control:BorderEntry>
+                <template:PickerListiview x:Name="listview"
+                          Margin="15"
+                          RowHeight="50"
+                          SeparatorVisibility="None"
+                          ItemTemplate="{StaticResource PickerFilterTemplateSelector}">
+                    <ListView.Footer>
+                        <AbsoluteLayout HeightRequest="40">
+                            <ActivityIndicator x:Name="IsBusy"
+                                               AbsoluteLayout.LayoutBounds="1,0,1,40"
+                                               AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                                               Color="Fuchsia"
+
+                                               IsVisible="true" />
+                        </AbsoluteLayout>
+                    </ListView.Footer>
+                </template:PickerListiview>
+
+                <AbsoluteLayout HeightRequest="40">
+                    <Button AbsoluteLayout.LayoutBounds="1,0,.30,40"
+                            AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                            BackgroundColor="White"
+                            TextColor="Red"
+                            Text="Cancel"
+                            Clicked="ClosedClicked" />
+                </AbsoluteLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

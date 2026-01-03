@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms" xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:control="clr-namespace:CRMMobile.Control" xmlns:converter="clr-namespace:CRMMobile.Converters" x:Class="CRMMobile.Views.Popup.ContactAddressPopup">
+
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <converter:ContactAddressThaiConverter x:Key="ThaiAddress" />
+            <converter:ContactAddressEngConverter x:Key="EngAddress" />
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="False" />
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <ScrollView>
+            <Grid VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Margin="20,0" Padding="20, 20, 20, 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="35" />
+                    <RowDefinition  Height="35" />
+                    <RowDefinition  Height="auto" />
+                    <RowDefinition  Height="20" />
+                    <RowDefinition  Height="25" />
+                    <RowDefinition  Height="20" />
+                </Grid.RowDefinitions>
+                <BoxView Margin="-15" Grid.Row="0" Grid.RowSpan="6" CornerRadius="4" BackgroundColor="White"></BoxView>
+                <AbsoluteLayout Grid.Row="0">
+                    <Label Text="&#xE926;" FontFamily="{StaticResource IcomoonFont}" FontSize="16" TextColor="#8992A7" VerticalTextAlignment="Center" AbsoluteLayout.LayoutBounds="1,1,35,35" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prism:GoBack}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="คัดลอกที่อยู่ที่ติดต่อได้จากโครงการอื่น" TextColor="#2B2B2B" FontSize="17" VerticalTextAlignment="Center" AbsoluteLayout.LayoutBounds="0,0,.85,35" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource FontBold}" />
+                </AbsoluteLayout>
+                <Label Grid.Row="1" Text="กรุณาเลือกที่อยู่โครงการที่ต้องการคัดลอก" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                <Frame Grid.Row="2" Padding="10,10,10,0" BackgroundColor="#F5F5F5" BorderColor="#BDC3D1">
+                    <al:RepeatableStack x:Name="Items" ItemsSource="{Binding Checkboxs}">
+                        <al:RepeatableStack.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition  Height="30" />
+                                        <RowDefinition  Height="auto" />
+                                        <RowDefinition  Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="-10, 0, -10, 0" Color="#BDC3D1"></BoxView>
+                                    <control:RadioEntry Command="{Binding CheckCommand}" CommandParameter="{Binding Id}" Checked="{Binding IsCheck}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Value.Project.ProjectNameTH,StringFormat='โครงการ : {0}' }" Color="#C92028" />
+                                    <Label Text="{Binding Value, Converter={StaticResource ThaiAddress}}" Grid.Row="1" Grid.Column="1" FontSize="13" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                                </Grid>
+                            </DataTemplate>
+                        </al:RepeatableStack.ItemTemplate>
+                    </al:RepeatableStack>
+                </Frame>
+                <Grid  Grid.Row="4" HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65" />
+                        <ColumnDefinition Width="65" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="ConfirmButton" Text="ยืนยัน" TextColor="White" Clicked="OnConfirm" Grid.Column="0" CornerRadius="4" BackgroundColor="#C92028" BorderColor="#AD0008"></Button>
+                    <Button x:Name="CancelButton" Command="{prism:GoBack}" Text="ยกเลิก" TextColor="White" Grid.Column="1" CornerRadius="4" BackgroundColor="#454F63" BorderColor="#364155"></Button>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

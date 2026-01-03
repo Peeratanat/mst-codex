@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             x:Class="CRMMobile.Views.LeadGeneralView">
+    <ContentView.Content>
+        <ScrollView Padding="0,0,0,10">
+            <Frame HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   CornerRadius="10"
+                   BackgroundColor="White"
+                   Margin="15">
+                <StackLayout>
+                    <Label Text="ข้อมูล Lead" TextColor="#2B2B2B" FontSize="18" Style="{StaticResource FontBold}" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" />
+                    <Frame CornerRadius="0"
+                           HorizontalOptions="FillAndExpand"
+                           BackgroundColor="#F5F5F5"
+                           BorderColor="#e0dedc"
+                           HasShadow="False">
+                        <StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30*" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30*" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="โครงการที่สนใจ :" TextColor="#7A7A7A" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="0" Grid.Column="1"  TextColor="#2B2B2B" FontSize="14" Style="{StaticResource FontRegular}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span  Text="{Binding LeadDTO.Project.ProjectNo}"></Span>
+                                            <Span  Text="-"></Span>
+                                            <Span  Text="{Binding LeadDTO.Project.ProjectNameTH}"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="1" Grid.Column="0" Text="ประเภท :" TextColor="#7A7A7A" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding LeadDTO.LeadType.Name}" TextColor="#2B2B2B" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="2" Grid.Column="0" Text="สถานะ Lead :" TextColor="#7A7A7A" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding LeadDTO.LeadStatus.Name}" TextColor="#2B2B2B" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="3" Grid.Column="0" Text="Campaign :" TextColor="#7A7A7A" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="3" Grid.Column="1" Text="{Binding LeadDTO.Campaign}" TextColor="#2B2B2B" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="4" Grid.Column="0" Text="Lead Score :" TextColor="#7A7A7A" FontSize="14" Style="{StaticResource FontRegular}" />
+                                <AbsoluteLayout  Grid.Row="4" Grid.Column="1">
+                                    <control:SFProgressBar Maximum="5" Progress="{Binding LeadDTO.LeadScore}" WidthRequest="130" HeightRequest="20" />
+                                </AbsoluteLayout>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="80" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*" />
+                                    <ColumnDefinition Width="100*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="ชื่อ" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding FirstName.IsValid}"
+                                                Value="False">
+                                            <Setter Property="TextColor" Value="#C92028"></Setter>
+                                            <Setter Property="Text"
+                                                        Value="{Binding FirstName.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <control:BorderEntry Text="{Binding FirstName.Value}" IsValid="{Binding FirstName.IsValid}" Placeholder="ชื่อ" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FocusColor="#C92028" UnFocusColor="#8992A7" Style="{StaticResource EntryFontRegular}" Radius="5" FontSize="14" />
+                                <Label Text="นามสกุล" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding LastName.IsValid}"
+                                                Value="False">
+                                            <Setter Property="TextColor" Value="#C92028"></Setter>
+                                            <Setter Property="Text"
+                                                        Value="{Binding LastName.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <control:BorderEntry Text="{Binding LastName.Value}" IsValid="{Binding LastName.IsValid}" Placeholder="นามสกุล" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FocusColor="#C92028" UnFocusColor="#8992A7" Style="{StaticResource EntryFontRegular}" Radius="5" FontSize="14" />
+
+                                <Label Text="อีเมลล์" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Email.IsValid}"
+                                                Value="False">
+                                            <Setter Property="TextColor" Value="#C92028"></Setter>
+                                            <Setter Property="Text"
+                                                        Value="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <control:BorderEntry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"  Text="{Binding Email.Value}" IsValid="{Binding LastName.IsValid}" Placeholder="อีเมลล์" FocusColor="#C92028" UnFocusColor="#8992A7" Style="{StaticResource EntryFontRegular}" Radius="5" FontSize="14" />
+
+                                <Label Text="เบอร์มือถือ" Grid.Row="6" Grid.Column="0" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding PhoneNumber.IsValid}"
+                                                Value="False">
+                                            <Setter Property="TextColor" Value="#C92028"></Setter>
+                                            <Setter Property="Text"
+                                                        Value="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label Text="เบอร์บ้าน" Grid.Row="6" Grid.Column="1" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Telephone.IsValid}"
+                                                Value="False">
+                                            <Setter Property="TextColor" Value="#C92028"></Setter>
+                                            <Setter Property="Text"
+                                                        Value="{Binding Telephone.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <control:BorderEntry Text="{Binding PhoneNumber.Value}" IsValid="{Binding PhoneNumber.IsValid}" Placeholder="เบอร์มือถือ" Grid.Row="7" Grid.Column="0" FocusColor="#C92028" UnFocusColor="#8992A7" Style="{StaticResource EntryFontRegular}" Radius="5" FontSize="14" />
+                                <control:BorderEntry Text="{Binding Telephone.Value}" IsValid="{Binding Telephone.IsValid}" Placeholder="เบอร์บ้าน" Grid.Row="7" Grid.Column="1" FocusColor="#C92028" UnFocusColor="#8992A7" Style="{StaticResource EntryFontRegular}" Radius="5" FontSize="14" />
+
+                                <Label Text="โซนลูกค้าพักอาศัย" Grid.Row="8" Grid.Column="0" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A" />
+                                <Label Text="มาจากสื่อ" Grid.Row="8" Grid.Column="1" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                                TargetType="Label"
+                                                Binding="{Binding Advertisement.IsValid}"
+                                                Value="False">
+                                            <Setter Property="TextColor" Value="#C92028"></Setter>
+                                            <Setter Property="Text"
+                                                        Value="{Binding Advertisement.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <control:BorderEntry Text="{Binding VisitZone}" Placeholder="โซนพักอาศัย" Grid.Row="9" Grid.Column="0" FocusColor="#C92028" UnFocusColor="#8992A7" Style="{StaticResource EntryFontRegular}" Radius="5" FontSize="14" />
+                                <control:PickerFilter Grid.Row="9" Grid.Column="1" Title="Social" Radius="5"
+                                                         x:Name="AdvertisementsPicker"
+                                                         ErrorColor="Red"
+                                                         ItemsSource="{Binding Advertisements}"
+                                                         ItemBindingDisplay="Name"
+                                                         SelectedItem="{Binding Advertisement.Value}"
+                                                         IsValid="{Binding Advertisement.IsValid}"
+                                                         FocusColor="#C92028" FontSize="14"
+                                                         VisibleSearch="False"
+                                                         Style="{StaticResource PickerFontRegular}">
+                                </control:PickerFilter>
+
+                                <Label Text="Remark" Grid.Row="10" Grid.Column="0" Style="{StaticResource FontRegular}" FontSize="13" VerticalTextAlignment="End" TextColor="#7A7A7A" />
+                                <control:BorderEditor Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Remark}" FocusColor="#C92028" UnFocusColor="#8992A7" Style="{StaticResource EditorFontRegular}" Radius="5" FontSize="14" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

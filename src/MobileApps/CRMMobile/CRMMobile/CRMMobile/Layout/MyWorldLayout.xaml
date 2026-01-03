@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CRMMobile.Layout.MyWorldLayout">
+    <ContentView.Content>
+        <StackLayout VerticalOptions="Center"
+                     HorizontalOptions="FillAndExpand"
+                     Spacing="0"
+                     Padding="15">
+            <Grid HeightRequest="40"
+                  ColumnSpacing="0"
+                  BackgroundColor="{Binding HeaderColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="110*" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="110*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="2" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="MyButton"
+                       Text="&#xE935;"
+                       FontFamily="{StaticResource IcomoonFont}"
+                       TextColor="{Binding HeaderTextColor}"
+                       Grid.Column="0"
+                       FontSize="13"
+                       Margin="5,0"
+                       Rotation="0"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Rotate_Clicked"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label x:Name="Header"
+                       Grid.Column="1"
+                       Text="&#xE901;"
+                       FontFamily="{StaticResource IcomoonFont}"
+                       FontSize="13"
+                       TextColor="{Binding HeaderTextColor}"
+                       VerticalTextAlignment="Center" />
+                <Label Grid.Column="2"
+
+                       Margin="2,0"
+                       Text="{Binding Activity.DueDate, StringFormat='{}{0:dd/MM/yyyy}'}"
+                       FontSize="12"
+                       TextColor="{Binding HeaderTextColor}"
+                       LineBreakMode="TailTruncation"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource FontRegular}" />
+                <Label
+                    Grid.Column="3"
+                    Text="&#xe928;"
+                    IsVisible="{Binding IsCompleted}"
+                    FontFamily="{StaticResource IcomoonFont}"
+                    FontSize="9"
+                    TextColor="{Binding HeaderTextColor}"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Column="5"
+                    Text="&#xe909;"
+
+                    FontFamily="{StaticResource IcomoonFont}"
+                    FontSize="13"
+                    TextColor="{Binding HeaderTextColor}"
+                    VerticalTextAlignment="Center" />
+                <Label Grid.Column="6"
+                       FontSize="11"
+                       TextColor="{Binding HeaderTextColor}"
+                       VerticalTextAlignment="Center"
+                       LineBreakMode="TailTruncation"
+                       Style="{StaticResource FontRegular}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Activity.ContactFirstName}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding Activity.ContactLastName}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <AbsoluteLayout Grid.Column="7" >
+                    <Frame IsVisible="{Binding DisplayOverDueCount}"
+                           Opacity="1"
+                           Padding="3,0"
+                           CornerRadius="10"
+                           BackgroundColor="#FFFFFF"
+                           HorizontalOptions="FillAndExpand"
+                           AbsoluteLayout.LayoutFlags="All"
+                           AbsoluteLayout.LayoutBounds=".5,.5,1,.60"                           
+                           >
+                        <Label
+                            Text="{Binding Activity.OverdueDays}"
+                            FontSize="9"
+                            TextColor="{Binding OverDueColor}"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="FillAndExpand"
+                            Style="{StaticResource FontBold}" />
+                    </Frame>
+                </AbsoluteLayout>
+                <AbsoluteLayout
+                    Grid.Column="8">
+                    <Frame IsVisible="{Binding DisplayRevisitCount}"
+                           BackgroundColor="Transparent"
+                           Opacity="1"
+                           CornerRadius="10.5"
+                           AbsoluteLayout.LayoutFlags="All"
+                           Padding="2"
+                           AbsoluteLayout.LayoutBounds=".5,.5,1,.60">
+                        <Label
+                            Text="{Binding RevisitCount}"
+                            TextColor="{Binding HeaderTextColor}"
+                            FontSize="13"
+                            LineBreakMode="TailTruncation"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource FontBold}" />
+                    </Frame>
+                </AbsoluteLayout>
+                <Label
+                    Grid.Column="9"
+                    Text="{Binding ActivityTypeIcon}"
+                    FontFamily="{StaticResource IcomoonFont}"
+                    FontSize="13"
+                    TextColor="{Binding ActivityTypeIconColor}"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+            <ContentView x:Name="MyContent">
+                <Frame BackgroundColor="#FAFBFC"
+                       HasShadow="True"
+                       Padding="15">
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="9" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="55*" />
+                            <ColumnDefinition Width="45*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Text="โครงการ"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+                               Style="{StaticResource FontRegular}"
+                               HorizontalTextAlignment="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Activity.Project.ProjectNo}"></Span>
+                                    <Span Text="-"></Span>
+                                    <Span Text="{Binding Activity.Project.ProjectNameTH}"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Text="Topic"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}" />
+                        <Label Grid.Row="4"
+                               Grid.Column="0"
+                               Text="{Binding Activity.ActivityTaskTopic.Name}"
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+                               Style="{StaticResource FontRegular}" />
+
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Text="Activity Type"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}" />
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Text="{Binding Activity.ActivityTaskType.Name}"
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+                               Style="{StaticResource FontRegular}" />
+
+                        <Label Grid.Row="6"
+                               Grid.Column="0"
+                               Text="ชื่อลูกค้า"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}" />
+                        <Label Grid.Row="7"
+                               Grid.Column="0"
+                               Text="{Binding Activity.Contact.ContactNo}"
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+                               Style="{StaticResource FontRegular}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Activity.ContactFirstName}"></Span>
+                                    <Span Text=" "></Span>
+                                    <Span Text="{Binding Activity.ContactLastName}"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="6"
+                               Grid.Column="1"
+                               Text="เบอร์โทรศัพท์"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}" />
+                        <Label Grid.Row="7"
+                               Grid.Column="1"
+                               Text="{Binding Activity.PhoneNumber}"
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+                               Style="{StaticResource FontRegular}" />
+
+                        <Label Grid.Row="9"
+                               Grid.Column="0"
+                               Text="LC ผู้ดูแล"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}" />
+                        <Label Grid.Row="10"
+                               Grid.Column="0"
+                               Text="{Binding Activity.Owner.DisplayName}"
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+                               Style="{StaticResource FontRegular}">
+                        </Label>
+
+                        <Label Grid.Row="9"
+                               Grid.Column="1"
+                               Text="วันที่ต้องทำ"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               Style="{StaticResource FontRegular}" />
+                        <Label Grid.Row="10"
+                               Grid.Column="1"
+                               Text="{Binding Activity.DueDate,StringFormat='{}{0:dd/MM/yyyy}'}"
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+
+                               Style="{StaticResource FontRegular}">
+                        </Label>
+                        <BoxView Color="#7A7A7A"
+                                 Opacity=".1"
+                                 Grid.Row="12"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2"></BoxView>
+                        <Label Grid.Row="14"
+                               Grid.Column="0"
+                               FontSize="14"
+                               TextColor="#7A7A7A"
+                               VerticalTextAlignment="Center"
+                               Style="{StaticResource FontRegular}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="สถานะ : "></Span>
+                                    <Span Text="{Binding Activity.ActivityTaskStatus.Name}"
+                                          TextColor="#35ADED"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="14"
+                               Grid.Column="1"
+                               Text="{Binding Activity.DueDate,StringFormat='{}{0:dd/MM/yyyy}'}"
+                               FontSize="14"
+                               TextColor="#2B2B2B"
+                               IsVisible="{Binding IsCompleted}"
+                               VerticalTextAlignment="Center"
+                               Style="{StaticResource FontRegular}">
+                        </Label>
+                    </Grid>
+                </Frame>
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Handle_Edit"></TapGestureRecognizer>
+                </ContentView.GestureRecognizers>
+            </ContentView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

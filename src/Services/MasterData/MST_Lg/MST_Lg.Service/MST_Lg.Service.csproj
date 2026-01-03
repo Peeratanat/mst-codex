@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Development</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'!='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\lib\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\..\..\lib\DateTimeExtensions\DateTimeExtensions.csproj" /> 
+    <ProjectReference Include="..\..\..\..\..\lib\ExcelExtension\ExcelExtension.csproj" /> 
+    <ProjectReference Include="..\..\..\Sale\Sale.Services\Sale.Services.csproj" />
+    <ProjectReference Include="..\MST_Lg.Params\MST_Lg.Params.csproj" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup> 
+
+ 
+</Project>

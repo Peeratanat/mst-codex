@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:conveter="clr-namespace:CRMMobile.Converters"
+             x:Class="CRMMobile.Views.VisitorDetailPage"
+             Title="รายละเอียด Visitor">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conveter:DisplayContactID  x:Key="DisplayContactIDConveter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ToolbarIcon.png" Clicked="ButtonMenu_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F5F7FA"
+                     Spacing="0">
+            <Frame Padding="15"
+                   HasShadow="False"
+                   BackgroundColor="White"
+                   HeightRequest="40">
+                <Label VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Style="{StaticResource FontRegular}"
+                       TextColor="#2B2B2B">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Visitor.FirstNameTH}"></Span>
+                            <Span Text=" "></Span>
+                            <Span Text="{Binding Visitor.LastNameTH}"></Span>
+                            <Span Text="{Binding Contact.ContactNo, Converter={StaticResource DisplayContactIDConveter} }"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Frame>
+            <Frame BackgroundColor="White"
+                   CornerRadius="0"
+                   Margin="0"
+                   Padding="0">
+                <ScrollView Orientation="Horizontal">
+                    <Grid x:Name="HeaderTab"
+                          RowSpacing="0"
+                          ColumnSpacing="0"
+                          BackgroundColor="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="3" />
+                        </Grid.RowDefinitions>
+
+                        <Label x:Name="Tab1"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Text="ข้อมูล Visitor"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"
+                                                       Command="{Binding MyCommand}"
+                                                       CommandParameter="0" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView x:Name="UnderlineTab"
+                                 Color="#C92028"
+                                 Grid.Row="1"
+                                 Grid.Column="0"></BoxView>
+                        <Label x:Name="Tab2"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               Text="ประวัติการทำรายการ"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                      Command="{Binding MyCommand}"
+                                                      CommandParameter="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </ScrollView>
+            </Frame>
+
+            <cv:CarouselViewControl x:Name="carousel"
+                                    Orientation="Horizontal"
+                                    ItemsSource="{Binding Template}"
+                                    Position="{Binding Position}"
+                                    Margin="5"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
+            </cv:CarouselViewControl>
+            <Grid Padding="10"
+                  BackgroundColor="#798293">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="8" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="8" />
+                </Grid.ColumnDefinitions>
+                <control:SFButton Grid.Row="0"
+                                  Grid.Column="1"
+                                  BackgroundColor="White"
+                                  Text="{Binding ActionButtonTitle}"
+                                  TextColor="#35ADED"
+                                  Margin="0"
+                                  BorderColor="#35ADED"
+                                  BorderWidth="1"
+                                  Padding="10,0,0,0"
+                                  CornerRadius="7"
+                                  FontSize="12"
+                                  Icon="customer"
+                                  IconColor="#35ADED"
+                                  IconAlignment="Left"
+                                  Command="{Binding ActionCommand}" />
+                <control:SFButton Grid.Row="0"
+                                  Grid.Column="3"
+                                  Text="{Binding ActionButton2Title}"
+                                  IsVisible="{Binding ActionButton2Visible}"
+                                  Command="{Binding Action2Command}"
+                                  TextColor="#35ADED"
+                                  BackgroundColor="White"
+                                  BorderColor="#35ADED"
+                                  BorderWidth="1"
+                                  Padding="10,0,0,0"
+                                  CornerRadius="7"
+                                  FontSize="12"
+                                  Icon="{Binding ActionButton2Icon}"
+                                  IconColor="#35ADED"
+                                  IconAlignment="Left" />
+
+                <!--<control:SFButton Grid.Row="0"
+                                  Grid.Column="3"
+                                  Text="บันทึก Opportunity"
+                                  TextColor="#35ADED"
+                                  BackgroundColor="White"
+                                  BorderColor="#35ADED"
+                                  BorderWidth="1"
+                                  Padding="10,0,0,0"
+                                  CornerRadius="7"
+                                  FontSize="12"
+                                  Icon="opportunity"
+                                  IconColor="#35ADED"
+                                  IconAlignment="Left" />-->
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Development</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'!='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Reports\Report.Integration\Report.Integration.csproj" />
+    <ProjectReference Include="..\..\..\..\..\lib\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\..\..\lib\DateTimeExtensions\DateTimeExtensions.csproj" /> 
+    <ProjectReference Include="..\..\..\..\..\lib\ExcelExtension\ExcelExtension.csproj" />
+    <ProjectReference Include="..\MST_General.Params\MST_General.Params.csproj" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <None Update="ExcelTemplates\TemplateGPPrice.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\TemplateReallocate.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\TemplatesBankACCExport.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\TemplatesEDCExport.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ExcelTemplates\TemplateSpecMaterial.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.2.1" />
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+  </ItemGroup> 
+</Project>

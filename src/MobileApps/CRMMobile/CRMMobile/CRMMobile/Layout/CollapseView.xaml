@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CRMMobile.Helper"
+    xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+    x:Class="CRMMobile.Layout.CollapseView">
+    <ContentView.Content>
+        <StackLayout>
+            <Grid HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="150*" />
+                    <ColumnDefinition Width="70*" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0"
+                         Grid.ColumnSpan="6"
+                         BackgroundColor="#364155" />
+                <Button x:Name="MyButton"
+                        Text="&#xE935;"
+                        FontFamily="{StaticResource IcomoonFont}"
+                        TextColor="White"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Clicked="HeaderTapped"
+                        BackgroundColor="Transparent"
+                        Rotation="0"
+                        VerticalOptions="Center" />
+                <Label x:Name="Header"
+                       Grid.Column="2"
+                       Text="60019 Life Ladprao"
+                       FontSize="13"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Start"
+                       Style="{StaticResource FontBold}" />
+                <Label Grid.Column="3"
+                       Text="Win"
+                       FontSize="13"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="EndAndExpand"
+                       Style="{StaticResource FontBold}" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="HeaderTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <StackLayout HeightRequest="150" BackgroundColor="Yellow"
+                         x:Name="MyContent"
+                         Padding="15,5">
+                <!--<Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="0.7" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="โครงการที่สนใจ"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding Project.ProjectNameTH}"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Text="วันที่เข้าโครงการ"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="วันที่แก้ไข"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="3"
+                           Grid.Column="0"
+                           Text="{Binding ArriveDate}"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="3"
+                           Grid.Column="1"
+                           Text="{Binding UpdatedDate}"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="4"
+                           Grid.Column="0"
+                           Text="Contact ID"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="4"
+                           Grid.Column="1"
+                           Text="ชื่อ-นามสกุล"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="5"
+                           Grid.Column="0"
+                           Text="{Binding Contact.ContactNo}"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="5"
+                           Grid.Column="1"
+                           Text="วรรณรัตน์ กันหมุด"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Contact.FirstNameTH}"></Span>
+                                <Span Text=" "></Span>
+                                <Span Text="{Binding Contact.LastNameTH}"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="6"
+                           Grid.Column="0"
+                           Text="เบอร์โทร"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="6"
+                           Grid.Column="1"
+                           Text="สถานะ"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="7"
+                           Grid.Column="0"
+                           Text="{Binding Contact.PhoneNumber}"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="7"
+                           Grid.Column="1"
+                           Text="{Binding SalesOpportunity.Name, Converter={StaticResource DashesCoverter}}"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="8"
+                           Grid.Column="0"
+                           Text="LC Owner"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="9"
+                           Grid.Column="0"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Owner.FirstName, Converter={StaticResource DashesCoverter}}"></Span>
+                                <Span Text=" "></Span>
+                                <Span Text="{Binding Owner.LastName}"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <BoxView Color="#8992A7"
+                             Grid.Row="10"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             HeightRequest="1"
+                             HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="0.7" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="80*" />
+                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Last Activity"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding LastActivity.Name}"
+                           FontSize="14"
+                           TextColor="#2B2B2B"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Grid.RowSpan="2"
+                           Text="&#xE916;"
+                           FontSize="14"
+                           TextColor="#35ADED"
+                           FontFamily="{StaticResource IcomoonFont}"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="End" />
+                    <Label Grid.Row="0"
+                           Grid.Column="3"
+                           Grid.RowSpan="2"
+                           Text="เพิ่ม"
+                           FontSize="14"
+                           TextColor="#35ADED"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="Center">
+                        <Label.Effects>
+                            <local:UnderlineEffect />
+                        </Label.Effects>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prism:NavigateTo 'OpportunityActivityForm'}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView Color="#8992A7"
+                             Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="4"
+                             HeightRequest="1"
+                             HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="0.7" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="80*" />
+                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="จำนวน Revisit"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding RevisitCount}"
+                           FontSize="14"
+                           TextColor="#35ADED"
+                           Style="{StaticResource FontRegular}" />
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Grid.RowSpan="2"
+                           Text="&#xE916;"
+                           FontSize="14"
+                           TextColor="#35ADED"
+                           FontFamily="{StaticResource IcomoonFont}"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="End" />
+                    <Label Grid.Row="0"
+                           Grid.Column="3"
+                           Grid.RowSpan="2"
+                           Text="เพิ่ม"
+                           FontSize="14"
+                           TextColor="#35ADED"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="Center">
+                        <Label.Effects>
+                            <local:UnderlineEffect />
+                        </Label.Effects>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prism:NavigateTo 'OpportunityRevisitForm'}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView Color="#8992A7"
+                             Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="4"
+                             HeightRequest="1"
+                             HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="0.7" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="สถานะแบบสอบถาม"
+                           FontSize="13"
+                           TextColor="#7A7A7A"
+                           Style="{StaticResource FontRegular}"
+                           VerticalTextAlignment="End" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding StatusQuestionaire.Name}"
+                           FontSize="14"
+                           TextColor="#C92028"
+                           Style="{StaticResource FontRegular}" />
+                    <BoxView Color="#8992A7"
+                             Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="4"
+                             HeightRequest="1"
+                             HorizontalOptions="FillAndExpand" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="20" />
+                    </Grid.ColumnDefinitions>
+                    <Label />
+                    <Label Text="&#xE908;"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           FontFamily="{StaticResource IcomoonFont}"
+                           FontSize="18"
+                           TextColor="#8992A7"
+                           VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{prism:NavigateTo 'OpportunityDetail'}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="&#xE905;"
+                           Grid.Row="0"
+                           Grid.Column="3"
+                           FontFamily="{StaticResource IcomoonFont}"
+                           FontSize="18"
+                           TextColor="#8992A7"
+                           VerticalTextAlignment="Center" />
+                </Grid>-->
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

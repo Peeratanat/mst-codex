@@ -1,0 +1,433 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "openSwaggerUI",
+      "type": "shell", 
+      "args": [
+      ],
+      "command": "start", 
+      "problemMatcher": []
+    },
+    {
+      "label": "build general",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_General/MST_General.API/MST_General.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build mst_auditlog",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Auditlog/MST_Auditlog.API/MST_Auditlog.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build budget",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Project/PRJ_Budget/PRJ_Budget.API/PRJ_Budget.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build PRJ_UnitInfos",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Project/PRJ_UnitInfos/PRJ_UnitInfos.API/PRJ_UnitInfos.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build project",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Project/PRJ_Project/PRJ_Project.API/PRJ_Project.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build unit",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Project/PRJ_Unit/PRJ_Unit.API/PRJ_Unit.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build unitmeter",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Unitmeter/MST_Unitmeter.API/MST_Unitmeter.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build auth_rolepermission",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Auth/Auth_Rolepermission/Auth_Rolepermission.API/Auth_Rolepermission.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build auth_user",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Auth/Auth_User/Auth_User.API/Auth_User.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build com_file",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Common/File/COM_File.API/COM_File.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build mst_finacc",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Finacc/MST_Finacc.API/MST_Finacc.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build mst_titledeeds",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Titledeeds/MST_Titledeeds.API/MST_Titledeeds.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build mst_lg",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Lg/MST_Lg.API/MST_Lg.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build prj_projectinfo",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Project/PRJ_ProjectInfo/PRJ_ProjectInfo.API/PRJ_ProjectInfo.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build prj_combineunit",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Project/PRJ_CombineUnit/PRJ_CombineUnit.API/PRJ_CombineUnit.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build mst_gpsim",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Gpsim/MST_Gpsim.API/MST_Gpsim.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build mst_event",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Event/MST_Event.API/MST_Event.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build mst_kattyfaq",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/MasterData/MST_Kattyfaq/MST_Kattyfaq.API/MST_Kattyfaq.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build ctm_customerconsent",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Customer/CTM_CustomerConsent/CTM_CustomerConsent.API/CTM_CustomerConsent.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build MST_Promotion",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "publish",
+        "-c",
+        "Debug",
+        "-o",
+        "./bin/Debug",
+        "${workspaceFolder}/src/Services/Promotion/MST_Promotion.API/MST_Promotion.API.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

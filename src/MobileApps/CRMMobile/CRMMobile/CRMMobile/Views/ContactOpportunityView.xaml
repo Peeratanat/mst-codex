@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CRMMobile.Effects" xmlns:basepage="clr-namespace:CRMMobile.Layout" xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts" x:Class="CRMMobile.Views.ContactOpportunityView" x:Name="OpportunityList">
+    <ContentView.Content>
+        <ScrollView Padding="0,0,0,0">
+            <StackLayout>
+                <Frame BackgroundColor="White" HorizontalOptions="Fill" HasShadow="True" CornerRadius="10" Margin="15">
+                    <StackLayout>
+                        <StackLayout HeightRequest="35" Orientation="Horizontal">
+                            <Label FontSize="16" VerticalTextAlignment="Center" Text="Opportunity" Style="{StaticResource FontBold}" />
+                            <Label Text="&#xE916;" FontFamily="{StaticResource IcomoonFont}" FontSize="18" TextColor="#35ADED" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                            <Label Text="Opportunity" FontSize="14" VerticalTextAlignment="Center" HorizontalOptions="End" Style="{StaticResource FontRegular}" TextColor="#35ADED">
+                                <Label.Effects>
+                                    <local:UnderlineEffect />
+                                </Label.Effects>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CreateOpportunityCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                        <al:RepeatableStack x:Name="Opports" ItemsSource="{Binding OpportunitiesList}">
+                            <al:RepeatableStack.ItemTemplate>
+                                <DataTemplate>
+                                    <basepage:CollapseContactOpportunityLayout EditCommand="{Binding Source={x:Reference OpportunityList},Path=BindingContext.EditOpportunityCommand}" BindingContext="{Binding .}" />
+                                </DataTemplate>
+                            </al:RepeatableStack.ItemTemplate>
+                        </al:RepeatableStack>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

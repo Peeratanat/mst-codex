@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             x:Class="CRMMobile.Layout.CollapseVisitorLayout">
+    <ContentView.Content>
+        <StackLayout
+                     Spacing="0"
+                     Padding="15">
+            <Grid HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="150*" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="70*" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0"
+                         Grid.ColumnSpan="6"
+                         BackgroundColor="#364155" />
+                <Button x:Name="MyButton"
+                        Text="&#xE935;"
+                        FontFamily="{StaticResource IcomoonFont}"
+                        TextColor="White"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Clicked="Rotate_Clicked"
+                        BackgroundColor="Transparent"
+                        Rotation="0"
+                        VerticalOptions="Center" />
+                <Label x:Name="Header"
+                       Grid.Column="2"
+                       Text="ชื่อ :"
+                       FontSize="11"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Start"
+                       Style="{StaticResource FontRegular}" />
+                <Label Grid.Column="3"
+                       FontSize="11"
+                       TextColor="White"
+                       Text="{Binding FirstNameTH}"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       Style="{StaticResource FontBold}">
+                </Label>
+                <Label Grid.Column="4"
+                       Text="สถานะ :"
+                       FontSize="11"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="EndAndExpand"
+                       Style="{StaticResource FontRegular}" />
+                <Label Grid.Column="5"
+                       Text="{Binding WalkStatus.Name}"
+                       FontSize="11"
+                       HorizontalOptions="Start"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource FontBold}" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Rotate_Clicked" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <StackLayout>
+                <Frame  x:Name="MyContent" BackgroundColor="#FAFBFC"
+                       HasShadow="True"
+                       Padding="10">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="120*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="เลขที่รับ :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="0"
+                                   Grid.Column="2"
+                                   Text="{Binding ReceiveNumber}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="รหัสลูกค้า :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   Text="{Binding Contact.ContactNo}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="ชื่อ-นามสกุล :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="2"
+                                   Grid.Column="2"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding FirstNameTH}"></Span>
+                                        <Span Text=" "></Span>
+                                        <Span Text="{Binding LastNameTH}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Row="3"
+                                   Grid.Column="0"
+                                   Text="เบอร์โทร :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="3"
+                                   Grid.Column="2"
+                                   Text="{Binding PhoneNumber}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="4"
+                                   Grid.Column="0"
+                                   Text="เดินทางโดย :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="4"
+                                   Grid.Column="2"
+                                   Text="{Binding VisitBy.Name}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="5"
+                                   Grid.Column="0"
+                                   Text="รายละเอียด :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="5"
+                                   Grid.Column="2"
+                                   Text="{Binding VehicleDescription}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="6"
+                                   Grid.Column="0"
+                                   Text="ผู้ดูแล :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+
+                            <Label Grid.Row="6"
+                                   Grid.Column="2"
+
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start">
+                                <Label.FormattedText>
+                                    <FormattedString>
+
+                                        <Span Text="{Binding Owner.FirstName}"></Span>
+                                        <Span Text=" "></Span>
+                                        <Span Text="{Binding Owner.LastName}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Row="7"
+                                   Grid.Column="0"
+                                   Text="เวลาเข้า :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="7"
+                                   Grid.Column="2"
+                                   Text="{Binding VisitDateIn, StringFormat='{0:dd/MM/yyy (HH:mm)}'}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="8"
+                                   Grid.Column="0"
+                                   Text="เวลาออก :"
+                                   FontSize="14"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="End" />
+                            <Label Grid.Row="8"
+                                   Grid.Column="2"
+                                   Text="{Binding VisitDateOut, StringFormat='{0:dd/MM/yyy (HH:mm)}'}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}"
+                                   HorizontalTextAlignment="Start" />
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+                            <Label />
+                            <Label Text="&#xE908;"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="20"
+                                   TextColor="#8992A7"
+                                   HorizontalTextAlignment="End"
+                                   VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_Edit"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

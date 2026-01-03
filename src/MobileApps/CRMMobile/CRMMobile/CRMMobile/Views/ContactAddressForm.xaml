@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CRMMobile.Effects" xmlns:control="clr-namespace:CRMMobile.Control" xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms" x:Class="CRMMobile.Views.ContactAddressForm" Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <Frame Padding="15,15,15,15" CornerRadius="0" BackgroundColor="White" HeightRequest="170">
+                <StackLayout>
+                    <Label HeightRequest="50"  AbsoluteLayout.LayoutFlags="All" FontSize="14" Text="{Binding ContentTitle}" Style="{StaticResource FontBold}"></Label>
+                    <ScrollView Orientation="Horizontal">
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="90" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="&#xe802;" FontFamily="{StaticResource IcomoonFont}" FontSize="12.5" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="1" FontSize="12.5" Text="คัดลอกจาก" VerticalTextAlignment="Center" Style="{StaticResource FontRegular}"></Label>
+                        <Label IsVisible="{Binding DisplayCopyContactAddress}"  FontSize="11" Grid.Column="2" Text="ที่อยู่ที่ติดต่อได้&#x0a;จากโครงการอื่น"  VerticalTextAlignment="Center" Style="{StaticResource FontRegular}" TextColor="#35ADED">
+                            <Label.Effects>
+                                <local:UnderlineEffect />
+                            </Label.Effects>
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CopyContacrAddressPopupCommand}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label IsVisible="{Binding DisplayCopyCitizenAddress}" Text="ที่อยู่ตามสัญญา&#x0a;(บัตรประชาชน)"  FontSize="11" Grid.Column="3" VerticalTextAlignment="Center" Style="{StaticResource FontRegular}" TextColor="#35ADED">
+                             <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CopyFromCitizenAddressCommand}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+
+                            <Label.Effects>
+                                <local:UnderlineEffect />
+                            </Label.Effects>
+                        </Label>
+                        <Label IsVisible="{Binding DisplayCopyHomeAddress}" Text="ที่อยู่ตามฝ่ายโอน&#x0a;(ทะเบียนบ้าน)" FontSize="11" Grid.Column="4" VerticalTextAlignment="Center" Style="{StaticResource FontRegular}" TextColor="#35ADED">
+                            <Label.Effects>
+                                <local:UnderlineEffect />
+                            </Label.Effects>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CopyFromHomeAddressCommand}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    </ScrollView>
+                    
+                </StackLayout>
+            </Frame>
+            <ScrollView  Orientation="Vertical">
+                <Grid Padding="16" BackgroundColor="#F5F7FA">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="7" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label IsVisible="{Binding DisplayProject}" Text="โครงการ" FontSize="13.5" Grid.Row="0" Grid.Column="0" Style="{StaticResource FontRegular}" TextColor="#2B2B2B" >
+                        <Label.Triggers>
+                              <DataTrigger
+                                    TargetType="Label"
+                                    Binding="{Binding Project.IsValid}"
+                                    Value="False">
+                                    <Setter Property="TextColor" Value="#C92028"></Setter>
+                                    <Setter Property="Text"
+                                            Value="{Binding Project.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                             </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <control:PickerFilter  IsVisible="{Binding DisplayProject}" HeightRequest="50"  Placeholder="เลือกโครงการ" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="Projects" Title="โครงการ" IsValid="{Binding Project.IsValid}"
+                                             ErrorColor="Red" ItemsSource="{Binding Projects}" SelectedItem="{Binding Project.Value, Mode=TwoWay}"  ItemBindingDisplay="ProjectNo" ItemBindingDisplay2="ProjectNameTH">
+                    </control:PickerFilter>
+                    <Label Text="(TH)" FontSize="15.5" TextColor="#C92028" Grid.Row="2" VerticalTextAlignment="Center" Style="{StaticResource FontBold}" />
+                    <Label Grid.Row="3" Grid.Column="0" Text="เลขที่" TextColor="#7A7A7A" FontSize="13.5" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="4" Grid.Column="0" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding AddressNo.Value}" Style="{StaticResource EntryFontRegular}" />
+                    <Label Grid.Row="3" Grid.Column="2" Text="หมู่ที่" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="4" Grid.Column="2" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding Moo.Value}" Style="{StaticResource EntryFontRegular}" />
+
+                    <Label Text="หมู่บ้าน/อาคาร" FontSize="13.5" Grid.Row="5" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Vaillage.Value}" Style="{StaticResource EntryFontRegular}" Radius="5" FocusColor="#C92028" FontSize="14" />
+                    <Label Text="ซอย" FontSize="13.5" Grid.Row="7" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding Soi.Value}" Style="{StaticResource EntryFontRegular}" />
+
+                    <Label Text="ถนน" FontSize="13.5" Grid.Row="9" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding Street.Value}" Style="{StaticResource EntryFontRegular}" />
+                    <Label Text="ประเทศ" FontSize="13.5" Grid.Row="11" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}"></Label>
+                    <control:PickerFilter  x:Name="Country" ItemBindingDisplay="NameTH" ItemsSource="{Binding Countries}" SelectedItem="{Binding Country.Value,Mode=TwoWay}" Title="ประเทศ" Placeholder="เลือก ประเทศ" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="3" />
+                    <Label Text="จังหวัด" FontSize="13.5" Grid.Row="13" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:PickerFilter   Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="3" x:Name="Provinces" Title="จังหวัด" Placeholder="เลือกจังหวัด" ItemBindingDisplay="NameTH" ItemsSource="{Binding Provinces}" SelectedItem="{Binding Province.Value}" IsVisible="{Binding IsThaiCountry}">
+                    </control:PickerFilter>
+                    <control:BorderEntry   Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource PickerFontRegular}" Placeholder="Province" Radius="5" FocusColor="#C92028" FontSize="14" IsVisible="{Binding IsThaiCountry, Converter={StaticResource NegationConverter}}" />
+                    <Label Text="เขต/อำเภอ" FontSize="13.5" Grid.Row="15" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:PickerFilter Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="3" x:Name="Districts" Title="เขต/อำเภอ" Placeholder="เลือก เขต/อำเภอ" ItemsSource="{Binding Districts}" SelectedItem="{Binding District.Value}" ItemBindingDisplay="NameTH" IsVisible="{Binding IsThaiCountry}">
+                    </control:PickerFilter>
+                    <control:BorderEntry    Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource PickerFontRegular}" Placeholder="District" Radius="5" FocusColor="#C92028" FontSize="14" IsVisible="{Binding IsThaiCountry, Converter={StaticResource NegationConverter}}" />
+                    <Label Text="ตำบล/แขวง" FontSize="13.5" Grid.Row="17" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:PickerFilter Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="3"
+                                          Style="{StaticResource PickerFontRegular}"
+                                          FontSize="14" x:Name="SubDistricts"
+                                          Title="ตำบล" Placeholder="เลือก ตำบล"
+                                          ItemBindingDisplay="NameTH"
+                                          ItemsSource="{Binding SubDistricts}"
+                                          SelectedItem="{Binding SubDistrict.Value}"
+                                          IsVisible="{Binding IsThaiCountry}">
+                    </control:PickerFilter>
+                    
+                    <control:BorderEntry Radius="5"   Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource EntryFontRegular}" Placeholder="SubDistrict" IsVisible="{Binding IsThaiCountry, Converter={StaticResource NegationConverter}}" />
+                    <Label Text="รหัสไปรษณีย์" FontSize="13.5" Grid.Row="19" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="20" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource EntryFontRegular}" Placeholder="รหัสไปรษณีย์" Radius="5" Text="{Binding Postcode.Value}" FocusColor="#C92028" FontSize="14" />
+                    <Label  Text="(ENG)" Grid.Row="21" TextColor="#C92028" FontSize="16" VerticalTextAlignment="Center" Style="{StaticResource FontBold}" />
+                    <StackLayout Grid.Row="21" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+
+                        <Label Text="&#xE91C;" FontFamily="{StaticResource IcomoonFont}" FontSize="13" TextColor="#35ADED" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                        <Label Text="คัดลอกจากภาษาไทย" FontSize="13" TextColor="#35ADED" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center">
+                            <Label.Effects>
+                                <local:UnderlineEffect />
+                            </Label.Effects>
+                        </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyToEngCommand}"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label Grid.Row="22" Grid.Column="0" Text="Address" FontSize="13.5" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="23" Grid.Column="0" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding AddressNo.Value}" Style="{StaticResource EntryFontRegular}" />
+
+                    <Label Grid.Row="22" Grid.Column="2" Text="Moo" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="23" Grid.Column="2" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding Moo.Value}" Style="{StaticResource EntryFontRegular}" />
+                    <Label Text="Village/Building" FontSize="13.5" Grid.Row="24" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="25" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource EntryFontRegular}" Radius="5" FocusColor="#C92028" Text="{Binding VaillageEN.Value}" FontSize="14" />
+
+                    <Label Text="Soi" FontSize="13.5" Grid.Row="26" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="27" Grid.Column="0" Grid.ColumnSpan="3" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding SoiEN.Value}" Style="{StaticResource EntryFontRegular}" />
+                    <Label Text="Road" FontSize="13.5" Grid.Row="28" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="29" Grid.Column="0" Grid.ColumnSpan="3" Radius="5" FocusColor="#C92028" FontSize="14" Text="{Binding StreetEN.Value}" Style="{StaticResource EntryFontRegular}" />
+                    <Label Text="Country" FontSize="13.5" Grid.Row="30" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:PickerFilter Grid.Row="31" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CountryEN"  Radius="5" FocusColor="#C92028" FontSize="14" Title="Countries" Placeholder="Select Country" SelectedItem="{Binding Country.Value}" ItemsSource="{Binding Countries}" ItemBindingDisplay="NameEN" Style="{StaticResource PickerFontRegular}" >
+                    </control:PickerFilter>
+
+                    <Label Text="Province" FontSize="13.5" Grid.Row="32" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:PickerFilter Grid.Row="33" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ProvincesEN" Title="Province" Placeholder="Select Province" FontSize="14" ItemsSource="{Binding Provinces}" SelectedItem="{Binding Province.Value}" ItemBindingDisplay="NameEN" Style="{StaticResource PickerFontRegular}" IsVisible="{Binding IsThaiCountry}">
+                    </control:PickerFilter>
+                    <control:BorderEntry Grid.Row="33" Grid.Column="0" Grid.ColumnSpan="3" Radius="5" Placeholder="Province" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" IsVisible="{Binding IsThaiCountry, Converter={StaticResource NegationConverter}}"></control:BorderEntry>
+
+                    <Label Text="District" FontSize="13.5" Grid.Row="34" Grid.Column="0" Grid.ColumnSpan="2" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:PickerFilter Grid.Row="35" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DistrictsEN" Title="District" Placeholder="Select District" ItemBindingDisplay="NameEN" ItemsSource="{Binding Districts}" SelectedItem="{Binding District.Value}" Style="{StaticResource PickerFontRegular}" IsVisible="{Binding IsThaiCountry}">
+                    </control:PickerFilter>
+                    <control:BorderEntry Grid.Row="35" Grid.Column="0" Grid.ColumnSpan="3" Radius="5" FocusColor="#C92028" FontSize="14" Placeholder="District" Style="{StaticResource EntryFontRegular}" IsVisible="{Binding IsThaiCountry, Converter={StaticResource NegationConverter}}"></control:BorderEntry>
+                    
+                    <Label Text="Sub-District" FontSize="13.5" Grid.Row="36" Grid.Column="0" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                    <control:PickerFilter Grid.Row="37" Grid.Column="0" Grid.ColumnSpan="3" x:Name="SubDistrictsEN" Style="{StaticResource PickerFontRegular}" Title="Sub-District" Placeholder="Select Sub-District" ItemBindingDisplay="NameEN" ItemsSource="{Binding SubDistricts}" SelectedItem="{Binding SubDistrict.Value}" IsVisible="{Binding IsThaiCountry}">
+                    </control:PickerFilter>
+                    <control:BorderEntry Grid.Row="37" Grid.Column="0" Grid.ColumnSpan="3" Radius="5" FocusColor="#C92028" FontSize="14" Placeholder="Sub-District" Style="{StaticResource EntryFontRegular}" IsVisible="{Binding IsThaiCountry, Converter={StaticResource NegationConverter}}"></control:BorderEntry>
+                    
+                    <Label Text="Postcode" FontSize="13.5" TextColor="#7A7A7A" Grid.Row="38" Grid.Column="0" Style="{StaticResource FontRegular}" />
+                    <control:BorderEntry Grid.Row="39" Grid.Column="0" Grid.ColumnSpan="3" Placeholder="postcode" Radius="5" Style="{StaticResource EntryFontRegular}" Text="{Binding Postcode.Value}" >
+                    </control:BorderEntry>
+                </Grid>
+            </ScrollView>
+
+            <AbsoluteLayout BackgroundColor="#798293" HeightRequest="60">
+                <Button AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".25,.5,100,40" Text="บันทึก" Command="{Binding SubmitCommand}" TextColor="White" BackgroundColor="#C92028" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+                <Button AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".75,.5,100,40" Text="ยกเลิก" Command="{prism:GoBack}" TextColor="White" BackgroundColor="#454F63" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

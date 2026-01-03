@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CRMMobile.Effects"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             x:Class="CRMMobile.Views.ContactAddressOtherForm"
+             Title="แก้ไขที่อยู่ตามบัตรประชาชน">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <Frame Padding="15,25,15,15" CornerRadius="0" BackgroundColor="White" HeightRequest="150">
+                <AbsoluteLayout>
+                    <Label AbsoluteLayout.LayoutBounds="0,0,1,.50" AbsoluteLayout.LayoutFlags="All" FontSize="18" Text="ที่อยู่ที่ติดต่อได้" Style="{StaticResource FontBold}"></Label>
+                    <Grid AbsoluteLayout.LayoutBounds="0,30,1,.70"  AbsoluteLayout.LayoutFlags="SizeProportional">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="90" />
+                            <ColumnDefinition Width="100*" />
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="&#xE91C;" FontFamily="{StaticResource IcomoonFont}" FontSize="12.5" TextColor="#8992A7" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="1" FontSize="12.5" Text="คัดลอกจาก" VerticalTextAlignment="Center" Style="{StaticResource FontRegular}"></Label>
+                        <Label FontSize="12.5" Grid.Column="2"  VerticalTextAlignment="Center" Style="{StaticResource FontRegular}" TextColor="#35ADED">
+                            <Label.Effects>
+                                <local:UnderlineEffect />
+                            </Label.Effects>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="ที่อยู่ที่ติดต่อได้" />
+                                    <Span Text="&#x0a;" />
+                                    <Span Text="จากโครงการอื่น" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{prism:NavigateTo 'ContactAddressPopup'}"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label FontSize="12.5" Grid.Column="3" VerticalTextAlignment="Center" Style="{StaticResource FontRegular}" TextColor="#35ADED">
+                            <Label.Effects>
+                                <local:UnderlineEffect />
+                            </Label.Effects>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="ที่อยู่ตามฝ่ายโอน" />
+                                    <Span Text="&#x0a;" />
+                                    <Span Text="(ทะเบียนบ้าน)" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                </AbsoluteLayout>
+            </Frame>
+            <ScrollView Orientation="Vertical">
+                <StackLayout Padding="16" BackgroundColor="#F5F7FA">
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <Label Text="(TH)" FontSize="15.5" TextColor="#C92028" Style="{StaticResource FontBold}" />
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <Grid  HeightRequest="75">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="เลขที่" TextColor="#7A7A7A" FontSize="13.5" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry Grid.Row="1" Grid.Column="0" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="หมู่ที่" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry Grid.Row="1" Grid.Column="2" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+                    </Grid>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="หมู่บ้าน/อาคาร" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource EntryFontRegular}" Radius="5" FocusColor="#C92028" FontSize="14" />
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="ซอย" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="ถนน" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="ประเทศ" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}"></Label>
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource PickerFontRegular}"
+                                             Image="expanddown" Title="ประเทศ" Radius="5" FocusColor="#C92028" FontSize="14">
+                            <control:PickerEntry.Items>
+                                <x:String>ไทย</x:String>
+                                <x:String>ลาว</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="จังหวัด" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource PickerFontRegular}"
+                                             Image="expanddown" Title="จังหวัด" Radius="5" FocusColor="#C92028" FontSize="14">
+                            <control:PickerEntry.Items>
+                                <x:String>เชียงใหม่</x:String>
+                                <x:String>กรุงเทพมหานคร</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="เขต/อำเภอ" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource PickerFontRegular}"
+                                             Image="expanddown" Title="เขต/อำเภอ" Radius="5" FocusColor="#C92028" FontSize="14">
+                            <control:PickerEntry.Items>
+                                <x:String>ห้วยขวาง</x:String>
+                                <x:String>สุขุมวิท</x:String>
+                                <x:String>บางแค</x:String>
+                                <x:String>อื่นๆ</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="รหัสไปรษณีย์" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional"  TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource PickerFontRegular}"
+                                             Image="expanddown" Title="รหัสไปรษณีย์" Radius="5" FocusColor="#C92028" FontSize="14">
+                            <control:PickerEntry.Items>
+                                <x:String>10000</x:String>
+                                <x:String>20000</x:String>
+                                <x:String>30000</x:String>
+                                <x:String>อื่นๆ</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <BoxView Color="#8992A7" HeightRequest="0.5"></BoxView>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+
+                    <!--ENG-->
+                    <StackLayout Orientation="Horizontal">
+                        <Label  Text="(ENG)" TextColor="#C92028" FontSize="16" Style="{StaticResource FontBold}" />
+                        <Label Text="&#xE91C;" FontFamily="{StaticResource IcomoonFont}" FontSize="13" TextColor="#35ADED" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                        <Label Text="คัดลอกจากภาษาไทย" FontSize="13" TextColor="#35ADED" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center">
+                            <Label.Effects>
+                                <local:UnderlineEffect />
+                            </Label.Effects>
+                        </Label>
+                    </StackLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <Grid  HeightRequest="75">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="Address" FontSize="13.5" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry Grid.Row="1" Grid.Column="0" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+
+                        <Label Grid.Row="0" Grid.Column="2" Text="Moo" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry Grid.Row="1" Grid.Column="2" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+                    </Grid>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="Village/Building" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource EntryFontRegular}" Radius="5" FocusColor="#C92028" FontSize="14" />
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="Soi" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="Road" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:BorderEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource EntryFontRegular}" />
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="Country" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Image="expanddown" Title="Country" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource PickerFontRegular}">
+                            <control:PickerEntry.Items>
+                                <x:String>Thailand</x:String>
+                                <x:String>Laos</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="Province" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Image="expanddown" Title="Province" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource PickerFontRegular}">
+                            <control:PickerEntry.Items>
+                                <x:String>Chiang mai</x:String>
+                                <x:String>Bangkok</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="District" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Image="expanddown" Title="District" Radius="5" FocusColor="#C92028" FontSize="14" Style="{StaticResource PickerFontRegular}">
+                            <control:PickerEntry.Items>
+                                <x:String>Bang Kae</x:String>
+                                <x:String>Asok</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="Sub-District" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource PickerFontRegular}"
+                                             Image="expanddown" Title="Sub-District" Radius="5" FocusColor="#C92028" FontSize="14">
+                            <control:PickerEntry.Items>
+                                <x:String>Bang Kae</x:String>
+                                <x:String>Bang Kae</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                    <AbsoluteLayout HeightRequest="75">
+                        <Label Text="Postcode" TextColor="#7A7A7A" FontSize="13.5" AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource FontRegular}" />
+                        <control:PickerEntry AbsoluteLayout.LayoutBounds="0,25,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Style="{StaticResource PickerFontRegular}"
+                                             Image="expanddown" Title="Postcode" Radius="5" FocusColor="#C92028" FontSize="14">
+                            <control:PickerEntry.Items>
+                                <x:String>10000</x:String>
+                                <x:String>20000</x:String>
+                                <x:String>30000</x:String>
+                            </control:PickerEntry.Items>
+                        </control:PickerEntry>
+                    </AbsoluteLayout>
+                    <BoxView Color="#F5F7FA" HeightRequest="10"></BoxView>
+                </StackLayout>
+            </ScrollView>
+            <Grid Padding="15" BackgroundColor="#798293">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="1" Text="บันทึก" TextColor="White" BackgroundColor="#C92028" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+                <Button Grid.Row="0" Grid.Column="2" Text="ยกเลิก" TextColor="White" BackgroundColor="#454F63" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

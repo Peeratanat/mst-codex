@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:control="clr-namespace:CRMMobile.Control"
+                        xmlns:converter="clr-namespace:CRMMobile.Converters"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        x:Class="CRMMobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+            <converter:IsBusyConverter x:Key="IsBusyConverter" />
+            <converter:DashesCoverter x:Key="DashesCoverter" />
+            <converter:NegationConverter x:Key="NegationConverter" />
+            <Color x:Key="ActivityIndicatorColor">#C92028</Color>
+            <Color x:Key="ErrorColor">#C92028</Color>
+
+            <Style TargetType="control:BorderEntry">
+                <Setter Property="FocusColor" Value="#C92028" />
+                <Setter Property="UnFocusColor" Value="#8992A7" />
+                <Setter Property="ErrorColor" Value="#C92028" />
+            </Style>
+
+            <Style TargetType="control:PickerAutoComplete">
+                <Setter Property="ErrorColor" Value="#C92028" />
+            </Style>
+
+            <Style x:Key="CustomNav" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#364255" />
+            </Style>
+
+            <Style TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="{DynamicResource ActivityIndicatorColor}" />
+            </Style>
+
+            <OnPlatform x:Key="CustomFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="fontello" />
+                <On Platform="Android" Value="fontello.ttf#fontello" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IcomoonFont" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="icomoon" />
+                <On Platform="Android" Value="icomoon.ttf#icomoon" />
+            </OnPlatform>
+
+            <Style x:Key="FontRegular" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="FontMedium" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Medium" Android="AP-Medium.ttf#AP Medium" />
+                </Setter>
+            </Style>
+            <Style x:Key="FontBold" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Bold" Android="AP-Bold.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="EntryFontRegular" TargetType="Entry">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="EntryFontMedium" TargetType="Entry">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String"  iOS="AP-Medium" Android="AP-Medium.ttf#AP Medium" />
+                </Setter>
+            </Style>
+            <Style x:Key="EntryFontBold" TargetType="Entry">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Bold" Android="AP-Bold.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="EditorFontRegular" TargetType="Editor">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Bold" Android="AP-Bold.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style TargetType="control:SFButton">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Bold" Android="AP-Bold.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="PickerFontRegular" TargetType="Picker">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="PickerFontMedium" TargetType="Picker">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Medium" Android="AP-Medium.ttf#AP Medium" />
+                </Setter>
+            </Style>
+            <Style x:Key="PickerFontBold" TargetType="Picker">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Bold" Android="AP-Bold.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="DatePickerFontRegular" TargetType="DatePicker">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+                <Setter Property="Format" Value="dd/MM/yyyy" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#7A7A7A" />
+            </Style>
+            <Style TargetType="control:SFDatePicker">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+                <Setter Property="Format" Value="dd/MM/yyyy" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#7A7A7A" />
+                <Setter Property="ErrorColor" Value="{DynamicResource ErrorColor}" />
+            </Style>
+            <Style TargetType="control:PickerFilter">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#2B2B2B" />
+                <Setter Property="FocusColor" Value="#C92028" />
+                <Setter Property="Radius" Value="5" />
+                <Setter Property="ErrorColor" Value="{DynamicResource ErrorColor}"></Setter>
+            </Style>
+            <Style TargetType="Span">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <Style x:Key="SpanFontBold" TargetType="Span">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+            </Style>
+            <Style x:Key="SpanFontRegular" TargetType="Span">
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String" iOS="AP-Regular" Android="AP-Regular.ttf#AP" />
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

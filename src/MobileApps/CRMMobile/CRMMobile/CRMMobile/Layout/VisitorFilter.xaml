@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:CRMMobile.Control"
+    x:Class="CRMMobile.Layout.VisitorFilter">
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="SearchArea"
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        BackgroundColor="#F5F7FA">
+            <Label Text="ลักษณะการเดินทาง"
+                   Margin="15,0"
+                   TextColor="#2B2B2B"
+                   FontSize="13"
+                   Style="{StaticResource FontRegular}"
+                   AbsoluteLayout.LayoutBounds="0,10,1,20"
+                   AbsoluteLayout.LayoutFlags="WidthProportional" />
+            <Grid Margin="15,0"
+                  Padding="0"
+                  BackgroundColor="#F0F0F0"
+                  RowSpacing="0"
+                  AbsoluteLayout.LayoutBounds="0,32,1,54"
+                  AbsoluteLayout.LayoutFlags="WidthProportional"
+                  VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="54" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <control:RadioEntry Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="เดิน"
+                                    Color="#C92028"
+                                    Checked="{Binding IsWalk}"
+                                    Command="{Binding CommandWalk}" />
+                <control:RadioEntry Grid.Row="0"
+                                    Grid.Column="2"
+                                    Text="ยานพาหนะ"
+                                    Color="#C92028"
+                                    Checked="{Binding IsVehicle}"
+                                    Command="{Binding CommandWalk}" />
+            </Grid>
+
+            <Label Text="ประเภทรถยนต์"
+                   Margin="15,0"
+                   TextColor="#2B2B2B"
+                   FontSize="13"
+                   Style="{StaticResource FontRegular}"
+                   AbsoluteLayout.LayoutBounds="0,105,1,20"
+                   AbsoluteLayout.LayoutFlags="WidthProportional" />
+            <control:PickerFilter Margin="15,0"
+                                 Radius="4"
+                                  Title="ประเภทรถยนต์"
+                                 AbsoluteLayout.LayoutBounds="0,130,1,50"
+                                 AbsoluteLayout.LayoutFlags="WidthProportional">
+            </control:PickerFilter>
+
+            <Label Text="สถานะ"
+                   Margin="15,0"
+                   TextColor="#2B2B2B"
+                   FontSize="13"
+                   Style="{StaticResource FontRegular}"
+                   AbsoluteLayout.LayoutBounds="0,200,1,20"
+                   AbsoluteLayout.LayoutFlags="WidthProportional" />
+            <Grid Margin="15,0"
+                  VerticalOptions="EndAndExpand"
+                  BackgroundColor="#F0F0F0"
+                  AbsoluteLayout.LayoutBounds="0,222,1,50"
+                  AbsoluteLayout.LayoutFlags="WidthProportional">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="54" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <control:RadioEntry  Grid.Row="0"
+                                     Grid.Column="0"
+                                     Text="ลูกค้า"
+                                     Color="#C92028"
+                                     Checked="{Binding IsCustomer}"
+                                     Command="{Binding CommandCustomer}" />
+                <control:RadioEntry Grid.Row="0"
+                                    Grid.Column="2"
+                                    Text="ไม่ใช่ลูกค้า"
+                                    Color="#C92028"
+                                    Checked="{Binding IsVisitor}"
+                                    Command="{Binding CommandCustomer}" />
+            </Grid>
+
+            <Grid Margin="15,0"
+                  RowSpacing="3"
+                  AbsoluteLayout.LayoutBounds="0,295,1,70"
+                  AbsoluteLayout.LayoutFlags="WidthProportional">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="ตั้งแต่วันที่"
+                       TextColor="#2B2B2B"
+                       FontSize="13"
+                       Style="{StaticResource FontRegular}"></Label>
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       Text="ถึงวันที่"
+                       TextColor="#2B2B2B"
+                       FontSize="13"
+                       Style="{StaticResource FontRegular}"></Label>
+                <DatePicker Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource DatePickerFontRegular}"
+                            FontSize="14"
+                            TextColor="#2B2B2B" />
+                <DatePicker Grid.Row="1"
+                            Grid.Column="2"
+                            Style="{StaticResource DatePickerFontRegular}"
+                            FontSize="14"
+                            TextColor="#2B2B2B" />
+            </Grid>
+
+            <Label Text="เรียงตาม"
+                   Margin="15,0"
+                   TextColor="#2B2B2B"
+                   FontSize="13"
+                   Style="{StaticResource FontRegular}"
+                   AbsoluteLayout.LayoutBounds="0,390,1,20"
+                   AbsoluteLayout.LayoutFlags="WidthProportional" />
+            <control:PickerEntry Margin="15,0"
+                                 Radius="4"
+                                 AbsoluteLayout.LayoutBounds="0,412,1,50"
+                                 AbsoluteLayout.LayoutFlags="WidthProportional">
+                <control:PickerEntry.Items>
+                    <x:String>รหัสลูกค้า</x:String>
+                    <x:String>วันที่สร้าง</x:String>
+                </control:PickerEntry.Items>
+            </control:PickerEntry>
+
+            <AbsoluteLayout Padding="0"
+                            Margin="0"
+                            AbsoluteLayout.LayoutBounds="0,480,1,50"
+                            AbsoluteLayout.LayoutFlags="WidthProportional">
+                <control:SFButton BackgroundColor="#C92028"
+                                  BorderColor="#C92028"
+                                  CornerRadius="7"
+                                  Text="ค้นหา"
+                                  TextColor="White"
+                                  FontSize="16"
+                                  Icon="search"
+                                  IconColor="White"
+                                  IconAlignment="Left"
+                                  AbsoluteLayout.LayoutFlags="All"
+                                  AbsoluteLayout.LayoutBounds=".5,0,.22,1">
+                </control:SFButton>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

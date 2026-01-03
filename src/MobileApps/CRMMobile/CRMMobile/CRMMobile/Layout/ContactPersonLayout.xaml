@@ -1,0 +1,893 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             xmlns:hepler="clr-namespace:CRMMobile.Helper"
+             xmlns:local="clr-namespace:CRMMobile.Effects"
+             x:Name="MyContent"
+             x:Class="CRMMobile.Layout.ContactPersonLayout">
+    <ContentView.Content>
+        <StackLayout>
+            <AbsoluteLayout>
+                <Label Text="(TH)"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,0,1,30"
+                       Style="{StaticResource FontBold}"
+                       FontSize="16"
+                       TextColor="#C92028" />
+                <Label Text="คำนำหน้า*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,30,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" />
+               
+                <control:PickerFilter
+                    x:Name="PrefixAutoComplete"
+                    AbsoluteLayout.LayoutFlags="WidthProportional"
+                    AbsoluteLayout.LayoutBounds="0,60,1,60"
+                    Placeholder="คำนำหน้า"
+                    Title="คำนำหน้า"
+                    VisibleSearch="False"
+                    FilterCommand="{TemplateBinding BindingContext.CommandPrefixsThai}"
+                    ItemsSource="{TemplateBinding BindingContext.PrefixsThai}"
+                    SelectedItem="{TemplateBinding BindingContext.Prefix.Value}"
+                    IsValid="{TemplateBinding BindingContext.Prefix.IsValid}"
+                    ItemBindingDisplay="Name">
+                </control:PickerFilter>
+                <Label Text="คำนำหน้าเพิ่มเติม*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,120,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.PrefixExt.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.PrefixExt.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.PrefixExt.IsValid,Mode=TwoWay}"
+                            Value="True">
+                            <Setter Property="Text"
+                                    Value="คำนำหน้าเพิ่มเติม*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry Text="{TemplateBinding BindingContext.PrefixExt.Value}"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,150,1,60"
+                                     Placeholder="คำนำหน้าเพิ่มเติม"
+                                     Grid.Column="0"
+                                     Grid.Row="4"
+                                     Grid.ColumnSpan="4"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     ErrorColor="#C92028"
+                                     IsEnabled="{TemplateBinding BindingContext.PrefixExtEnable}"
+                                     IsValid="{TemplateBinding BindingContext.PrefixExt.IsValid}"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="ชื่อ*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,210,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Firstname.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.Firstname.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Firstname.IsValid}"
+                            Value="True">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FontRegular}"></Setter>
+                            <Setter Property="Text"
+                                    Value="ชื่อ*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,240,1,60"
+                                     Text="{TemplateBinding BindingContext.Firstname.Value}"
+                                     IsValid="{TemplateBinding BindingContext.Firstname.IsValid}"
+                                     ErrorColor="#C92028"
+                                     Placeholder="ชื่อ"
+                                     Grid.Column="0"
+                                     Grid.Row="6"
+                                     Grid.ColumnSpan="4"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="ชื่อกลาง"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,300,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Middlename.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.Middlename.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Middlename.IsValid}"
+                            Value="True">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FontRegular}"></Setter>
+                            <Setter Property="Text"
+                                    Value="ชื่อกลาง" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry Text="{TemplateBinding BindingContext.Middlename.Value}"
+                                     Placeholder="ชื่อกลาง"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,330,1,60"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="นามสกุล*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,390,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Lastname.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.Lastname.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Lastname.IsValid}"
+                            Value="True">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FontRegular}"></Setter>
+                            <Setter Property="Text"
+                                    Value="นามสกุล*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,420,1,60"
+                                     Text="{TemplateBinding BindingContext.Lastname.Value}"
+                                     IsValid="{TemplateBinding BindingContext.Lastname.IsValid}"
+                                     ErrorColor="#C92028"
+                                     Placeholder="นามสกุล"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="ชื่อเล่น"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,480,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" />
+                <control:BorderEntry Text="{TemplateBinding BindingContext.Nickname}"
+                                     Placeholder="ชื่อเล่น"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,510,1,60"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="สัญชาติ*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,570,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Nation.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.Nation.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.Nation.IsValid}"
+                            Value="True">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FontRegular}"></Setter>
+                            <Setter Property="Text"
+                                    Value="สัญชาติ*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+      
+                <control:PickerFilter AbsoluteLayout.LayoutFlags="WidthProportional"
+                                      AbsoluteLayout.LayoutBounds="0,600,1,60"
+                                      Title="เลือกสัญชาติ"
+                                      Placeholder="สัญชาติ"
+                                      x:Name="NationsPicker"
+                                      FilterCommand="{TemplateBinding BindingContext.CommandNations}"
+                                      ItemsSource="{TemplateBinding BindingContext.Nations}"
+                                      SelectedItem="{TemplateBinding BindingContext.Nation.Value}"
+                                      ItemBindingDisplay="Name"
+                                      IsValid="{TemplateBinding BindingContext.Nation.IsValid}" />
+                <Label Text="{TemplateBinding BindingContext.CitizenPlaceholder}"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,660,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.CitizenId.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.CitizenId.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                         <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.CitizenId.IsValid}"
+                            Value="True">
+                            
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.CitizenPlaceholder}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+
+                </Label>
+                <control:BorderEntry Text="{TemplateBinding BindingContext.CitizenId.Value}"
+                                     IsValid="{TemplateBinding BindingContext.CitizenId.IsValid}"
+                                     
+                                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,690,1,60"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Placeholder="{TemplateBinding BindingContext.CitizenPlaceholder}"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" >
+                  
+                </control:BorderEntry>
+                <Label Text="วันหมดอายุ*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,750,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                   
+                </Label>
+
+                <control:SFDatePicker ErrorColor="Red"
+                                      PlaceHolder="วันหมดอายุ*"
+                                      TextColor="#7A7A7A"
+                                      NullableDate="{TemplateBinding BindingContext.CitizenExpire.Value}"
+                                      IsValid="{TemplateBinding BindingContext.CitizenExpire.IsValid}"
+                                      AbsoluteLayout.LayoutFlags="WidthProportional"
+                                      AbsoluteLayout.LayoutBounds="0,780,1,60"
+                                      BackgroundColor="White"
+                                      FontSize="14"
+                                      Style="{StaticResource DatePickerFontRegular}" />
+                <Label Text="เพศ*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,840,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" >
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.SelectGender.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.SelectGender.Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.SelectGender.IsValid}"
+                            Value="True">
+                            <Setter Property="Text"
+                                    Value="เพศ*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                   
+                </Label>
+                <CollectionView AbsoluteLayout.LayoutBounds="0,870,1,60"
+                            AbsoluteLayout.LayoutFlags="WidthProportional" ItemsLayout="HorizontalList" ItemsSource="{TemplateBinding BindingContext.Gender.Checkboxs, Mode=TwoWay}" Margin="0,0" x:Name="LeadTopicList" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal" Spacing="3" Padding="3,0">
+                                        <CheckBox Color="#C92028" IsChecked="{Binding IsCheck}"> 
+                                        </CheckBox>
+                                        <Label Text="{Binding Value.Name}" FontSize="13" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center"></Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CheckCommand}" CommandParameter="{Binding Id}"></TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+               </CollectionView>
+               
+                <Label Text="วันเดือนปีเกิด*"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,930,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" />
+                <control:SFDatePicker AbsoluteLayout.LayoutFlags="WidthProportional"
+                                      AbsoluteLayout.LayoutBounds="0,960,1,60"
+                                      ErrorColor="Red"
+                                      PlaceHolder="วันเดือนปีเกิด"
+                                      FontSize="14"
+                                      TextColor="#7A7A7A"
+                                      IsValid="{TemplateBinding BindingContext.BirthDate.IsValid}"
+                                      NullableDate="{TemplateBinding BindingContext.BirthDate.Value}"
+                                      BackgroundColor="White"
+                                      Style="{StaticResource DatePickerFontRegular}" />
+            </AbsoluteLayout>
+            <AbsoluteLayout HeightRequest="55">
+                <Label AbsoluteLayout.LayoutFlags="XProportional,WidthProportional,HeightProportional"
+                       AbsoluteLayout.LayoutBounds="0,0,.10,1"
+                       VerticalTextAlignment="Center"
+                       Text=""
+                       FontFamily="{StaticResource IcomoonFont}"
+                       FontSize="22"
+                       TextColor="#8992A7" />
+                <Label AbsoluteLayout.LayoutFlags="XProportional,WidthProportional,HeightProportional"
+                       AbsoluteLayout.LayoutBounds=".17,0,.30,1"
+                       VerticalTextAlignment="Center"
+                       Text="อีเมลล์*"
+                       Style="{StaticResource FontBold}"
+                       FontSize="16"
+                       TextColor="#8992A7" />
+            </AbsoluteLayout>
+            <al:RepeatableStack x:Name="Emails"
+                                ItemsSource="{TemplateBinding BindingContext.Emails}">
+                <al:RepeatableStack.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="100*" />
+                            </Grid.ColumnDefinitions>
+                            <control:RadioEntry Text="อีเมลล์หลัก"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                Grid.ColumnSpan="2"
+                                                Color="#C92028"
+                                                Checked="{Binding IsSelected}"
+                                                Command="{TemplateBinding BindingContext.EmailCheckCommand }"
+                                                CommandParameter="{Binding .}" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#C92028"
+                                   FontSize="12"
+                                   Style="{StaticResource FontRegular}"
+                                   Text="{Binding EmailAddress.Errors, Converter={StaticResource FirstValidationErrorConverter} }">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding EmailAddress.IsValid}"
+                                                 Value="True">
+                                        <Setter Property="IsVisible"
+                                                Value="False"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding EmailAddress.IsValid}"
+                                                 Value="False">
+                                        <Setter Property="IsVisible"
+                                                Value="True"></Setter>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Button Text=""
+                                    FontSize="16"
+                                    TextColor="#7A7A7A"
+                                    FontFamily="{StaticResource IcomoonFont}"
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    BackgroundColor="White"
+                                    BorderColor="#8992A7"
+                                    BorderWidth="1"
+                                    Command="{TemplateBinding BindingContext.CommandRemoveEmail}"
+                                    CommandParameter="{Binding .}" />
+                            <control:BorderEntry Placeholder="อีเมลล์"
+                                                 Grid.Row="2"
+                                                 Grid.Column="2"
+                                                 FocusColor="#C92028"
+                                                 UnFocusColor="#8992A7"
+                                                 IsValid="{Binding EmailAddress.IsValid}"
+                                                 Text="{Binding EmailAddress.Value}"
+                                                 Style="{StaticResource EntryFontRegular}"
+                                                 Radius="5"
+                                                 FontSize="14" />
+                        </Grid>
+                    </DataTemplate>
+                </al:RepeatableStack.ItemTemplate>
+            </al:RepeatableStack>
+            <Grid Padding="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       Text=""
+                       FontFamily="{StaticResource IcomoonFont}"
+                       FontSize="14"
+                       TextColor="#35ADED"
+                       VerticalTextAlignment="Center" />
+                <Label Text="เพิ่มอีเมลล์"
+                       Grid.Column="3"
+                       TextColor="#35ADED"
+                       FontSize="14"
+                       Style="{StaticResource FontRegular}"
+                       VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{TemplateBinding BindingContext.CommandAddEmail}" />
+                    </Label.GestureRecognizers>
+                    <Label.Effects>
+                        <local:UnderlineEffect />
+                    </Label.Effects>
+                </Label>
+            </Grid>
+            <AbsoluteLayout HeightRequest="55">
+                <Label AbsoluteLayout.LayoutFlags="XProportional,WidthProportional,HeightProportional"
+                       AbsoluteLayout.LayoutBounds="0,0,.10,1"
+                       VerticalTextAlignment="Center"
+                       Text=""
+                       FontFamily="{StaticResource IcomoonFont}"
+                       FontSize="22"
+                       TextColor="#8992A7" />
+                <Label AbsoluteLayout.LayoutFlags="XProportional,WidthProportional,HeightProportional"
+                       AbsoluteLayout.LayoutBounds=".17,0,.40,1"
+                       VerticalTextAlignment="Center"
+                       Text="เบอร์โทรศัพท์*"
+                       Style="{StaticResource FontBold}"
+                       FontSize="16"
+                       TextColor="#8992A7" />
+            </AbsoluteLayout>
+            <al:RepeatableStack x:Name="Phones"
+                                ItemsSource="{TemplateBinding BindingContext.Phones}">
+                <al:RepeatableStack.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <control:RadioEntry Text="เบอร์หลัก"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                Grid.ColumnSpan="2"
+                                                Color="#C92028"
+                                                Checked="{Binding IsSelected}"
+                                                Command="{TemplateBinding BindingContext.PhoneCheckCommand}"
+                                                CommandParameter="{Binding .}" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   Grid.ColumnSpan="2"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#C92028"
+                                   FontSize="12"
+                                   Style="{StaticResource FontRegular}"
+                                   Text="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter} }">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding PhoneNumber.IsValid}"
+                                                 Value="True">
+                                        <Setter Property="IsVisible"
+                                                Value="False"></Setter>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding PhoneNumber.IsValid}"
+                                                 Value="False">
+                                        <Setter Property="IsVisible"
+                                                Value="True"></Setter>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Button Text=""
+                                    FontSize="16"
+                                    TextColor="#7A7A7A"
+                                    FontFamily="{StaticResource IcomoonFont}"
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    BackgroundColor="White"
+                                    BorderColor="#8992A7"
+                                    BorderWidth="1"
+                                    IsVisible="{Binding RemoveVisible}"
+                                    Command="{TemplateBinding BindingContext.CommandRemovePhone}"
+                                    CommandParameter="{Binding .}" />
+
+                            <control:PickerFilter
+                                                        Grid.Row="2"
+                                                        Grid.Column="2"
+                                                        FontSize="13"
+                                                        Radius="5"
+                                                        FocusColor="#C92028"
+                                                        Placeholder="ประเภท"
+                                                        VisibleSearch="False"
+                                                        Title="เลือกประเภทเบอร์โทรศัพท์"
+                                                        ItemBindingDisplay="Name"
+                                                        IsEnableDash="False"
+                                                        ItemsSource="{TemplateBinding BindingContext.PhoneTypes}"
+                                                        SelectedItem="{TemplateBinding PhoneType}">
+
+                            </control:PickerFilter>
+                       
+                            <control:BorderEntry Text="{Binding PhoneNumber.Value}"
+                                                 Placeholder="เบอร์โทรศัพท์"
+                                                 Grid.Row="2"
+                                                 Grid.Column="3"
+                                                 FocusColor="#C92028"
+                                                 UnFocusColor="#8992A7"
+                                                 Style="{StaticResource EntryFontRegular}"
+                                                 Radius="5"
+                                                 FontSize="14" />
+                            <control:BorderEntry Text="{Binding PhoneNumberExt}"
+                                                 Placeholder="ต่อ"
+                                                 Grid.Row="2"
+                                                 Grid.Column="4"
+                                                 FocusColor="#C92028"
+                                                 UnFocusColor="#8992A7"
+                                                 Style="{StaticResource EntryFontRegular}"
+                                                 Radius="5"
+                                                 FontSize="14" />
+                        </Grid>
+                    </DataTemplate>
+                </al:RepeatableStack.ItemTemplate>
+            </al:RepeatableStack>
+            <Grid Padding="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       Text=""
+                       FontFamily="{StaticResource IcomoonFont}"
+                       FontSize="14"
+                       TextColor="#35ADED"
+                       VerticalTextAlignment="Center" />
+                <Label Text="เพิ่มเบอร์"
+                       Grid.Column="3"
+                       TextColor="#35ADED"
+                       FontSize="14"
+                       Style="{StaticResource FontRegular}"
+                       VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{TemplateBinding BindingContext.CommandAddPhone}" />
+                    </Label.GestureRecognizers>
+                    <Label.Effects>
+                        <local:UnderlineEffect />
+                    </Label.Effects>
+                </Label>
+            </Grid>
+            <AbsoluteLayout>
+                <Label Text="Wechat"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,0,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" />
+                <control:BorderEntry Text="{TemplateBinding BindingContext.WeChat}"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,30,1,60"
+                                     Placeholder="Wechat"
+                                     Grid.ColumnSpan="2"
+                                     FocusColor="#35ADED"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="WhatApp"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,90,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" />
+                <control:BorderEntry Text="{TemplateBinding BindingContext.WhatApp}"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,120,1,60"
+                                     Placeholder="WhatApp"
+                                     FocusColor="#35ADED"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="Line ID"
+                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                       AbsoluteLayout.LayoutBounds="0,180,1,30"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" />
+                <control:BorderEntry Text="{TemplateBinding BindingContext.LineId}"
+                                     AbsoluteLayout.LayoutFlags="WidthProportional"
+                                     AbsoluteLayout.LayoutBounds="0,210,1,60"
+                                     Placeholder="Line ID"
+                                     FocusColor="#35ADED"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+            </AbsoluteLayout>
+            <AbsoluteLayout HeightRequest="55">
+                <BoxView BackgroundColor="#8992A7"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0,.5,1,.02" />
+            </AbsoluteLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="(EN)"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"
+                       Style="{StaticResource FontBold}"
+                       FontSize="16"
+                       TextColor="#C92028" />
+                <Label Text="Title Name*"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End" />
+                <!--<control:PickerAutoComplete Grid.Row="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="4"
+                                            SelectedItem="{TemplateBinding BindingContext.PrefixEN.Value}"
+                                            IsValid="{TemplateBinding BindingContext.PrefixEN.IsValid}"
+                                            DropdownType="ContactTitleEN"
+                                            Placeholder="Title Name"
+                                            Radius="5"
+                                            FocusColor="#C92028"
+                                            FontSize="14"
+                                             />-->
+                <control:PickerFilter x:Name="PrefixsEngPicker"
+                                      Grid.Row="2"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="4"
+                                      Title="Title Name"
+                                      Placeholder="Title Name"
+                                      VisibleSearch="False"
+                                      FilterCommand="{TemplateBinding BindingContext.CommandPrefixsEng}"
+                                      SelectedItem="{TemplateBinding BindingContext.PrefixEN.Value}"
+                                      ItemsSource="{TemplateBinding BindingContext.PrefixsEng}"
+                                      ItemBindingDisplay="Name"
+                                      IsValid="{TemplateBinding BindingContext.PrefixEN.IsValid}" />
+                <Label Text="Title Name (Ext)"
+                       Grid.Row="3"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.PrefixENExt.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.PrefixENExt.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.PrefixENExt.IsValid}"
+                            Value="True">
+                           
+                            <Setter Property="Text"
+                                    Value="Title Name (Ext)" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry Text="{TemplateBinding BindingContext.PrefixENExt.Value}"
+                                     Placeholder="Title Name (Ext)"
+                                     Grid.Column="0"
+                                     Grid.Row="4"
+                                     Grid.ColumnSpan="4"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     IsValid="{TemplateBinding BindingContext.PrefixENExt.IsValid}"
+                                     IsEnabled="{TemplateBinding BindingContext.PrefixENEnable}"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="Name*"
+                       Grid.Row="5"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.FirstnameEN.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.FirstnameEN.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.FirstnameEN.IsValid}"
+                            Value="True">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FontRegular}"></Setter>
+                            <Setter Property="Text"
+                                    Value="Name*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry Placeholder="Name"
+                                     Grid.Column="0"
+                                     Grid.Row="6"
+                                     Grid.ColumnSpan="4"
+                                     Text="{TemplateBinding BindingContext.FirstnameEN.Value}"
+                                     IsValid="{TemplateBinding BindingContext. FirstnameEN.IsValid}"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="Middle Name"
+                       Grid.Row="7"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.MiddlenameEN.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.MiddlenameEN.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.MiddlenameEN.IsValid}"
+                            Value="True">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FontRegular}"></Setter>
+                            <Setter Property="Text"
+                                    Value="Middle Name*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry Text="{TemplateBinding BindingContext.MiddlenameEN.Value}"
+                                     Placeholder="Middle Name"
+                                     Grid.Row="8"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="4"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+                <Label Text="Last Name"
+                       Grid.Row="9"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"
+                       Style="{StaticResource FontRegular}"
+                       FontSize="13"
+                       VerticalTextAlignment="End">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.LastnameEN.IsValid}"
+                            Value="False">
+                            <Setter Property="TextColor"
+                                    Value="#C92028"></Setter>
+                            <Setter Property="Text"
+                                    Value="{TemplateBinding BindingContext.LastnameEN.Errors, Converter={StaticResource FirstValidationErrorConverter} }" />
+                        </DataTrigger>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{TemplateBinding BindingContext.LastnameEN.IsValid}"
+                            Value="True">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FontRegular}"></Setter>
+                            <Setter Property="Text"
+                                    Value="Last Name*" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <control:BorderEntry Placeholder="Last Name"
+                                     Grid.Row="10"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="4"
+                                     Text="{TemplateBinding BindingContext.LastnameEN.Value}"
+                                     IsValid="{TemplateBinding BindingContext.LastnameEN.IsValid}"
+                                     FocusColor="#C92028"
+                                     UnFocusColor="#8992A7"
+                                     Style="{StaticResource EntryFontRegular}"
+                                     Radius="5"
+                                     FontSize="14" />
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

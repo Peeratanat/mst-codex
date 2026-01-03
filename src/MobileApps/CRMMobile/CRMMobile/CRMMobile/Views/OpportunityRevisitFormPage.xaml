@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:basepage="clr-namespace:CRMMobile.Layout" x:Class="CRMMobile.Views.OpportunityRevisitFormPage"
+             Title="สร้าง Revisit">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="65" />
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0">
+                <Grid BackgroundColor="#F5F7FA">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <AbsoluteLayout Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Padding="15"
+                                    BackgroundColor="#F5F7FA">
+                        <Label Text="สร้าง Revisit"
+                               AbsoluteLayout.LayoutBounds="0,0,1,30"
+                               AbsoluteLayout.LayoutFlags="WidthProportional"
+                               Style="{StaticResource FontBold}"
+                               FontSize="18"
+                               TextColor="#2B2B2B" />
+                        <Label Text="ประเภท Activity (Walk)"
+                               AbsoluteLayout.LayoutBounds="0,30,1,30"
+                               AbsoluteLayout.LayoutFlags="WidthProportional"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End"
+                               TextColor="#7A7A7A" />
+                        <control:PickerFilter AbsoluteLayout.LayoutBounds="0,60,1,50"
+                                              AbsoluteLayout.LayoutFlags="WidthProportional"
+                                              SelectedItem="{Binding ActivityType.Value}"
+                                              ItemsSource="{Binding ActivityTypes}"
+                                              IsEnabled="False"
+                                              ItemBindingDisplay="Name"
+                                              VisibleSearch="False"
+                                              Title="ประเภท Activity (Lead)"
+                                              IsValid="{Binding ActivityType.IsValid}" />
+                        <Label Text="วันที่ Revisit"
+                               AbsoluteLayout.LayoutBounds="0,110,.48,30"
+                               AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End" />
+                        <control:SFDatePicker AbsoluteLayout.LayoutBounds="0,140,.48,50"
+                                              AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                                              ErrorColor="Red"
+                                              PlaceHolder="วันที่ Revisit"
+                                              IsValid="{Binding ActualDate.IsValid}"
+                                              IsEnabled="{Binding IsEnabled}"
+                                              NullableDate="{Binding ActualDate.Value}"
+                                              BackgroundColor="White"
+                                              Grid.Column="0"
+                                              Grid.Row="4"
+                                              Style="{StaticResource DatePickerFontRegular}"
+                                              FontSize="14"
+                                              TextColor="#7A7A7A" />
+
+                        <Label Text="เวลาที่สะดวกให้ติดต่อกลับ"
+                                AbsoluteLayout.LayoutBounds="1,110,.48,30"
+                               AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               VerticalTextAlignment="End"
+                               TextColor="#7A7A7A" />
+                        <control:PickerFilter x:Name="ConvenientTime"
+                                              AbsoluteLayout.LayoutBounds="1,140,.48,50"
+                                              AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                                              IsValid="{Binding ConvertienTimeSelected.IsValid}"
+                                              IsEnabled="{Binding IsEnabled}"
+                                              ErrorColor="Red"
+                                              ItemsSource="{Binding ConvertienTime}"
+                                              ItemBindingDisplay="Name"
+                                              VisibleSearch="False"
+                                              SelectedItem="{Binding ConvertienTimeSelected.Value}"
+                                              Title="เวลาที่สะดวก">
+                        </control:PickerFilter>
+                        <BoxView Color="#8992A7"
+                                 AbsoluteLayout.LayoutBounds="0,210,1,.5"
+                                 AbsoluteLayout.LayoutFlags="WidthProportional" />
+
+                        <Label Text="รายละเอียดการติดต่อ"
+                               AbsoluteLayout.LayoutBounds="0,220,1,30"
+                               AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                               Style="{StaticResource FontBold}"
+                               FontSize="14"
+                               TextColor="#2B2B2B" />
+                        <Grid AbsoluteLayout.LayoutBounds="0,250,1,40"
+                              AbsoluteLayout.LayoutFlags="XProportional,WidthProportional">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="10" />
+                            </Grid.RowDefinitions>
+                            <BoxView Grid.Column="0"
+                                     Grid.Row="1"
+                                     BackgroundColor="#7A7A7A" />
+                            <Label Grid.Column="1"
+                                   Grid.Row="0"
+                                   Grid.RowSpan="3"
+                                   Text="วันที่นัดหมาย"
+                                   Style="{StaticResource FontRegular}"
+                                   FontSize="13"
+                                   TextColor="#7A7A7A"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+                        <control:SFDatePicker
+                            PlaceHolder="วันที่นัดหมาย"
+                            IsEnabled="{Binding IsEnabled}"
+                            ErrorColor="Red"
+                            FontSize="14"
+                            TextColor="#7A7A7A"
+                            IsValid="{Binding AppointmentDate.IsValid }"
+                            NullableDate="{Binding AppointmentDate.Value}"
+                            AbsoluteLayout.LayoutBounds="0,300,.48,50"
+                            AbsoluteLayout.LayoutFlags="XProportional,WidthProportional">
+                        </control:SFDatePicker>
+                    </AbsoluteLayout>
+                    <AbsoluteLayout Padding="15,0" Grid.Row="1">
+                        <BoxView Color="#8992A7"
+                                 AbsoluteLayout.LayoutBounds="0,.5,10,10"
+                                 AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+                        <Label Text="ผลการติดตาม"
+                               AbsoluteLayout.LayoutBounds=".20,0,.55,40"
+                               AbsoluteLayout.LayoutFlags="XProportional,WidthProportional"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#7A7A7A"
+                               VerticalTextAlignment="Center" />
+                    </AbsoluteLayout>
+                    <basepage:RepeaterView
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        ItemsSource="{Binding CheckboxGroup.Checkboxs}">
+                        <basepage:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Spacing="0" Padding="5,0">
+                                    <CheckBox WidthRequest="30" Color="#454F63" IsChecked="{Binding IsCheck}" />
+                                    <Label FontSize="13" Text="{Binding Value.StatusDescription}" Style="{StaticResource FontRegular}" VerticalTextAlignment="Center"></Label>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CheckCommand}" CommandParameter="{Binding Id}"></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </basepage:RepeaterView.ItemTemplate>
+                    </basepage:RepeaterView>
+
+                    <control:BorderEntry Placeholder="ผลการติดตามอื่นๆ"
+                                         Margin="20,0"
+                                         Grid.Row="3"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="2"
+                                         FocusColor="#C92028"
+                                         UnFocusColor="#8992A7"
+                                         BackgroundColor="AliceBlue"
+                                         IsEnabled="{Binding IsEnabled}"
+                                         Text="{Binding OtherReason}"
+                                         Style="{StaticResource EntryFontRegular}"
+                                         Radius="5"
+                                         FontSize="14" />
+
+                    <Label Margin="25,0"
+                           Text="รายละเอียดเพิ่มเติม"
+                           Grid.Row="4"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Style="{StaticResource FontRegular}"
+                           FontSize="13"
+
+                           VerticalTextAlignment="End" />
+
+                    <control:BorderEditor Grid.Row="5"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="2"
+                                         Margin="20,0"
+                                         IsEnabled="{Binding IsEnabled}"
+                                         FocusColor="#C92028"
+                                         UnFocusColor="#8992A7"
+                                         Text="{Binding Remark}"
+                                         Style="{StaticResource EditorFontRegular}"
+                                         Radius="5"
+                                         FontSize="14" />
+                    <!--<control:BorderEntry Grid.Row="5"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="2"
+                                         Margin="20,0"
+                                         IsEnabled="{Binding IsEnabled}"
+                                         FocusColor="#C92028"
+                                         UnFocusColor="#8992A7"
+                                         Text="{Binding Remark}"
+                                         Style="{StaticResource EntryFontRegular}"
+                                         Radius="5"
+                                         FontSize="14" />-->
+                    <BoxView Margin="15,0"
+                             Grid.Row="7"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="#8992A7"
+                             HorizontalOptions="FillAndExpand" />
+                    <Grid Grid.Row="9"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Margin="20,8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="100*" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="วันที่สร้าง :"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#7A7A7A"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="โดย :"
+                               Grid.Row="0"
+                               Grid.Column="2"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#7A7A7A"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="End" />
+                        <Label Text="{Binding CreateDate}"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#2B2B2B"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding CreateBy, StringFormat='{0:dd/MM/yyy}'}"
+                               Grid.Row="0"
+                               Grid.Column="3"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#2B2B2B"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="วันที่แก้ไข :"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#7A7A7A"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="โดย :"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#7A7A7A"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="End" />
+                        <Label Text="{Binding UpdateDate, StringFormat='{0:dd/MM/yyy}'}"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#2B2B2B"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding UpdateBy}"
+                               Grid.Row="1"
+                               Grid.Column="3"
+                               Style="{StaticResource FontRegular}"
+                               FontSize="13"
+                               TextColor="#2B2B2B"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </Grid>
+            </ScrollView>
+            <Grid Grid.Row="1"
+                  Padding="15"
+                  BackgroundColor="#798293">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Text="บันทึก"
+                        IsEnabled="{Binding IsEnabled}"
+                        Command="{Binding SubmitCommand}"
+                        TextColor="White"
+                        BackgroundColor="#C92028"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        CornerRadius="5" />
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Text="ยกเลิก"
+
+                        Command="{Binding NavigateBackCommand}"
+                        TextColor="White"
+                        BackgroundColor="#454F63"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        CornerRadius="5" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

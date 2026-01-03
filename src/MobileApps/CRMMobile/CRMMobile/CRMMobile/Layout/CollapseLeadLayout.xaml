@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             x:Name="LeadList"
+             x:Class="CRMMobile.Layout.CollapseLeadLayout">
+    <ContentView.Content>
+        <StackLayout
+                     Spacing="0"
+                     Padding="15">
+            <Grid HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="150*" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="70" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0"
+                         Grid.ColumnSpan="6"
+                         BackgroundColor="#364155" />
+                <Button x:Name="MyButton"
+                        Text="&#xE935;"
+                        FontFamily="{StaticResource IcomoonFont}"
+                        TextColor="White"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Clicked="Rotate_Clicked"
+                        BackgroundColor="Transparent"
+                        Rotation="0"
+                        VerticalOptions="Center" />
+                <Label x:Name="Header"
+                       Grid.Column="2"
+                       Text="ชื่อ :"
+                       FontSize="13"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Start"
+                       Style="{StaticResource FontRegular}">
+                </Label>
+                <Label Grid.Column="3"
+                       Text="{Binding FirstName}"
+                       FontSize="13"
+                       TextColor="White"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+
+                       Style="{StaticResource FontBold}" />
+                <Label Grid.Column="4"
+                       Text="ประเภท :"
+                       FontSize="13"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="End"
+
+                       Style="{StaticResource FontRegular}" />
+                <Label Grid.Column="5"
+                       Text="{Binding LeadType.Name}"
+                       FontSize="13"
+                       HorizontalOptions="Start"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource FontBold}" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Rotate_Clicked" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <ContentView x:Name="MyContent">
+                <Frame BackgroundColor="#FAFBFC"
+                       HasShadow="True"
+                       Padding="10">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="0.7" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="50*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="ชื่อ"
+                                   FontSize="13"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="End" />
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="นามสกุล"
+                                   FontSize="13"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="End" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding FirstName ,Converter={StaticResource DashesCoverter}}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding LastName ,Converter={StaticResource DashesCoverter}}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+
+                                   Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="เบอร์โทร"
+                                   FontSize="13"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="End" />
+                            <Label Grid.Row="3"
+                                   Grid.Column="0"
+                                   Text="{Binding PhoneNumber ,Converter={StaticResource DashesCoverter}}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="4"
+                                   Grid.Column="0"
+                                   Text="วันที่บันทึก"
+                                   FontSize="13"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="End" />
+                            <Label Grid.Row="4"
+                                   Grid.Column="1"
+                                   Text="ผู้ดูแล"
+                                   FontSize="13"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="End" />
+                            <Label Grid.Row="5"
+                                   Grid.Column="0"
+                                   Text="{Binding CreatedDate, StringFormat='{}{0:dd/MM/yyyy}', Converter={StaticResource DashesCoverter}}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="5"
+                                   Grid.Column="1"
+                                   Text="{Binding Owner.FirstName, Converter={StaticResource DashesCoverter}}"
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="6"
+                                   Grid.Column="0"
+                                   Text="โครงการที่สนใจ"
+                                   FontSize="13"
+                                   TextColor="#7A7A7A"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="End" />
+                            <Label Grid.Row="7"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+
+                                   FontSize="14"
+                                   TextColor="#2B2B2B"
+                                   Style="{StaticResource FontRegular}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Project.ProjectNo}"></Span>
+                                        <Span Text="-"></Span>
+                                        <Span Text="{Binding Project.ProjectNameTH, Converter={StaticResource DashesCoverter}}"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <BoxView Color="#8992A7"
+                                     Grid.Row="8"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3"
+                                     HeightRequest="1"
+                                     HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Label />
+                            <Button Text="&#xE904;"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Clicked="LeadQualifly"
+                                    FontFamily="{StaticResource IcomoonFont}"
+                                    FontSize="20"
+                                    TextColor="#35ADED"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="White"
+                                    BorderColor="#35ADED"
+                                    BorderWidth="1"
+                                    CornerRadius="5">
+                            </Button>
+                            <Button Text="&#xE900;"
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+
+                                    Clicked="LeadDisQualify"
+                                    FontFamily="{StaticResource IcomoonFont}"
+                                    FontSize="20"
+                                    TextColor="#C92028"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="White"
+                                    BorderColor="#C92028"
+                                    BorderWidth="1"
+                                    CornerRadius="5" />
+                            <Label Text="&#xE908;"
+                                   Grid.Row="0"
+                                   Grid.Column="4"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="18"
+                                   TextColor="#8992A7"
+                                   VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{prism:NavigateTo 'LeadDetail'}"
+                                                          CommandParameter="{Binding Id}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="&#xE905;"
+                                   Grid.Row="0"
+                                   Grid.Column="6"
+                                   FontFamily="{StaticResource IcomoonFont}"
+                                   FontSize="18"
+                                   TextColor="#8992A7"
+                                   VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="RemoveLead" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:CRMMobile.Control"
+             xmlns:converter="clr-namespace:CRMMobile.Converters"
+             xmlns:al="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             x:Class="CRMMobile.Views.VisitorGeneralView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:ContactAddressThaiConverter x:Key="AddressConveter"></converter:ContactAddressThaiConverter>
+            <converter:DisplayProjectConverter x:Key="DisplayProjectConverter"></converter:DisplayProjectConverter>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <ScrollView>
+            <Frame HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   CornerRadius="17"
+                   BackgroundColor="White"
+                   Margin="15">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="ข้อมูล Visitor"
+                               TextColor="#2B2B2B"
+                               FontSize="18"
+                               Style="{StaticResource FontBold}"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalTextAlignment="Center" />
+                        <Button Text="บันทึก"
+                                TextColor="White"
+                                BackgroundColor="#C92028"
+                                BorderWidth="0"
+                                Padding="10"
+                                CornerRadius="5"
+                                HorizontalOptions="End"
+                                HeightRequest="40"
+                                FontSize="14"
+                                Command="{Binding UpdateStatusCommand}" />
+                    </StackLayout>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               TextColor="#7A7A7A"
+                               Text="โครงการ : "
+                               FontSize="14"
+                               Style="{StaticResource FontRegular}"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center" />
+                        <Label
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               TextColor="#2B2B2B"
+                               Text="{Binding Visitor.Project ,Converter={StaticResource DisplayProjectConverter}}"
+                               FontSize="14"
+                               Style="{StaticResource FontRegular}"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center">
+                        </Label>
+                    </Grid>
+                    <Grid Padding="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="100*" />
+                            <ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="80*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Text="&#xE909;"
+                               FontFamily="{StaticResource IcomoonFont}"
+                               FontSize="16"
+                               TextColor="#C92028"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalOptions="End">
+                            <Label
+                               Text="ประเภท Visitor :"
+                               TextColor="#7A7A7A"
+                               FontSize="13"
+                               Style="{StaticResource FontRegular}"
+                               HorizontalTextAlignment="End"
+                               VerticalTextAlignment="Center" />
+                            <control:PickerFilter
+                                             Title="สถานะ"
+                                             Radius="5"
+                                             FocusColor="#C92028"
+                                             FontSize="14"
+                                             VisibleSearch="False"
+                                             ItemBindingDisplay="Name"
+                                             SelectedItem="{Binding ContactStatusSelected}"
+                                             ItemsSource="{Binding ContactStatus}"
+                            WidthRequest="150">
+                            </control:PickerFilter>
+                        </StackLayout>
+                    </Grid>
+                    <Frame CornerRadius="0"
+                           HorizontalOptions="FillAndExpand"
+                           BackgroundColor="#F5F5F5"
+                           BorderColor="#e0dedc"
+                           HasShadow="False"
+                           Padding="0"
+                           Margin="0">
+                        <StackLayout>
+                            <Grid Padding="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="90*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="1" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="90*" />
+                                    <ColumnDefinition Width="5" />
+                                </Grid.ColumnDefinitions>
+                                <BoxView Grid.Row="0"
+                                         Grid.Column="3"
+                                         Grid.RowSpan="8"
+                                         BackgroundColor="#e0dedc"
+                                         VerticalOptions="FillAndExpand" />
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="รหัสลูกค้า"
+                                       TextColor="#7A7A7A"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="End" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Visitor.Contact.ContactNo}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="14"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="Start" />
+                                <Label Grid.Row="0"
+                                       Grid.Column="5"
+                                       Text="ชื่อ-นามสกุล"
+                                       TextColor="#7A7A7A"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="End" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="5"
+                                       TextColor="#2B2B2B"
+                                       FontSize="14"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Visitor.FirstNameTH}"></Span>
+                                            <Span Text=" "></Span>
+                                            <Span Text="{Binding Visitor.LastNameTH}"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <BoxView Grid.Row="2"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="7"
+                                         BackgroundColor="#e0dedc"
+                                         HorizontalOptions="FillAndExpand" />
+                                <Label Grid.Row="3"
+                                       Grid.Column="1"
+                                       Text="เบอร์โทร"
+                                       TextColor="#7A7A7A"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="End" />
+                                <Label Grid.Row="4"
+                                       Grid.Column="1"
+                                       Text="{Binding Visitor.PhoneNumber}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="14"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="Start" />
+                                <Label Grid.Row="3"
+                                       Grid.Column="5"
+                                       Text="อีเมลล์"
+                                       TextColor="#7A7A7A"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="End" />
+                                <Label Grid.Row="4"
+                                       Grid.Column="5"
+                                       Text="{Binding Visitor.ContactEmail.Email}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="14"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="Start" />
+                                <BoxView Grid.Row="5"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="7"
+                                         BackgroundColor="#e0dedc"
+                                         HorizontalOptions="FillAndExpand" />
+                                <Label Grid.Row="6"
+                                       Grid.Column="1"
+                                       Text="สถานะ Walk"
+                                       TextColor="#7A7A7A"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="End" />
+                                <Label Grid.Row="7"
+                                       Grid.Column="1"
+                                       Text="{Binding Visitor.ContactStatus.Name}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="14"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="Start" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    <Grid Padding="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Text="&#xE902;"
+                               FontFamily="{StaticResource IcomoonFont}"
+                               FontSize="16"
+                               TextColor="#C92028"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="ช่วงเวลาเข้า-ออกโครงการ"
+                               TextColor="#000000"
+                               FontSize="16"
+                               Style="{StaticResource FontRegular}"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Frame CornerRadius="0"
+                           HorizontalOptions="FillAndExpand"
+                           BackgroundColor="#F5F5F5"
+                           BorderColor="#e0dedc"
+                           HasShadow="False"
+                           Padding="0"
+                           Margin="0">
+                        <StackLayout>
+                            <Grid Padding="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="90*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="1" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="90*" />
+                                    <ColumnDefinition Width="5" />
+                                </Grid.ColumnDefinitions>
+                                <BoxView Grid.Row="0"
+                                         Grid.Column="3"
+                                         Grid.RowSpan="2"
+                                         BackgroundColor="#e0dedc"
+                                         VerticalOptions="FillAndExpand" />
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="เวลาเข้าโครงการ"
+                                       TextColor="#7A7A7A"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="End" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Visitor.VisitDateIn ,StringFormat='{}{0:dd/MM/yyyy (HH:mm)}' }"
+                                       FontSize="14"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="Start" />
+                                <Label Grid.Row="0"
+                                       Grid.Column="5"
+                                       Text="เวลาออกโครงการ"
+                                       TextColor="#7A7A7A"
+                                       FontSize="13"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="End" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="5"
+                                       Text="{Binding Visitor.VisitDateOut ,StringFormat='{}{0:dd/MM/yyyy (HH:mm)}'}"
+                                       TextColor="#2B2B2B"
+                                       FontSize="14"
+                                       Style="{StaticResource FontRegular}"
+                                       VerticalTextAlignment="Start" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    <Grid Padding="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Text="&#xE903;"
+                               FontFamily="{StaticResource IcomoonFont}"
+                               FontSize="16"
+                               TextColor="#C92028"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="ที่อยู่"
+                               TextColor="#000000"
+                               FontSize="16"
+                               Style="{StaticResource FontRegular}"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Frame CornerRadius="0"
+                           HorizontalOptions="FillAndExpand"
+                           BackgroundColor="#F5F5F5"
+                           BorderColor="#e0dedc"
+                           HasShadow="False"
+                           Padding="0"
+                           Margin="0">
+                        <Grid Padding="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="1" />
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="1" />
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="150*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="ที่อยู่ตามบัตรประชาชน"
+                                   TextColor="#7A7A7A"
+                                   FontSize="13"
+
+                                   VerticalTextAlignment="Center"
+                                   Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Visitor.CitizenAddress,Converter={StaticResource AddressConveter}}"
+                                   TextColor="#2B2B2B"
+                                   FontSize="14"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="Start" />
+                            <BoxView Grid.Row="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     BackgroundColor="#e0dedc"
+                                     HorizontalOptions="FillAndExpand" />
+                            <Label Grid.Row="3"
+                                   Grid.Column="1"
+                                   Text="ที่อยู่ที่สามารถติดต่อได้"
+                                   TextColor="#7A7A7A"
+                                   FontSize="13"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="Center" />
+                            <al:RepeatableStack x:Name="ContactAddresses"
+                                                Grid.Row="4"
+                                                Grid.Column="1"
+                                                ItemsSource="{Binding ContactAddresses}"
+                                                Margin="0">
+                                <al:RepeatableStack.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding .,Converter={StaticResource AddressConveter}}"
+                                               TextColor="#2B2B2B"
+                                               FontSize="14"
+                                               Style="{StaticResource FontRegular}"
+                                               VerticalTextAlignment="Start" />
+                                    </DataTemplate>
+                                </al:RepeatableStack.ItemTemplate>
+                            </al:RepeatableStack>
+
+                            <BoxView Grid.Row="5"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     BackgroundColor="#e0dedc"
+                                     HorizontalOptions="FillAndExpand" />
+                            <Label Grid.Row="6"
+                                   Grid.Column="1"
+                                   Text="ที่อยู่ที่ทำงาน"
+                                   TextColor="#7A7A7A"
+                                   FontSize="13"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="Center" />
+                            <Label Grid.Row="7"
+                                   Grid.Column="1"
+                                   Text="{Binding Visitor.WorkAddress,Converter={StaticResource AddressConveter}}"
+                                   TextColor="#2B2B2B"
+                                   FontSize="14"
+                                   Style="{StaticResource FontRegular}"
+                                   VerticalTextAlignment="Start" />
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

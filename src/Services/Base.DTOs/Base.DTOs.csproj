@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Configurations>Debug;Release;Development</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'!='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\netcoreapp2.2\Base.DTOs.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.2\Base.DTOs.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <DocumentationFile>bin\Release\netcoreapp2.2\Base.DTOs.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Base\**" />
+    <EmbeddedResource Remove="Base\**" />
+    <None Remove="Base\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ACC\PostGLDetailDTO.cs" />
+    <Compile Remove="CMS\CalculatePerMonthHighRiseSaleDetailDTO.cs" />
+    <Compile Remove="CMS\CalculatePerMonthHighRiseTransferDetailDTO.cs" />
+    <Compile Remove="CMS\CalculatePerMonthLowRiseDetailDTO.cs" />
+    <Compile Remove="CMS\DeductMoneyDTO.cs" />
+    <Compile Remove="CMS\IncreaseMoneyDTO.cs" />
+    <Compile Remove="CMS\RateSettingFixSaleDTO.cs" />
+    <Compile Remove="CMS\RateSettingFixSaleModelDTO.cs" />
+    <Compile Remove="CMS\RateSettingFixTransferDTO.cs" />
+    <Compile Remove="CMS\RateSettingFixTransferModelDTO.cs" />
+    <Compile Remove="CMS\RateSettingSaleDTO.cs" />
+    <Compile Remove="CMS\RateSettingSaleExcelDTO.cs" />
+    <Compile Remove="CMS\RateSettingTransferDTO.cs" />
+    <Compile Remove="CMS\RateSettingTransferExcelDTO.cs" />
+    <Compile Remove="CustomModels.cs" />
+    <Compile Remove="FIN\ReceiptDetail2DTO.cs" />
+    <Compile Remove="SAL\TransferCreditCardItemDTO.cs" />
+    <Compile Remove="SAL\TransferPromotionFreeItemDTO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Database\Database.Models\Database.Models.csproj" />
+    <ProjectReference Include="..\..\..\lib\FileStorage\FileStorage.csproj" />
+    <ProjectReference Include="..\..\..\lib\PagingExtensions\PagingExtensions.csproj" />
+    <ProjectReference Include="..\..\..\lib\ErrorHandling\ErrorHandling.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IDT\Sortings\" />
+    <Folder Include="NTF\" />
+  </ItemGroup>
+</Project>

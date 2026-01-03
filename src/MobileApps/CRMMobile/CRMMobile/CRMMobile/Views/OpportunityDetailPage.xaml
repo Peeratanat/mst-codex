@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="CRMMobile.Views.OpportunityDetailPage"
+             Title="รายละเอียด Opportunity">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F5F7FA" Spacing="0">
+            <Frame Padding="15" HasShadow="False" BackgroundColor="White" HeightRequest="30">
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Style="{StaticResource FontRegular}" TextColor="#2B2B2B">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding DisplayFullName}"></Span>
+                            <Span Text="{Binding DisplayContact}"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="0" Margin="0" Padding="0">
+                <Grid x:Name="HeaderTab" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="3" />
+                    </Grid.RowDefinitions>
+                    <Label x:Name="Tab1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Text="Opportunity" Style="{StaticResource FontRegular}" FontSize="13">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped" Command="{Binding MyCommand}" CommandParameter="0" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView x:Name="UnderlineTab" Color="#C92028" Grid.Row="1" Grid.Column="0"></BoxView>
+                    <Label x:Name="Tab2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" Text="Activities" Style="{StaticResource FontRegular}" FontSize="13">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"  Command="{Binding MyCommand}" CommandParameter="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="Tab3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="2" Text="ข้อมูล Revisit" Style="{StaticResource FontRegular}" FontSize="13">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"  Command="{Binding MyCommand}" CommandParameter="2" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Frame>
+            <cv:CarouselViewControl x:Name="carousel"
+                                    Orientation="Horizontal"
+                                    ItemsSource="{Binding Template}"
+                                    Position="{Binding Position}"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
+            </cv:CarouselViewControl>
+            <Grid Padding="15" BackgroundColor="#798293">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="1" Command="{Binding EditCommand}" Text="บันทึก" TextColor="White" BackgroundColor="#C92028" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+                <Button Grid.Row="0" Grid.Column="2" Command="{Binding NavigateBackCommand}" Text="ยกเลิก" TextColor="White" BackgroundColor="#454F63" BorderColor="White" BorderWidth="1" CornerRadius="5" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

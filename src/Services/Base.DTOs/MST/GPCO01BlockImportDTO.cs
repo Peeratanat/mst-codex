@@ -1,0 +1,25 @@
+﻿using Base.DTOs.FIN;
+using Base.DTOs.PRJ;
+using Base.DTOs.SAL;
+using Database.Models;
+using Database.Models.LOG;
+using Database.Models.MST;
+using Database.Models.PRJ;
+using Database.Models.ROI;
+using Database.Models.USR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Base.DTOs.MST
+{
+    public class GPCO01BlockImportDTO : BaseDTO
+    {
+        public int Total { get; set; }
+        public int Valid { get; set; }
+        public int Invalid { get; set; }
+        public List<GPBlockDTO> ImportBlockList { get; set; }
+        public GPProjectDTO Project { get; set; }
+
+    } 
+}

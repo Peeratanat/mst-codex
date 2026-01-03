@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:basepage="clr-namespace:CRMMobile.Layout"
+             x:Class="CRMMobile.Views.ContactUnitView">
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   CornerRadius="10"
+                   BackgroundColor="White"
+                   Margin="15">
+                    <StackLayout>
+                        <StackLayout HeightRequest="35" Orientation="Horizontal">
+                            <Label FontSize="16" VerticalTextAlignment="Center" Text="ข้อมูลแปลง" Style="{StaticResource FontBold}" />
+                        </StackLayout>
+                        <basepage:CollapseContactUnitLayout></basepage:CollapseContactUnitLayout>
+                        <basepage:CollapseContactUnitLayout></basepage:CollapseContactUnitLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

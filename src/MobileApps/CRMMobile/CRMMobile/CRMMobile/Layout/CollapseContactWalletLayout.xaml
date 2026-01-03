@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRMMobile.Layout.CollapseContactWalletLayout">
+    <ContentView.Content>
+        <StackLayout   VerticalOptions="Center" HorizontalOptions="FillAndExpand" Spacing="0" Padding="0" Margin="0,0,0,10">
+            <Grid HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="120*" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="0" Grid.ColumnSpan="7" BackgroundColor="#364155" />
+                <Button x:Name="MyButton" Image="expandmore.png" Grid.Column="1" Clicked="Rotate_Clicked" BackgroundColor="Transparent" Rotation="180" VerticalOptions="Center" />
+                <Label x:Name="Header" Grid.Column="2" Text="แปลงที่ :" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" Style="{StaticResource FontRegular}" />
+                <Label Grid.Column="3" Text="A10D706" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" Style="{StaticResource FontBold}" />
+                <Label Grid.Column="4" Text="บัตรเครดิต :" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" Style="{StaticResource FontRegular}" />
+                <Label Grid.Column="5" Text="50,000" FontSize="13" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="End" Style="{StaticResource FontBold}" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Rotate_Clicked" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <ContentView x:Name="MyContent">
+                <Frame BackgroundColor="#FAFBFC" HasShadow="True" Padding="10">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*" />
+                                <ColumnDefinition Width="100*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="วันที่ทำรายการ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="23/01/2019" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="รับ (บาท)" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="ถอน (บาท)" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="3" Grid.Column="0" Text="50,000.00" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="3" Grid.Column="1" Text="-" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="4" Grid.Column="0" Text="ประเภทการรับเงิน/ชำระเงิน" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="4" Grid.Column="1" Text="คงเหลือ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="5" Grid.Column="0" Text="บัตรเครดิต" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="5" Grid.Column="1" Text="50,000.00" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                            <Label Grid.Row="6" Grid.Column="0" Text="ผู้ทำรายการ" FontSize="13" TextColor="#7A7A7A" Style="{StaticResource FontRegular}" VerticalTextAlignment="End" />
+                            <Label Grid.Row="7" Grid.Column="0" Text="อริยดา" FontSize="14" TextColor="#2B2B2B" Style="{StaticResource FontRegular}" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                  xmlns:helper="clr-namespace:IO.Swagger.Client;assembly=IO.Swagger"
+                  x:Class="CRMMobile.Views.MenuPage">
+    <MasterDetailPage.Master>
+        <NavigationPage Title="Menu"
+                        Icon="hamburgermenu.png"
+                        BarBackgroundColor="#364255">
+            <x:Arguments>
+                <ContentPage Title="CRM">
+                    <StackLayout BackgroundColor="#364255">
+                        <ListView ItemsSource="{Binding MenuItems,Mode=TwoWay}"
+                              ItemSelected="Handle_ItemSelected"
+                              SeparatorColor="#3f495b"
+                              RowHeight="60"
+                              SeparatorVisibility="Default"
+                              BackgroundColor="#364255"
+                              VerticalOptions="FillAndExpand">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout VerticalOptions="FillAndExpand"
+                                                 Orientation="Horizontal"
+                                                 Padding="20,10,0,10"
+                                                 Spacing="20"
+                                                 BackgroundColor="{Binding SelectedColorItem,Mode=TwoWay}">
+                                            <Label Text="{Binding Icon}" FontFamily="{StaticResource IcomoonFont}" FontSize="15" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            <Label Text="{Binding Title}"
+                                               FontSize="Medium"
+                                               VerticalOptions="Center"
+                                               TextColor="White"
+                                               Style="{StaticResource FontRegular}" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.Behaviors>
+                                <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateCommand}" />
+                            </ListView.Behaviors>
+                        </ListView>
+                        <StackLayout VerticalOptions="End" Padding="10,10,10,20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*" />
+                                    <ColumnDefinition Width="50*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
+                                </Grid.RowDefinitions>
+                                <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="#3f495b" />
+                                <Label Grid.Row="2" Grid.Column="0" Text="LOG OUT" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start" TextColor="White" Style="{StaticResource FontRegular}" />
+                                <Label Grid.Row="3" Grid.Column="0" Text="{x:Static helper:UserIdentify.Displayname}" FontSize="14" VerticalOptions="Center" HorizontalTextAlignment="Start" TextColor="White" Style="{StaticResource FontRegular}" />
+                                <Image Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Source="profile.png" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LogoutCommand}"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>
